@@ -21,7 +21,7 @@ import androidx.navigation.Navigation;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.proyecto.facilgimapp.R;
-import com.proyecto.facilgimapp.Utils.ApiAuth;
+import com.proyecto.facilgimapp.Utils.interfaces.ApiAuth;
 import com.proyecto.facilgimapp.Utils.ApiClient;
 import com.proyecto.facilgimapp.request.LoginRequest;
 import com.proyecto.facilgimapp.response.LoginResponse;
@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class LoginFragment extends Fragment {
 
-    private TextInputEditText etEmail, etPassword;
+    private TextInputEditText etUsername, etPassword;
     private CheckBox cbRememberMe;
     private MaterialButton btnSignIn;
     Log log;
@@ -59,7 +59,7 @@ public class LoginFragment extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
         // Obtenemos las referencias a los elementos de la interfaz
-        etEmail = view.findViewById(R.id.etEmail);
+        etUsername = view.findViewById(R.id.etUsername);
         etPassword = view.findViewById(R.id.etPassword);
         btnSignIn = view.findViewById(R.id.btnSignIn);
         cbRememberMe = view.findViewById(R.id.cbRememberMe);
@@ -72,22 +72,22 @@ public class LoginFragment extends Fragment {
 
         //Si hay credenciales guardadas las mostramos en los campos de texto y activamos el campo de recordar
         if (!emailGuardado.isEmpty() && !passwordGuardado.isEmpty()) {
-            etEmail.setText(emailGuardado);
+            etUsername.setText(emailGuardado);
             etPassword.setText(passwordGuardado);
             cbRememberMe.setChecked(true);
         }
 
         // Configuramos el botón de inicio de sesión
         btnSignIn.setOnClickListener(v -> {
-            String email = etEmail.getText().toString().trim();
+            String username = etUsername.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                 Toast.makeText(getContext(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
             }
 
             // Creamos una instancia de LoginRequest con los datos ingresados en la petición de login
-            LoginRequest loginRequest = new LoginRequest(email, password);
+            LoginRequest loginRequest = new LoginRequest(username, password);
 
 
 
@@ -123,13 +123,13 @@ public class LoginFragment extends Fragment {
                         //guardamos en el shared preferences el token
                         preferences.edit().putString("token", token).apply();
 
-                        //Si guardar contrasena y email estan marcadas guardamos ambas en el preferences
+                        //Si guardar contrasena y username estan marcadas guardamos ambas en el preferences
                         if(cbRememberMe.isChecked()){
-                           preferences.edit().putString("email", email).apply();
+                           preferences.edit().putString("username", username).apply();
                            preferences.edit().putString("password", password).apply();
                         }else{
                             //  si no está marcado, eliminamos las credenciales guardadas
-                           preferences.edit().remove("email").apply();
+                           preferences.edit().remove("username").apply();
                            preferences.edit().remove("password").apply();
                         }
 

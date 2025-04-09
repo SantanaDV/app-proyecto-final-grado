@@ -10,41 +10,41 @@ import java.util.Objects;
  */
 public class LoginRequest {
 
-    private String email;
+    private String username;
     private String contrasena ;
 
     public LoginRequest() {
     }
 
-    public LoginRequest(String email, String contrasena ) {
-        this.email = email;
+    public LoginRequest(String username, String contrasena ) {
+        this.username = username;
         this.contrasena  = contrasena ;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         LoginRequest that = (LoginRequest) o;
-        return Objects.equals(email, that.email) && Objects.equals(contrasena , that.contrasena );
+        return Objects.equals(username, that.username) && Objects.equals(contrasena , that.contrasena );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, contrasena );
+        return Objects.hash(username, contrasena );
     }
 
     @Override
     public String toString() {
         return "LoginRequest{" +
-                "email='" + email + '\'' +
+                "email='" + username + '\'' +
                 ", password='" + contrasena  + '\'' +
                 '}';
     }
