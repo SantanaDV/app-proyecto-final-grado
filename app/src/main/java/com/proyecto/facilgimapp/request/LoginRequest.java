@@ -44,7 +44,7 @@ public class LoginRequest {
     @Override
     public String toString() {
         return "LoginRequest{" +
-                "email='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + contrasena  + '\'' +
                 '}';
     }

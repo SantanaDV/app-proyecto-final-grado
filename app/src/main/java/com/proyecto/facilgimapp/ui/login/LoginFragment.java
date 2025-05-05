@@ -67,7 +67,7 @@ public class LoginFragment extends Fragment {
         SharedPreferences preferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 
         //Obtenemos del shared preferences las credenciales guardadas
-        String emailGuardado = preferences.getString("email", "");
+        String emailGuardado = preferences.getString("username", "");
         String passwordGuardado = preferences.getString("password", "");
 
         //Si hay credenciales guardadas las mostramos en los campos de texto y activamos el campo de recordar
@@ -84,6 +84,7 @@ public class LoginFragment extends Fragment {
 
             if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                 Toast.makeText(getContext(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            return;
             }
 
             // Creamos una instancia de LoginRequest con los datos ingresados en la petición de login
