@@ -25,4 +25,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <color name="purple_200">#C36CF6</color>
+    <color name="purple_700">#A412F6</color>
 </resources>
