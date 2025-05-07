@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary / Secondary en modo noche -->
+    <color name="colorPrimary">#90CAF9</color>
+    <color name="colorOnPrimary">#000000</color>
+
+    <!-- Fondo y superficie en modo noche -->
+    <color name="colorBackground">#121212</color>
+    <color name="colorOnBackground">#E0E0E0</color>
+    <color name="colorSurface">#1E1E1E</color>
+    <color name="colorOnSurface">#FFFFFF</color>
+</resources>

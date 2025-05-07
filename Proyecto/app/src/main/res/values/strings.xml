@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">FacilGimApp</string>
+
+    <!-- Actions -->
+    <string name="action_add">Agregar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_delete">Eliminar</string>
+    <string name="action_save_changes">Guardar cambios</string>
+    <string name="action_update_password">Actualizar contraseña</string>
+    <string name="action_login">Iniciar sesión</string>
+    <string name="action_register">Registrarse</string>
+
+    <!-- Login / Register -->
+    <string name="title_login">Iniciar sesión</string>
+    <string name="title_register">Registro</string>
+    <string name="error_login_failed">Error al iniciar sesión</string>
+
+    <!-- User management -->
+    <string name="title_add_user">Agregar usuario</string>
+    <string name="confirm_delete">Confirmar eliminación</string>
+    <string name="confirm_delete_user">¿Eliminar usuario %1$s?</string>
+    <string name="error">Error</string>
+    <string name="error_admin_only">Acceso restringido a administradores</string>
+
+    <!-- Series -->
+    <string name="title_add_series">Agregar serie</string>
+    <string name="confirm_delete_series">¿Eliminar esta serie?</string>
+    <string name="hint_reps">Repeticiones</string>
+    <string name="hint_weight">Peso (kg)</string>
+
+    <!-- Workout & Home -->
+    <string name="title_home">Inicio</string>
+    <string name="summary_activity">Resumen</string>
+    <string name="summary_placeholder">Aquí va el resumen de tu actividad</string>
+    <string name="next_workout">Próximo entrenamiento</string>
+    <string name="next_workout_details_format">%1$d ejercicios, %2$d min</string>
+    <string name="recent_exercises">Ejercicios recientes</string>
+    <string name="title_workouts">Entrenamientos</string>
+    <string name="title_workout_detail">Detalle del entrenamiento</string>
+    <string name="no_workouts_yet">Todavía no has realizado ningún entrenamiento.</string>
+    <string name="total_exercises">Ejercicios</string>
+    <string name="total_workouts">Entrenamientos</string>
+    <string name="total_types">Tipos</string>
+    <string name="last_added_exercises">Últimos ejercicios</string>
+    <!-- Stats & Calendar -->
+    <string name="title_stats">Estadísticas</string>
+    <string name="stats_placeholder">Aquí irán tus estadísticas</string>
+    <string name="desc_stats">Gráfico de estadísticas</string>
+    <string name="title_calendar">Calendario</string>
+    <string name="calendar_placeholder">Aquí irá tu calendario de entrenamientos</string>
+    <string name="desc_calendar">Calendario</string>
+
+    <!-- Settings -->
+    <string name="title_settings">Ajustes</string>
+    <string name="tab_profile">Perfil</string>
+    <string name="tab_security">Seguridad</string>
+    <string name="tab_appearance">Apariencia</string>
+    <string name="hint_current_password">Contraseña actual</string>
+    <string name="hint_new_password">Nueva contraseña</string>
+    <string name="hint_confirm_password">Confirmar contraseña</string>
+    <string name="label_dark_mode">Modo oscuro</string>
+    <string name="label_font_size">Tamaño de letra</string>
+    <string name="font_small">Pequeña</string>
+    <string name="font_medium">Mediana</string>
+    <string name="font_large">Grande</string>
+    <string name="label_color_theme">Tema de color</string>
+
+    <!-- User & Auth Hints -->
+    <string name="hint_username">Usuario</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_lastname">Apellido</string>
+    <string name="hint_address">Dirección</string>
+
+    <!-- Types -->
+    <string name="title_add_type">Nuevo tipo</string>
+    <string name="title_edit_type">Editar tipo</string>
+    <string name="dialog_type_hint">Nombre del tipo</string>
+
+    <string name="register_success">Registro exitoso</string>
+    <string name="register_failed">Error al registrar usuario</string>
+
+    <string name="desc_chart">Descripción del gráfico de estadísticas</string>
+    <string name="add_series">Agregar serie</string>
+    <string name="action_add_series">Agregar serie</string>
+    <string name="facilgimapp">FacilGimApp</string>
+    <string name="registro">Registro</string>
+    <string name="entrenamientos">Entrenamientos</string>
+    <string name="detalle_entrenamiento">Detalle Entrenamiento</string>
+    <string name="ejercicios">Ejercicios</string>
+    <string name="series">Series</string>
+    <string name="usuarios">Usuarios</string>
+    <string name="inicio">Inicio</string>
+    <string name="estad_sticas">Estadísticas</string>
+    <string name="calendario">Calendario</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="tipos">Tipos</string>
+    <string name="home">Home</string>
+    <string name="usuario">Usuario</string>
+
+
+    <string name="app_logo">FacilGimApp</string>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Aplica a toda la app -->
+    <base-config>
+        <trust-anchors>
+            <!-- sigue confiando en los CAs del sistema -->
+            <certificates src="system" />
+            <!-- y añade el CA embebida -->
+            <certificates src="@raw/ca" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facilgimapp">FacilGimApp</string>
+    <string name="registro">Registro</string>
+    <string name="entrenamientos">Entrenamientos</string>
+    <string name="detalle_entrenamiento">Detalle Entrenamiento</string>
+    <string name="ejercicios">Ejercicios</string>
+    <string name="series">Series</string>
+    <string name="usuarios">Usuarios</string>
+    <string name="inicio">Inicio</string>
+    <string name="estad_sticas">Estadísticas</string>
+    <string name="calendario">Calendario</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="tipos">Tipos</string>
+</resources>
