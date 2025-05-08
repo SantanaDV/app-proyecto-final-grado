@@ -1,28 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data />
+    <data/>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Toolbar -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarWorkoutDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorSurface"
             android:elevation="4dp"
-            app:title="Detalle Entrenamiento"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+            app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:title="Detalle Entrenamiento" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvExercises"
+        <!-- Contenido bajo la toolbar -->
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
+            android:layout_marginTop="?attr/actionBarSize"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_marginTop="?attr/actionBarSize" />
+            android:padding="16dp">
 
+            <!-- Card con los datos del entrenamiento -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvWorkoutName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre Entrenamiento"
+                        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+                    <TextView
+                        android:id="@+id/tvWorkoutDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha: 2025-05-01"
+                        style="@style/TextAppearance.MaterialComponents.Body2"/>
+
+                    <TextView
+                        android:id="@+id/tvWorkoutDuration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duración: 45 min"
+                        style="@style/TextAppearance.MaterialComponents.Body2"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Lista de ejercicios con series -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRelations"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"/>
+
+        </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

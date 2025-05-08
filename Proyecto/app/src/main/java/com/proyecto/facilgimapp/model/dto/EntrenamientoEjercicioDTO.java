@@ -1,37 +1,46 @@
+// src/main/java/com/proyecto/facilgimapp/model/dto/EntrenamientoEjercicioDTO.java
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
-import com.proyecto.facilgimapp.model.dto.SerieDTO;
-
 import java.util.List;
+import java.util.Objects;
 
 public class EntrenamientoEjercicioDTO {
-    @SerializedName("idEntrenamiento")
-    private Integer idEntrenamiento;
+    // 1) El ID de la relación
+    @SerializedName("id")
+    private Integer id;
 
-    @SerializedName("idEjercicio")
-    private Integer idEjercicio;
+    // 2) El ejercicio anidado (reusa tu EjercicioDTO)
+    @SerializedName("ejercicio")
+    private EjercicioDTO ejercicio;
 
+    // 3) La lista de series
     @SerializedName("series")
     private List<SerieDTO> series;
 
-    public EntrenamientoEjercicioDTO() { }
+    // getters & setters
 
-    public EntrenamientoEjercicioDTO(Integer idEntrenamiento, Integer idEjercicio, List<SerieDTO> series) {
-        this.idEntrenamiento = idEntrenamiento;
-        this.idEjercicio = idEjercicio;
-        this.series = series;
-    }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public EntrenamientoEjercicioDTO(int entrenamientoId, int ejercicioId, List<com.proyecto.facilgimapp.model.dto.SerieDTO> series) {
-    }
-
-    public Integer getIdEntrenamiento() { return idEntrenamiento; }
-    public void setIdEntrenamiento(Integer idEntrenamiento) { this.idEntrenamiento = idEntrenamiento; }
-
-    public Integer getIdEjercicio() { return idEjercicio; }
-    public void setIdEjercicio(Integer idEjercicio) { this.idEjercicio = idEjercicio; }
+    public EjercicioDTO getEjercicio() { return ejercicio; }
+    public void setEjercicio(EjercicioDTO ejercicio) { this.ejercicio = ejercicio; }
 
     public List<SerieDTO> getSeries() { return series; }
     public void setSeries(List<SerieDTO> series) { this.series = series; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EntrenamientoEjercicioDTO)) return false;
+        EntrenamientoEjercicioDTO that = (EntrenamientoEjercicioDTO) o;
+        return Objects.equals(id, that.id)
+                && Objects.equals(ejercicio, that.ejercicio)
+                && Objects.equals(series, that.series);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, ejercicio, series);
+    }
 }

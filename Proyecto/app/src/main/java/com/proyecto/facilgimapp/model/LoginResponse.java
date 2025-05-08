@@ -1,9 +1,10 @@
 package com.proyecto.facilgimapp.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 import java.util.List;
 
-public class LoginResponse {
+public class LoginResponse implements Serializable {
     @SerializedName("token")
     private String token;
 
@@ -16,12 +17,14 @@ public class LoginResponse {
     @SerializedName("authorities")
     private List<String> authorities;
 
+    @SerializedName("userId")
+    private Integer userId;
+
     public LoginResponse() { }
 
     public String getToken() {
         return token;
     }
-
     public void setToken(String token) {
         this.token = token;
     }
@@ -29,7 +32,6 @@ public class LoginResponse {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -37,7 +39,6 @@ public class LoginResponse {
     public String getMensaje() {
         return mensaje;
     }
-
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
@@ -45,8 +46,14 @@ public class LoginResponse {
     public List<String> getAuthorities() {
         return authorities;
     }
-
     public void setAuthorities(List<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

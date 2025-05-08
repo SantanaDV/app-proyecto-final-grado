@@ -37,8 +37,14 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.VH> 
         holder.tvName.setText(e.getNombre());
         Glide.with(holder.img.getContext())
                 .load(e.getImagenUrl())
+                .placeholder(R.drawable.placeholder)     // mientras carga
+                .error(R.drawable.placeholder)           // si falla la descarga
+                .fallback(R.drawable.placeholder)        // si la URL es null
                 .centerCrop()
                 .into(holder.img);
+
+
+
     }
 
     @Override public int getItemCount() { return items.size(); }

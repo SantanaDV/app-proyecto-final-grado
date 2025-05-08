@@ -103,5 +103,19 @@
 
 
     <string name="app_logo">FacilGimApp</string>
+    <string name="nuevo_entrenamiento">Nuevo Entrenamiento</string>
+    <string name="seleccionar_fecha">Seleccionar fecha</string>
+    <string name="tipo_entrenamiento">Tipo de entrenamiento</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="fecha_entrenamiento">Fecha de entrenamiento</string>
+    <string name="duracion_minutos">Duración</string>
+    <string name="descripcion">Descripción</string>
+    <string name="nombre_entrenamiento">Nombre:</string>
+    <string name="selecciona_ejercicios">Seleccionar ejercicio</string>
+    <string name="completar_seleccion">Completar selección</string>
+    <string name="seleccionar_ejercicios">Seleccionar ejercicio</string>
+
+    <string name="ejercicio_imagen">Imagen del ejercicio</string>
+
 
 </resources>

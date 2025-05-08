@@ -3,6 +3,8 @@
 
     <!-- Tema base de la aplicación -->
     <style name="Theme.FacilGimApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
         <!-- Primary / Secondary -->
         <item name="colorPrimary">@color/blue_500</item>
         <item name="colorPrimaryVariant">@color/blue_700</item>
@@ -46,5 +48,19 @@
         <item name="colorSecondary">@color/red_500</item>
         <item name="colorSecondaryVariant">@color/red_700</item>
     </style>
+
+    <!-- Aplica a los números de cada día -->
+    <style name="CalendarDateTextAppearance" parent="TextAppearance.MaterialComponents.Body2">
+        <!-- Color oscuro sobre fondo claro -->
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <!-- Aplica a los nombres de los días (lun, mar, ...) -->
+    <style name="CalendarWeekDayTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <!-- Color oscuro sobre fondo claro -->
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+
 
 </resources>

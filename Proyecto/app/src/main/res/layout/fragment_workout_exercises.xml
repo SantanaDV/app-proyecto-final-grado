@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvSelectedWorkoutName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selecciona_ejercicios"
+            android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAvailableExercises"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp" />
+
+        <Button
+            android:id="@+id/btnConfirmExercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/completar_seleccion"/>
+    </LinearLayout>
+</layout>

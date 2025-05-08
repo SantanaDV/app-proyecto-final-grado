@@ -4,37 +4,53 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
+import com.proyecto.facilgimapp.model.Entrenamiento;
+import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
+import com.proyecto.facilgimapp.network.RetrofitClient;
 import com.proyecto.facilgimapp.repository.workout.TrainingExerciseRepository;
-import com.proyecto.facilgimapp.util.SessionManager;
+import com.proyecto.facilgimapp.repository.workout.WorkoutRepository;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WorkoutDetailViewModel extends AndroidViewModel {
-    private final TrainingExerciseRepository repo;
-    public final MutableLiveData<List<EjercicioDTO>> exercises = new MutableLiveData<>();
+    public final MutableLiveData<Entrenamiento> workout   = new MutableLiveData<>();
+    public final MutableLiveData<List<EntrenamientoEjercicioDTO>> relations = new MutableLiveData<>();
+    private final WorkoutRepository workoutRepo;
+    private final TrainingExerciseRepository relationRepo;
 
-    public WorkoutDetailViewModel(@NonNull Application application) {
-        super(application);
-        repo = new TrainingExerciseRepository(application.getApplicationContext());
+    public WorkoutDetailViewModel(@NonNull Application app) {
+        super(app);
+        workoutRepo  = new WorkoutRepository(app.getApplicationContext());
+        relationRepo = new TrainingExerciseRepository(app.getApplicationContext());
     }
 
-    /** Carga los ejercicios del entrenamiento para el usuario logueado */
-    public void load(int workoutId) {
-        String username = SessionManager.getUsername(getApplication());
-        repo.fetchExercisesForWorkout(workoutId, username, new Callback<List<EjercicioDTO>>() {
+    /** Carga los datos básicos del entrenamiento */
+    public void loadDetails(int id) {
+        workoutRepo.getWorkout(id).enqueue(new Callback<Entrenamiento>() {
             @Override
-            public void onResponse(Call<List<EjercicioDTO>> call,
-                                   Response<List<EjercicioDTO>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    exercises.setValue(response.body());
+            public void onResponse(Call<Entrenamiento> c, Response<Entrenamiento> r) {
+                if (r.isSuccessful() && r.body() != null) {
+                    workout.setValue(r.body());
                 }
             }
-            @Override public void onFailure(Call<List<EjercicioDTO>> call, Throwable t) {
-                // Aquí podrías setValue(Collections.emptyList()) o loggear
-            }
+            @Override public void onFailure(Call<Entrenamiento> c, Throwable t) { }
         });
+    }
+
+    /** Carga la lista ejercicio–serie */
+    public void loadRelations(int workoutId) {
+        relationRepo.listExercisesForWorkout(workoutId)
+                .enqueue(new Callback<List<EntrenamientoEjercicioDTO>>() {
+                    @Override
+                    public void onResponse(Call<List<EntrenamientoEjercicioDTO>> c,
+                                           Response<List<EntrenamientoEjercicioDTO>> r) {
+                        if (r.isSuccessful() && r.body() != null) {
+                            relations.setValue(r.body());
+                        }
+                    }
+                    @Override public void onFailure(Call<List<EntrenamientoEjercicioDTO>> c, Throwable t) { }
+                });
     }
 }

@@ -32,6 +32,7 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         binding.btnLogin.setOnClickListener(v -> {
+
             String user = binding.etUsername.getText().toString();
             String pass = binding.etPassword.getText().toString();
             viewModel.login(new LoginRequest(user, pass))
@@ -51,12 +52,12 @@ public class LoginFragment extends Fragment {
                     requireContext(),
                     resp.getToken(),
                     resp.getUsername(),
-                    resp.getAuthorities()
+                    resp.getAuthorities(),
+                    resp.getUserId()
             );
             Toast.makeText(requireContext(), resp.getMensaje(), Toast.LENGTH_SHORT).show();
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_loginFragment_to_homeFragment);
-
         } else {
             Toast.makeText(requireContext(),
                     getString(R.string.error_login_failed),

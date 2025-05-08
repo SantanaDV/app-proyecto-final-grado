@@ -4,62 +4,78 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentWorkoutDetailBinding;
-import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
-import com.proyecto.facilgimapp.ui.exercises.EjercicioDTOAdapter;
 import com.proyecto.facilgimapp.viewmodel.WorkoutDetailViewModel;
 
-import java.util.List;
-
 public class WorkoutDetailFragment extends Fragment {
-    private FragmentWorkoutDetailBinding binding;
+    private FragmentWorkoutDetailBinding b;
     private WorkoutDetailViewModel vm;
-    private EjercicioDTOAdapter adapter;
+    private RelationAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentWorkoutDetailBinding.inflate(inflater, container, false);
+        b = FragmentWorkoutDetailBinding.inflate(inflater, container, false);
         vm = new ViewModelProvider(this).get(WorkoutDetailViewModel.class);
 
         int workoutId = getArguments() != null
                 ? getArguments().getInt("workoutId") : 0;
 
-        //  usa EjercicioDTOAdapter
-        adapter = new EjercicioDTOAdapter(ejercicioId -> {
-            Bundle args = new Bundle();
-            args.putInt("workoutId", workoutId);
-            args.putInt("exerciseId", ejercicioId);
-            Navigation.findNavController(binding.getRoot())
-                    .navigate(R.id.action_workoutDetailFragment_to_exercisesFragment, args);
-        });
-
-        binding.rvExercises.setLayoutManager(
-                new LinearLayoutManager(requireContext())
+        // Configura Recycler (sin adapter aún)
+        b.rvRelations.setLayoutManager(new LinearLayoutManager(requireContext()));
+        DividerItemDecoration divider =
+                new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+        divider.setDrawable(
+                ContextCompat.getDrawable(requireContext(), R.drawable.divider_light)
         );
-        binding.rvExercises.setAdapter(adapter);
+        b.rvRelations.addItemDecoration(divider);
 
-        // 2) observa LiveData<List<EjercicioDTO>>
-        vm.exercises.observe(getViewLifecycleOwner(), ejerciciosDTO -> {
-            adapter.submitList(ejerciciosDTO);
+        // 1) Observa los detalles del workout para inicializar el header y el adapter
+        vm.workout.observe(getViewLifecycleOwner(), entrenamiento -> {
+            // Header
+            b.tvWorkoutName.setText(entrenamiento.getNombre());
+            b.tvWorkoutDate.setText("Fecha: " + entrenamiento.getFechaEntrenamiento());
+            b.tvWorkoutDuration.setText("Duración: " + entrenamiento.getDuracionMinutos() + " min");
+
+            // Ahora que tenemos fecha y duración, creamos el adapter
+            if (adapter == null) {
+                adapter = new RelationAdapter(
+                        entrenamiento.getFechaEntrenamiento(),
+                        entrenamiento.getDuracionMinutos()
+                );
+                b.rvRelations.setAdapter(adapter);
+
+                // Observa relaciones
+                vm.relations.observe(getViewLifecycleOwner(), list -> {
+                    adapter.submitList(list);
+                });
+            }
         });
 
-        vm.load(workoutId);
-        return binding.getRoot();
+        // 2) Dispara las cargas
+        vm.loadDetails(workoutId);
+        vm.loadRelations(workoutId);
+
+        // Back arrow
+        b.toolbarWorkoutDetail.setNavigationOnClickListener(v ->
+                Navigation.findNavController(v).navigateUp()
+        );
+
+        return b.getRoot();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        b = null;
     }
 }

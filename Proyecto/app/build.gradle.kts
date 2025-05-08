@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation("com.github.prolificinteractive:material-calendarview:2.0.0")
+    implementation("com.google.android.material:material:1.7.0")
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
     implementation(libs.logging.interceptor)
