@@ -64,8 +64,8 @@ public class ExercisesViewModel extends AndroidViewModel {
             public void onResponse(Call<List<EjercicioDTO>> call,
                                    Response<List<EjercicioDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<EjercicioDTO> dtos = new ArrayList<>();
-                    allExercises.setValue(dtos);
+                    List<EjercicioDTO> exercisesList = response.body();
+                    allExercises.setValue(exercisesList);
                 }
             }
             @Override public void onFailure(Call<List<EjercicioDTO>> call, Throwable t) {

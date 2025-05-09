@@ -1,6 +1,6 @@
 # gradle/libs.versions.toml
 [versions]
-agp = "8.9.2"
+agp = "8.10.0"
 glide = "4.15.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -41,4 +41,4 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-android-navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+android-navigation-safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigation" }

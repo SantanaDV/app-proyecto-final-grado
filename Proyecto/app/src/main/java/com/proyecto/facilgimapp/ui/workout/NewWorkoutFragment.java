@@ -3,6 +3,7 @@ package com.proyecto.facilgimapp.ui.workout;
 import android.app.DatePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,11 @@ public class NewWorkoutFragment extends Fragment {
         // Cargar catálogo completo
         exercisesVM.listAllExercises();
         exercisesVM.getAllExercises().observe(getViewLifecycleOwner(), list -> {
-            exerciseAdapter.setExercises(list);
+            if (list != null && !list.isEmpty()) {
+                exerciseAdapter.setExercises(list);  // Aquí se actualiza el RecyclerView
+            } else {
+                Log.d("DEBUG", "No hay ejercicios disponibles.");
+            }
         });
 
         // Botón “Siguiente”
