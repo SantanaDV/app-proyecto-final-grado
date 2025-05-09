@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/white"
+    android:gravity="center_vertical">
+
+    <!-- Nombre del ejercicio -->
+    <TextView
+        android:id="@+id/tvExerciseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ejercicio #1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Repeticiones -->
+    <EditText
+        android:id="@+id/etReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Repeticiones"
+        android:inputType="number"
+        android:maxLength="3"
+        android:layout_marginBottom="8dp"
+        android:importantForAccessibility="yes" />
+
+    <!-- Peso -->
+    <EditText
+        android:id="@+id/etWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Peso (kg)"
+        android:inputType="numberDecimal"
+        android:maxLength="5"
+        android:layout_marginBottom="8dp"
+        android:importantForAccessibility="yes" />
+
+    <!-- CheckBox para marcar si la serie está completada -->
+    <CheckBox
+        android:id="@+id/cbDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completado"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

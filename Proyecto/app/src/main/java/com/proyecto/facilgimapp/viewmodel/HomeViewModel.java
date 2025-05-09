@@ -8,10 +8,13 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.proyecto.facilgimapp.model.Entrenamiento;
 import com.proyecto.facilgimapp.model.Ejercicio;
+import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
+import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 import com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO;
 import com.proyecto.facilgimapp.repository.EjercicioRepository;
 import com.proyecto.facilgimapp.repository.TypeRepository;
-import com.proyecto.facilgimapp.repository.workout.WorkoutRepository;
+import com.proyecto.facilgimapp.repository.WorkoutRepository;
+import com.proyecto.facilgimapp.util.SessionManager;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -30,7 +33,7 @@ public class HomeViewModel extends AndroidViewModel {
     private final MutableLiveData<Integer> totalExercises = new MutableLiveData<>(0);
     private final MutableLiveData<Integer> totalWorkouts = new MutableLiveData<>(0);
     private final MutableLiveData<Integer> totalTypes = new MutableLiveData<>(0);
-    private final MutableLiveData<List<Ejercicio>> latestExercises = new MutableLiveData<>(Collections.emptyList());
+    private final MutableLiveData<List<EjercicioDTO>> latestExercises = new MutableLiveData<>(Collections.emptyList());
     private final MutableLiveData<List<LocalDate>> workoutDates = new MutableLiveData<>(Collections.emptyList());
 
     public HomeViewModel(@NonNull Application application) {
@@ -43,15 +46,15 @@ public class HomeViewModel extends AndroidViewModel {
     public LiveData<Integer> getTotalExercises() { return totalExercises; }
     public LiveData<Integer> getTotalWorkouts()  { return totalWorkouts;  }
     public LiveData<Integer> getTotalTypes()     { return totalTypes;     }
-    public LiveData<List<Ejercicio>> getLatestExercises() { return latestExercises; }
+    public MutableLiveData<List<EjercicioDTO>> getLatestExercises() { return latestExercises; }
     public LiveData<List<LocalDate>> getWorkoutDates() { return workoutDates; }
 
     public void loadData() {
         // 1) Ejercicios y últimos
-        ejercicioRepo.listAllExercises().enqueue(new Callback<List<Ejercicio>>() {
-            @Override public void onResponse(Call<List<Ejercicio>> call, Response<List<Ejercicio>> r) {
+        ejercicioRepo.listAllExercises().enqueue(new Callback<List<EjercicioDTO>>() {
+            @Override public void onResponse(Call<List<EjercicioDTO>> call, Response<List<EjercicioDTO>> r) {
                 if (r.isSuccessful() && r.body() != null) {
-                    List<Ejercicio> all = r.body();
+                    List<EjercicioDTO> all = r.body();
                     totalExercises.setValue(all.size());
                     int start = Math.max(0, all.size() - 5);
                     latestExercises.setValue(all.subList(start, all.size()));
@@ -60,21 +63,21 @@ public class HomeViewModel extends AndroidViewModel {
                     latestExercises.setValue(Collections.emptyList());
                 }
             }
-            @Override public void onFailure(Call<List<Ejercicio>> call, Throwable t) {
+            @Override public void onFailure(Call<List<EjercicioDTO>> call, Throwable t) {
                 totalExercises.setValue(0);
                 latestExercises.setValue(Collections.emptyList());
             }
         });
 
         // 2) Entrenamientos + fechas para calendario
-        workoutRepo.getWorkouts().enqueue(new Callback<List<Entrenamiento>>() {
-            @Override public void onResponse(Call<List<Entrenamiento>> call, Response<List<Entrenamiento>> r) {
+        workoutRepo.getWorkoutsByUserId(SessionManager.getUserId(this.getApplication().getApplicationContext())).enqueue(new Callback<List<EntrenamientoDTO>>() {
+            @Override public void onResponse(Call<List<EntrenamientoDTO>> call, Response<List<EntrenamientoDTO>> r) {
                 if (r.isSuccessful() && r.body()!=null) {
-                    List<Entrenamiento> list = r.body();
+                    List<EntrenamientoDTO> list = r.body();
                     totalWorkouts.setValue(list.size());
                     // parse fechas
                     List<LocalDate> dates = list.stream()
-                            .map(e -> LocalDate.parse(e.getFechaEntrenamiento()))
+                            .map(EntrenamientoDTO::getFechaEntrenamiento)  
                             .collect(Collectors.toList());
                     workoutDates.setValue(dates);
                 } else {
@@ -82,7 +85,7 @@ public class HomeViewModel extends AndroidViewModel {
                     workoutDates.setValue(Collections.emptyList());
                 }
             }
-            @Override public void onFailure(Call<List<Entrenamiento>> call, Throwable t) {
+            @Override public void onFailure(Call<List<EntrenamientoDTO>> call, Throwable t) {
                 totalWorkouts.setValue(0);
                 workoutDates.setValue(Collections.emptyList());
             }

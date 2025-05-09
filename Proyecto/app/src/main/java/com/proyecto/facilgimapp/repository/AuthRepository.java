@@ -1,8 +1,8 @@
 package com.proyecto.facilgimapp.repository;
 
 import android.content.Context;
-import com.proyecto.facilgimapp.model.LoginRequest;
-import com.proyecto.facilgimapp.model.LoginResponse;
+import com.proyecto.facilgimapp.model.dto.LoginRequest;
+import com.proyecto.facilgimapp.model.dto.LoginResponse;
 import com.proyecto.facilgimapp.model.dto.UsuarioDTO;
 import com.proyecto.facilgimapp.model.dto.UsuarioRequestDTO;
 import com.proyecto.facilgimapp.network.ApiService;

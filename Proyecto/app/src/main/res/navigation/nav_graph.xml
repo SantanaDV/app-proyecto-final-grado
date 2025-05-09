@@ -5,6 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
+    <!-- Login -->
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.proyecto.facilgimapp.ui.auth.LoginFragment"
@@ -13,10 +14,11 @@
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_workoutsFragment"
-            app:destination="@id/workoutsFragment" />
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
+    <!-- Register -->
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.proyecto.facilgimapp.ui.auth.RegisterFragment"
@@ -26,10 +28,12 @@
             app:destination="@id/loginFragment" />
     </fragment>
 
+    <!-- Workout list -->
     <fragment
         android:id="@+id/workoutsFragment"
         android:name="com.proyecto.facilgimapp.ui.workout.WorkoutsFragment"
-        android:label="@string/entrenamientos">
+        android:label="@string/entrenamientos"
+        tools:layout="@layout/fragment_workouts">
         <action
             android:id="@+id/action_workoutsFragment_to_workoutDetailFragment"
             app:destination="@id/workoutDetailFragment">
@@ -42,11 +46,15 @@
             app:destination="@id/newWorkoutFragment" />
     </fragment>
 
+    <!-- New workout -->
     <fragment
         android:id="@+id/newWorkoutFragment"
         android:name="com.proyecto.facilgimapp.ui.workout.NewWorkoutFragment"
         android:label="@string/nuevo_entrenamiento"
         tools:layout="@layout/fragment_new_workout">
+        <action
+            android:id="@+id/action_newWorkoutFragment_to_typeListFragment"
+            app:destination="@id/typeListFragment" />
         <action
             android:id="@+id/action_newWorkoutFragment_to_workoutExercisesFragment"
             app:destination="@id/workoutExercisesFragment">
@@ -56,12 +64,46 @@
         </action>
     </fragment>
 
+    <!-- Select exercises for new workout -->
     <fragment
         android:id="@+id/workoutExercisesFragment"
         android:name="com.proyecto.facilgimapp.ui.workout.WorkoutExercisesFragment"
         android:label="@string/seleccionar_ejercicios"
-        tools:layout="@layout/fragment_workout_exercises" />
+        tools:layout="@layout/fragment_workout_exercises">
+        <!-- recibimos el DTO que creamos en NewWorkoutFragment -->
+        <argument
+            android:name="newWorkoutDTO"
+            app:argType="com.proyecto.facilgimapp.model.dto.EntrenamientoDTO" />
+        <!-- al confirmar, pasamos también la lista de IDs seleccionados -->
+        <action
+            android:id="@+id/action_workoutExercisesFragment_to_workoutSessionFragment"
+            app:destination="@id/workoutSessionFragment">
+            <argument
+                android:name="newWorkoutDTO"
+                app:argType="com.proyecto.facilgimapp.model.dto.EntrenamientoDTO" />
+            <argument
+                android:name="exerciseIds"
+                app:argType="integer[]" />
+        </action>
+    </fragment>
 
+    <!-- Session (timer + series) -->
+    <fragment
+        android:id="@+id/workoutSessionFragment"
+        android:name="com.proyecto.facilgimapp.ui.workout.WorkoutSessionFragment"
+        android:label="@string/session"
+        tools:layout="@layout/fragment_workout_session">
+        <!-- volvemos a recibir el DTO -->
+        <argument
+            android:name="newWorkoutDTO"
+            app:argType="com.proyecto.facilgimapp.model.dto.EntrenamientoDTO" />
+        <!-- y aquí el array de IDs de ejercicios -->
+        <argument
+            android:name="exerciseIds"
+            app:argType="integer[]" />
+    </fragment>
+
+    <!-- Workout detail -->
     <fragment
         android:id="@+id/workoutDetailFragment"
         android:name="com.proyecto.facilgimapp.ui.workout.WorkoutDetailFragment"
@@ -78,31 +120,29 @@
         </action>
     </fragment>
 
+
     <fragment
-        android:id="@+id/exercisesFragment"
-        android:name="com.proyecto.facilgimapp.ui.exercises.ExercisesFragment"
-        android:label="@string/ejercicios">
-        <argument
-            android:name="workoutId"
-            app:argType="integer" />
+        android:id="@+id/userFragment"
+        android:name="com.proyecto.facilgimapp.ui.user.UserFragment"
+        android:label="Usuario"
+        tools:layout="@layout/fragment_user">
+        <!-- Acciones hacia otros fragmentos -->
         <action
-            android:id="@+id/action_exercisesFragment_to_seriesFragment"
-            app:destination="@id/seriesFragment">
-            <argument
-                android:name="exerciseId"
-                app:argType="integer" />
-        </action>
+            android:id="@+id/action_userFragment_to_adminUserFragment"
+            app:destination="@id/adminUserFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/seriesFragment"
-        android:name="com.proyecto.facilgimapp.ui.series.SeriesFragment"
-        android:label="@string/series">
-        <argument
-            android:name="exerciseId"
-            app:argType="integer" />
-    </fragment>
+        android:id="@+id/adminUserFragment"
+        android:name="com.proyecto.facilgimapp.ui.admin.AdminUsersFragment"
+        android:label="Gestionar Usuarios"
+        tools:layout="@layout/fragment_admin_users" />
 
+
+    <!-- Bottom navigation / home -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.proyecto.facilgimapp.ui.home.HomeFragment"
@@ -110,31 +150,26 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/statsFragment"
-        android:name="com.proyecto.facilgimapp.ui.stats.StatsFragment"
-        android:label="@string/estad_sticas"
-        tools:layout="@layout/fragment_stats" />
-
-    <fragment
-        android:id="@+id/calendarFragment"
-        android:name="com.proyecto.facilgimapp.ui.calendar.CalendarFragment"
-        android:label="@string/calendario"
-        tools:layout="@layout/fragment_calendar" />
-
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.proyecto.facilgimapp.ui.settings.SettingsFragment"
-        android:label="@string/ajustes"
-        tools:layout="@layout/fragment_settings" />
-
-    <fragment
         android:id="@+id/typeListFragment"
         android:name="com.proyecto.facilgimapp.ui.types.TypeListFragment"
         android:label="@string/tipos"
         tools:layout="@layout/fragment_type_list" />
 
-    <action
-        android:id="@+id/action_loginFragment_to_homeFragment"
-        app:destination="@id/homeFragment" />
+
+    <fragment
+        android:id="@+id/exercisesFragment"
+        android:name="com.proyecto.facilgimapp.ui.exercises.ExercisesFragment"
+        android:label="@string/ejercicios"
+        tools:layout="@layout/fragment_exercises">
+        <!-- Acción para navegar de ExercisesFragment a WorkoutSessionFragment -->
+        <action
+            android:id="@+id/action_exercisesFragment_to_workoutSessionFragment"
+            app:destination="@id/workoutSessionFragment">
+            <argument
+                android:name="exerciseId"
+                app:argType="integer" />
+        </action>
+    </fragment>
+
 
 </navigation>

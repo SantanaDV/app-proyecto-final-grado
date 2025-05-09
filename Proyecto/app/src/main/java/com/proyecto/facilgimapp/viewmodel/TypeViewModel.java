@@ -3,6 +3,7 @@ package com.proyecto.facilgimapp.viewmodel;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO;
 import com.proyecto.facilgimapp.repository.TypeRepository;
@@ -13,15 +14,12 @@ import retrofit2.Response;
 
 public class TypeViewModel extends AndroidViewModel {
     private final TypeRepository repository;
-    private final MutableLiveData<List<TipoEntrenamientoDTO>> types = new MutableLiveData<>();
+    private final MutableLiveData<List<TipoEntrenamientoDTO>> _types = new MutableLiveData<>();
+    public LiveData<List<TipoEntrenamientoDTO>> getTypes() { return _types; }
 
     public TypeViewModel(@NonNull Application application) {
         super(application);
         repository = new TypeRepository(application.getApplicationContext());
-    }
-
-    public MutableLiveData<List<TipoEntrenamientoDTO>> getTypes() {
-        return types;
     }
 
     public void loadTypes() {
@@ -30,11 +28,13 @@ public class TypeViewModel extends AndroidViewModel {
             public void onResponse(Call<List<TipoEntrenamientoDTO>> call,
                                    Response<List<TipoEntrenamientoDTO>> response) {
                 if (response.isSuccessful()) {
-                    types.setValue(response.body());
+                    _types.setValue(response.body());
                 }
             }
+
             @Override
             public void onFailure(Call<List<TipoEntrenamientoDTO>> call, Throwable t) {
+                _types.setValue(null); // o emitir error
             }
         });
     }

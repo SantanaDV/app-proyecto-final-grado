@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Modelo que mapea la entidad Entrenamiento del backend.
@@ -81,4 +82,24 @@ public class Entrenamiento {
     public void setEjercicios(List<Ejercicio> ejercicios) {
         this.ejercicios = ejercicios;
     }
+
+    public static String formatDuracion(int minutos) {
+        int horas = minutos / 60;
+        int mins = minutos % 60;
+        return (horas > 0 ? horas + "h " : "") + mins + "min";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Entrenamiento that = (Entrenamiento) o;
+        return Objects.equals(idEntrenamiento, that.idEntrenamiento);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEntrenamiento);
+    }
+
 }

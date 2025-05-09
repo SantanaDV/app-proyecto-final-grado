@@ -1,4 +1,4 @@
-package com.proyecto.facilgimapp.model;
+package com.proyecto.facilgimapp.model.dto;
 
 public class LoginRequest {
     private String username;

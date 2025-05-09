@@ -1,6 +1,8 @@
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
+import com.proyecto.facilgimapp.model.Ejercicio;
+
 import java.util.Objects;
 
 public class EjercicioDTO {
@@ -44,13 +46,18 @@ public class EjercicioDTO {
         if (this == o) return true;
         if (!(o instanceof EjercicioDTO)) return false;
         EjercicioDTO that = (EjercicioDTO) o;
-        return Objects.equals(idEjercicio, that.idEjercicio)
-                && Objects.equals(nombre, that.nombre)
-                && Objects.equals(imagenUrl, that.imagenUrl);
+        return Objects.equals(idEjercicio, that.idEjercicio);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEjercicio, nombre, imagenUrl);
+        return Objects.hash(idEjercicio);
+    }
+    public Ejercicio toEjercicio() {
+        Ejercicio ejercicio = new Ejercicio();
+        ejercicio.setIdEjercicio(idEjercicio);
+        ejercicio.setNombre(nombre);
+        ejercicio.setImagenUrl(imagenUrl);
+        return ejercicio;
     }
 }

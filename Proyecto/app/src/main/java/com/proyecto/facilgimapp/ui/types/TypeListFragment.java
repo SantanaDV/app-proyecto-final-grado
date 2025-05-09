@@ -37,8 +37,7 @@ public class TypeListFragment extends Fragment implements TypeAdapter.OnTypeInte
         binding.rvTypes.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvTypes.setAdapter(adapter);
 
-        binding.toolbarTypes.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
-        binding.fabAddType.setOnClickListener(v -> showAddOrEditDialog(null));
+
 
         viewModel.getTypes().observe(getViewLifecycleOwner(), types -> adapter.submitList(types));
         viewModel.loadTypes();

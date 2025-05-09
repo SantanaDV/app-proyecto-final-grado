@@ -1,6 +1,7 @@
 package com.proyecto.facilgimapp.ui.admin;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -13,6 +14,7 @@ public class UserAdapter extends ListAdapter<UsuarioDTO, UserAdapter.UserViewHol
 
     public interface OnUserInteractionListener {
         void onDeleteUser(UsuarioDTO user);
+        void onToggleAdmin(UsuarioDTO user, boolean makeAdmin);
     }
 
     private final OnUserInteractionListener listener;
@@ -24,16 +26,19 @@ public class UserAdapter extends ListAdapter<UsuarioDTO, UserAdapter.UserViewHol
 
     private static final DiffUtil.ItemCallback<UsuarioDTO> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<UsuarioDTO>() {
-                @Override public boolean areItemsTheSame(@NonNull UsuarioDTO o1, @NonNull UsuarioDTO o2) {
+                @Override
+                public boolean areItemsTheSame(@NonNull UsuarioDTO o1, @NonNull UsuarioDTO o2) {
                     return o1.getIdUsuario().equals(o2.getIdUsuario());
                 }
-                @Override public boolean areContentsTheSame(@NonNull UsuarioDTO o1, @NonNull UsuarioDTO o2) {
-                    return o1.getUsername().equals(o2.getUsername())
-                            && o1.getCorreo().equals(o2.getCorreo());
+
+                @Override
+                public boolean areContentsTheSame(@NonNull UsuarioDTO o1, @NonNull UsuarioDTO o2) {
+                    return o1.equals(o2);
                 }
             };
 
-    @NonNull @Override
+    @NonNull
+    @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemUserBinding b = ItemUserBinding.inflate(
                 LayoutInflater.from(parent.getContext()), parent, false);
@@ -45,10 +50,19 @@ public class UserAdapter extends ListAdapter<UsuarioDTO, UserAdapter.UserViewHol
         UsuarioDTO u = getItem(pos);
         holder.binding.tvUsername.setText(u.getUsername());
         holder.binding.tvEmail.setText(u.getCorreo());
-        holder.binding.getRoot().setOnLongClickListener(v -> {
-            listener.onDeleteUser(u);
-            return true;
-        });
+        holder.binding.tvAdminStatus.setVisibility(View.VISIBLE);
+        holder.binding.tvAdminStatus.setText(u.isAdmin() ? "Administrador" : "Usuario");
+
+        // Cambiar estado admin
+        holder.binding.btnToggleAdmin.setText(u.isAdmin() ? "Quitar admin" : "Hacer admin");
+        holder.binding.btnToggleAdmin.setOnClickListener(v ->
+                listener.onToggleAdmin(u, !u.isAdmin())
+        );
+
+        // Eliminar usuario
+        holder.binding.btnDeleteUser.setOnClickListener(v ->
+                listener.onDeleteUser(u)
+        );
     }
 
     static class UserViewHolder extends RecyclerView.ViewHolder {

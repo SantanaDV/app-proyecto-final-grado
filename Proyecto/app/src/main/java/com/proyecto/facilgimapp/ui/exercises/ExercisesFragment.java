@@ -24,7 +24,6 @@ public class ExercisesFragment extends Fragment {
     private FragmentExercisesBinding binding;
     private ExercisesViewModel viewModel;
     private EjercicioDTOAdapter adapter;
-    private int workoutId;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -38,31 +37,34 @@ public class ExercisesFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (getArguments() != null) {
-            workoutId = getArguments().getInt("workoutId", -1);
-        }
 
+        // Inicializamos el ViewModel
         viewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
 
+        // Inicializamos el adaptador con la lógica para seleccionar el ejercicio
         adapter = new EjercicioDTOAdapter(ejercicioId -> {
+            // Cuando un ejercicio es seleccionado, pasamos el workoutId y el exerciseId al siguiente fragmento
             Bundle args = new Bundle();
-            args.putInt("workoutId", workoutId);
             args.putInt("exerciseId", ejercicioId);
             Navigation.findNavController(binding.getRoot())
-                    .navigate(R.id.action_exercisesFragment_to_seriesFragment, args);
+                    .navigate(R.id.action_exercisesFragment_to_workoutSessionFragment, args);
         });
 
+        // Configuramos el RecyclerView
         binding.rvExercises.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvExercises.setAdapter(adapter);
 
         // Observamos la lista de ejercicios
         viewModel.getExercises().observe(getViewLifecycleOwner(), this::showExercises);
-        // Cargamos los ejercicios para el workout y usuario actual
+
+        // Cargamos los ejercicios para el usuario actual
         String username = SessionManager.getUsername(requireContext());
-        viewModel.loadExercises(workoutId, username);
+        int idUser = SessionManager.getUserId(requireContext());
+        viewModel.loadExercises(idUser,username);
     }
 
     private void showExercises(List<EjercicioDTO> list) {
+        // Actualiza el RecyclerView con los ejercicios disponibles
         adapter.submitList(list);
     }
 

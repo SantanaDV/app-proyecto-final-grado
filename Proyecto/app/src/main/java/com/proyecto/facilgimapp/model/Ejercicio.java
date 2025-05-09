@@ -1,15 +1,17 @@
 package com.proyecto.facilgimapp.model;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
+import java.util.Objects;
 
 public class Ejercicio {
     @SerializedName("idEjercicio")
     private Integer idEjercicio;
 
     private String nombre;
-    private int repeticiones;
-    private double peso;
+    @Nullable
     private String imagenUrl;
 
     // Opcional: lista de series asociadas
@@ -31,21 +33,6 @@ public class Ejercicio {
         this.nombre = nombre;
     }
 
-    public int getRepeticiones() {
-        return repeticiones;
-    }
-
-    public void setRepeticiones(int repeticiones) {
-        this.repeticiones = repeticiones;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
 
     public String getImagenUrl() {
         return imagenUrl;
@@ -61,5 +48,18 @@ public class Ejercicio {
 
     public void setSeries(List<Serie> series) {
         this.series = series;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ejercicio that = (Ejercicio) o;
+        return Objects.equals(idEjercicio, that.idEjercicio);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEjercicio);
     }
 }

@@ -1,5 +1,5 @@
-// com.proyecto.facilgimapp.repository.workout.TrainingExerciseRepository
-package com.proyecto.facilgimapp.repository.workout;
+// com.proyecto.facilgimapp.repository.TrainingExerciseRepository
+package com.proyecto.facilgimapp.repository;
 
 import android.content.Context;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
@@ -23,5 +23,14 @@ public class TrainingExerciseRepository {
      */
     public Call<List<EntrenamientoEjercicioDTO>> listExercisesForWorkout(int workoutId) {
         return api.listExercisesInTraining(workoutId);
+    }
+    public Call<EntrenamientoEjercicioDTO> getRelationById(int id) {
+        return api.getTrainingExerciseRelation(id);
+    }
+    public Call<EntrenamientoEjercicioDTO> addExerciseToTraining(EntrenamientoEjercicioDTO dto) {
+        return api.addExerciseToTraining(dto);
+    }
+    public Call<Void> deleteRelation(int id) {
+        return api.removeExerciseFromTraining(id);
     }
 }

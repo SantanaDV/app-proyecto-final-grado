@@ -73,13 +73,19 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sRemember"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recordar_contrasena" />
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLogin"
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Iniciar Sesión"
+                    android:text="@string/iniciar_sesion"
                     android:textColorLink="@color/blue_900"
                     app:cornerRadius="8dp" />
 
@@ -92,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:contentDescription="Registrarse"
+            android:contentDescription="@string/registrarse"
             app:backgroundTint="@color/blue_900"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

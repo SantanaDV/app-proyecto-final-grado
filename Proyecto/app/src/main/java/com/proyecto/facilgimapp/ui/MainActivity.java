@@ -41,22 +41,18 @@ public class MainActivity extends AppCompatActivity {
                     R.id.homeFragment,
                     R.id.workoutsFragment,
                     R.id.exercisesFragment,
-                    R.id.settingsFragment
+                    R.id.userFragment
             ).build();
             NavigationUI.setupWithNavController(toolbar, navController, config);
             NavigationUI.setupWithNavController(bottomNav, navController);
 
             // Aquí ocultas/enseñas toolbar y bottomNav según destino
             navController.addOnDestinationChangedListener((controller, destination, args) -> {
-                if (destination.getId() == R.id.loginFragment
-                        || destination.getId() == R.id.registerFragment) {
-                    toolbar.setVisibility(View.GONE);
-                    bottomNav.setVisibility(View.GONE);
-                } else {
-                    toolbar.setVisibility(View.GONE);
-                    bottomNav.setVisibility(View.VISIBLE);
-                }
+                boolean showToolbarAndBottomNav = !(destination.getId() == R.id.loginFragment || destination.getId() == R.id.registerFragment);
+                toolbar.setVisibility(showToolbarAndBottomNav ? View.VISIBLE : View.GONE);
+                bottomNav.setVisibility(showToolbarAndBottomNav ? View.VISIBLE : View.GONE);
             });
+
         }
     }
 }

@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.model.Ejercicio;
+import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.VH> {
 
-    private final List<Ejercicio> items = new ArrayList<>();
+    private final List<EjercicioDTO> items = new ArrayList<>();
 
-    public void submitList(List<Ejercicio> list) {
+    public void submitList(List<EjercicioDTO> list) {
         items.clear();
         if (list != null) items.addAll(list);
         notifyDataSetChanged();
@@ -33,7 +34,7 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.VH> 
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        Ejercicio e = items.get(position);
+            EjercicioDTO e = items.get(position);
         holder.tvName.setText(e.getNombre());
         Glide.with(holder.img.getContext())
                 .load(e.getImagenUrl())

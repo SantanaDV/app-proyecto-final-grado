@@ -1,32 +1,38 @@
 package com.proyecto.facilgimapp.viewmodel;
 
 import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import com.proyecto.facilgimapp.model.dto.SerieDTO;
-import com.proyecto.facilgimapp.repository.series.SeriesRepository;
+import com.proyecto.facilgimapp.repository.SeriesRepository;
+
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SeriesViewModel extends AndroidViewModel {
     private final SeriesRepository repository;
-    private final MutableLiveData<List<SerieDTO>> seriesList = new MutableLiveData<>();
-    private final MutableLiveData<SerieDTO> serieDetail = new MutableLiveData<>();
+
+    private final MutableLiveData<List<SerieDTO>> _seriesList = new MutableLiveData<>();
+    private final MutableLiveData<SerieDTO> _serieDetail = new MutableLiveData<>();
 
     public SeriesViewModel(@NonNull Application application) {
         super(application);
         repository = new SeriesRepository(application.getApplicationContext());
     }
 
-    public MutableLiveData<List<SerieDTO>> getSeriesList() {
-        return seriesList;
+    public LiveData<List<SerieDTO>> getSeriesList() {
+        return _seriesList;
     }
 
-    public MutableLiveData<SerieDTO> getSerieDetail() {
-        return serieDetail;
+    public LiveData<SerieDTO> getSerieDetail() {
+        return _serieDetail;
     }
 
     public void loadSeries(int relacionId) {
@@ -34,11 +40,12 @@ public class SeriesViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<List<SerieDTO>> call, Response<List<SerieDTO>> response) {
                 if (response.isSuccessful()) {
-                    seriesList.setValue(response.body());
+                    _seriesList.setValue(response.body());
                 }
             }
             @Override
             public void onFailure(Call<List<SerieDTO>> call, Throwable t) {
+                _seriesList.setValue(null); //
             }
         });
     }
@@ -48,11 +55,12 @@ public class SeriesViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<SerieDTO> call, Response<SerieDTO> response) {
                 if (response.isSuccessful()) {
-                    serieDetail.setValue(response.body());
+                    _serieDetail.setValue(response.body());
                 }
             }
             @Override
             public void onFailure(Call<SerieDTO> call, Throwable t) {
+                _serieDetail.setValue(null);
             }
         });
     }
@@ -67,6 +75,7 @@ public class SeriesViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(Call<SerieDTO> call, Throwable t) {
+
             }
         });
     }
@@ -81,6 +90,7 @@ public class SeriesViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(Call<SerieDTO> call, Throwable t) {
+
             }
         });
     }
@@ -95,6 +105,7 @@ public class SeriesViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+
             }
         });
     }

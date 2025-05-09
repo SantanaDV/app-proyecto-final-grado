@@ -116,6 +116,17 @@
     <string name="seleccionar_ejercicios">Seleccionar ejercicio</string>
 
     <string name="ejercicio_imagen">Imagen del ejercicio</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="recordar_contrasena">¿Recordar?</string>
+    <string name="finalizar_entrenamiento">Finalizar entrenamiento</string>
+    <string name="terminar_todas_series">Terminar todas las series</string>
+    <string name="session">Sesión</string>
+    <string name="error_fields_required">Los campos vacios son necesarios</string>
 
+    <string name="action_toggle_admin">Cambiar rol</string>
+    <string name="error_username_required">El nombre de usuario es obligatorio.</string>
+    <string name="error_password_required">La contraseña es obligatoria.</string>
+    <string name="error_invalid_email">Por favor ingresa un correo electrónico válido.</string>
 
 </resources>

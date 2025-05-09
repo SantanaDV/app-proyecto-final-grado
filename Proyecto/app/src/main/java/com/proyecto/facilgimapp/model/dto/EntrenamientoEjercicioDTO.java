@@ -28,14 +28,16 @@ public class EntrenamientoEjercicioDTO {
 
     public List<SerieDTO> getSeries() { return series; }
     public void setSeries(List<SerieDTO> series) { this.series = series; }
+    public boolean isCompletado() {
+        return series != null && series.stream().allMatch(SerieDTO::isCompletada);
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof EntrenamientoEjercicioDTO)) return false;
         EntrenamientoEjercicioDTO that = (EntrenamientoEjercicioDTO) o;
-        return Objects.equals(id, that.id)
-                && Objects.equals(ejercicio, that.ejercicio)
+        return Objects.equals(ejercicio, that.ejercicio)
                 && Objects.equals(series, that.series);
     }
 
@@ -43,4 +45,6 @@ public class EntrenamientoEjercicioDTO {
     public int hashCode() {
         return Objects.hash(id, ejercicio, series);
     }
+
+
 }

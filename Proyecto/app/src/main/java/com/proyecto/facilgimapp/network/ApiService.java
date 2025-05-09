@@ -1,44 +1,45 @@
 package com.proyecto.facilgimapp.network;
 
-import com.proyecto.facilgimapp.model.Ejercicio;
+import com.proyecto.facilgimapp.model.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 import com.proyecto.facilgimapp.model.dto.EjercicioDeleteDTO;
-import com.proyecto.facilgimapp.model.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
 import com.proyecto.facilgimapp.model.dto.SerieDTO;
 import com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO;
 import com.proyecto.facilgimapp.model.dto.UsuarioDTO;
+import com.proyecto.facilgimapp.model.dto.LoginRequest;
+import com.proyecto.facilgimapp.model.dto.LoginResponse;
 import com.proyecto.facilgimapp.model.dto.UsuarioRequestDTO;
-import com.proyecto.facilgimapp.model.LoginRequest;
-import com.proyecto.facilgimapp.model.LoginResponse;
 
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 
 public interface ApiService {
+
     // ===== EJERCICIOS =====
     @GET("api/ejercicios")
-    Call<List<Ejercicio>> listAllExercises();
+    Call<List<EjercicioDTO>> listAllExercises();
 
     @GET("api/ejercicios/{id}")
-    Call<Ejercicio> getExercise(@Path("id") int id);
+    Call<EjercicioDTO> getExercise(@Path("id") int id);
 
     @GET("api/ejercicios/nombre/{nombre}")
-    Call<Ejercicio> getExerciseByName(@Path("nombre") String nombre);
-
-
+    Call<EjercicioDTO> getExerciseByName(@Path("nombre") String nombre);
 
     @Multipart
     @POST("api/ejercicios")
-    Call<Ejercicio> createOrUpdateExercise(
+    Call<EjercicioDTO> createOrUpdateExercise(
             @Part("ejercicio") RequestBody ejercicioJson,
             @Part MultipartBody.Part imagen
     );
+    @DELETE("api/ejercicios/nombre")
+    Call<Void> deleteExerciseByName(@Body EjercicioDeleteDTO dto);
 
     @GET("api/ejercicios/entrenamiento/{idEntrenamiento}")
     Call<List<EjercicioDTO>> listExercisesByTraining(
@@ -52,11 +53,11 @@ public interface ApiService {
             @Path("idEntrenamiento") int trainingId
     );
 
+    @GET("api/entrenamiento-ejercicio/{id}")
+    Call<EntrenamientoEjercicioDTO> getTrainingExerciseRelation(@Path("id") int id);
+
     @DELETE("api/ejercicios/{id}")
     Call<Void> deleteExercise(@Path("id") int id);
-
-    @DELETE("api/ejercicios/nombre")
-    Call<Void> deleteExerciseByName(@Body EjercicioDeleteDTO dto);
 
     // ===== ENTRENAMIENTOS =====
     @GET("api/entrenamientos")
@@ -72,7 +73,7 @@ public interface ApiService {
     );
 
     @POST("api/entrenamientos")
-    Call<Entrenamiento> createTraining(@Body EntrenamientoDTO dto);
+    Call<EntrenamientoDTO> createTraining(@Body EntrenamientoDTO dto);
 
     @PUT("api/entrenamientos/{id}")
     Call<Entrenamiento> updateTraining(
@@ -83,18 +84,19 @@ public interface ApiService {
     @DELETE("api/entrenamientos/{id}")
     Call<Void> deleteTraining(@Path("id") int id);
 
-    // Si necesitas estos endpoints extra, añádelos explícitamente:
-    // @GET("api/entrenamientos/nombre/{nombre}") …
-    // @PUT("api/entrenamientos/nombre/{nombre}") …
-    // @PUT("api/entrenamientos/dto/{id}") …
+    @GET("api/entrenamientos/nombre/{nombre}")
+    Call<List<Entrenamiento>> getWorkoutsByName(@Path("nombre") String nombre);
+
+    @PUT("api/entrenamientos/dto/{id}")
+    Call<Entrenamiento> updateWorkoutFromDto(
+            @Path("id") int id,
+            @Body EntrenamientoDTO dto
+    );
+
+    @GET("api/entrenamientos/usuarioId/{id}")
+    Call<List<EntrenamientoDTO>> getWorkoutsByUserId(@Path("id") int id);
 
     // ===== RELACIÓN ENTRENAMIENTO–EJERCICIO =====
-    @GET("api/entrenamiento-ejercicio")
-    Call<List<EntrenamientoEjercicioDTO>> listAllTrainingExercisesRelations();
-
-    @GET("api/entrenamiento-ejercicio/{id}")
-    Call<EntrenamientoEjercicioDTO> getTrainingExerciseRelation(@Path("id") int id);
-
     @POST("api/entrenamiento-ejercicio")
     Call<EntrenamientoEjercicioDTO> addExerciseToTraining(@Body EntrenamientoEjercicioDTO dto);
 
@@ -115,10 +117,7 @@ public interface ApiService {
     Call<SerieDTO> createSeries(@Body SerieDTO dto);
 
     @PUT("api/series/{id}")
-    Call<SerieDTO> updateSeries(
-            @Path("id") int id,
-            @Body SerieDTO dto
-    );
+    Call<SerieDTO> updateSeries(@Path("id") int id, @Body SerieDTO dto);
 
     @DELETE("api/series/{id}")
     Call<Void> deleteSeries(@Path("id") int id);
@@ -134,10 +133,7 @@ public interface ApiService {
     Call<TipoEntrenamientoDTO> createType(@Body TipoEntrenamientoDTO dto);
 
     @PUT("api/tipos-entrenamiento/{id}")
-    Call<TipoEntrenamientoDTO> updateType(
-            @Path("id") long id,
-            @Body TipoEntrenamientoDTO dto
-    );
+    Call<TipoEntrenamientoDTO> updateType(@Path("id") long id, @Body TipoEntrenamientoDTO dto);
 
     @DELETE("api/tipos-entrenamiento/{id}")
     Call<Void> deleteType(@Path("id") long id);

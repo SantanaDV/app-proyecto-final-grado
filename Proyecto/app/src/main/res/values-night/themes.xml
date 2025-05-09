@@ -1,26 +1,18 @@
-<!-- values-night/themes.xml -->
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Antes: DarkActionBar -->
     <style name="Theme.FacilGimApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+        <!-- Primary / Secondary como ya lo tienes… -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
+        <!-- Pinta el fondo de la ventana -->
+        <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-    </style>
-
-    <style name="CalendarDateTextAppearance" parent="TextAppearance.MaterialComponents.Body2">
-        <!-- Blanco o gris claro -->
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="CalendarWeekDayTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
-        <!-- Blanco o gris claro -->
-        <item name="android:textColor">@color/white</item>
     </style>
 </resources>

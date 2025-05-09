@@ -21,15 +21,15 @@ public class EjercicioRepository {
         this.apiService = RetrofitClient.getApiService(context);
     }
 
-    public Call<List<Ejercicio>> listAllExercises() {
+    public Call<List<EjercicioDTO>> listAllExercises() {
         return apiService.listAllExercises();
     }
 
-    public Call<Ejercicio> getExercise(int id) {
+    public Call<EjercicioDTO> getExercise(int id) {
         return apiService.getExercise(id);
     }
 
-    public Call<Ejercicio> getExerciseByName(String name) {
+    public Call<EjercicioDTO> getExerciseByName(String name) {
         return apiService.getExerciseByName(name);
     }
 
@@ -37,7 +37,7 @@ public class EjercicioRepository {
         return apiService.listExercisesByTraining(trainingId, username);
     }
 
-    public Call<Ejercicio> createOrUpdateExercise(Ejercicio ejercicio, File imageFile) {
+    public Call<EjercicioDTO> createOrUpdateExercise(EjercicioDTO ejercicio, File imageFile) {
         Gson gson = new Gson();
         String ejercicioJson = gson.toJson(ejercicio);
         RequestBody ejercicioBody = RequestBody.create(
@@ -56,11 +56,9 @@ public class EjercicioRepository {
         return apiService.deleteExercise(id);
     }
 
-    public Call<Void> deleteExerciseByName(String nombre, String usernamePropietario) {
+    public Call<Void> deleteExerciseByName(String nombre) {
         EjercicioDeleteDTO dto = new EjercicioDeleteDTO();
         dto.setNombre(nombre);
-        dto.setUsernamePropietario(usernamePropietario);
         return apiService.deleteExerciseByName(dto);
     }
-
 }

@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {

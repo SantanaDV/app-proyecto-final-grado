@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Contenedor para mostrar el usuario -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="20dp">
+
+        <!-- Icono de usuario -->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_user" />
+
+        <!-- Nombre de usuario -->
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Juan Perez"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="juan.perez@ejemplo.com"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/darker_gray"/>
+
+        <!-- RecyclerView para mostrar las opciones del usuario -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvUserOptions"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1" />
+
+        <!-- Switch para activar el tema del sistema -->
+        <Switch
+            android:id="@+id/switchUseSystemTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usar tema del sistema"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Botón para cerrar sesión -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesión"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</LinearLayout>

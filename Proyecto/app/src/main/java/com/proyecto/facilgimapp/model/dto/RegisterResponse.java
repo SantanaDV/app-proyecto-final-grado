@@ -1,4 +1,4 @@
-package com.proyecto.facilgimapp.model;
+package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -58,5 +58,8 @@ public class RegisterResponse {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    public String getNombreCompleto() {
+        return nombre + " " + apellido;
     }
 }

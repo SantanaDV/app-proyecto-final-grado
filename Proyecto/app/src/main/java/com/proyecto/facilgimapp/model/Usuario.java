@@ -2,6 +2,8 @@ package com.proyecto.facilgimapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class Usuario {
     @SerializedName("idUsuario")
     private int idUsuario;
@@ -49,8 +51,23 @@ public class Usuario {
     public String getApellido() {
         return apellido;
     }
+    public String getNombreCompleto() {
+        return nombre + " " + apellido;
+    }
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return idUsuario == usuario.idUsuario;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUsuario);
     }
 }

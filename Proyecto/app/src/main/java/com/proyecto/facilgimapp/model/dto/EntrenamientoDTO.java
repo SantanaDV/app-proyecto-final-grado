@@ -3,9 +3,12 @@ package com.proyecto.facilgimapp.model.dto;
 import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class EntrenamientoDTO implements Serializable {
+    @SerializedName("idEntrenamiento")
+    private Integer id;
     private String nombre;
     private LocalDate fechaEntrenamiento;
     private String descripcion;
@@ -19,6 +22,17 @@ public class EntrenamientoDTO implements Serializable {
 
     @SerializedName("ejerciciosId")
     private List<Integer> ejerciciosId;
+
+
+    private List<SerieDTO> series;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -68,4 +82,26 @@ public class EntrenamientoDTO implements Serializable {
     public void setEjerciciosId(List<Integer> ejerciciosId) {
         this.ejerciciosId = ejerciciosId;
     }
+
+    public List<SerieDTO> getSeries() {
+        return series;
+    }
+
+    public void setSeries(List<SerieDTO> series) {
+        this.series = series;
+    }
+
+    public boolean isValid() {
+        return nombre != null && !nombre.isEmpty()
+                && fechaEntrenamiento != null
+                && ejerciciosId != null && !ejerciciosId.isEmpty();
+    }
+
+
+    public String convertirLFechaAString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return this.fechaEntrenamiento.format(formatter);
+    }
+
+
 }

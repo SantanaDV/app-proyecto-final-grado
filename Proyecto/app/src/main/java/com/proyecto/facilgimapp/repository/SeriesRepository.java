@@ -1,9 +1,11 @@
-package com.proyecto.facilgimapp.repository.series;
+package com.proyecto.facilgimapp.repository;
 
 import android.content.Context;
 import com.proyecto.facilgimapp.model.dto.SerieDTO;
 import com.proyecto.facilgimapp.network.ApiService;
 import com.proyecto.facilgimapp.network.RetrofitClient;
+
+import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
 
@@ -32,5 +34,12 @@ public class SeriesRepository {
 
     public Call<Void> deleteSeries(int id) {
         return apiService.deleteSeries(id);
+    }
+    public List<Call<SerieDTO>> createMultipleSeries(List<SerieDTO> series) {
+        List<Call<SerieDTO>> calls = new ArrayList<>();
+        for (SerieDTO serie : series) {
+            calls.add(apiService.createSeries(serie));
+        }
+        return calls;
     }
 }

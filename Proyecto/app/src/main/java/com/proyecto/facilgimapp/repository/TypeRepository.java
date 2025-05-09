@@ -29,4 +29,7 @@ public class TypeRepository {
     public Call<Void> deleteType(Long id) {
         return apiService.deleteType(id);
     }
+    public Call<TipoEntrenamientoDTO> getType(Long id) {
+        return apiService.getType(id);
+    }
 }

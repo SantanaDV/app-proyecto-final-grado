@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static final String BASE_URL = "https://10.0.2.2:8443/";
     //Para pruebas en el movil
-    //private static final String BASE_URL = "https://10.110.4.196:8443/";
+    //private static final String BASE_URL = "https://192.168.0.195:8443/";
     private static Retrofit retrofit;
 
     public static ApiService getApiService(Context context) {
@@ -44,6 +44,7 @@ public class RetrofitClient {
                     "10.0.2.2".equals(hostname)
                             || "localhost".equals(hostname)
                             || "10.110.4.196".equals(hostname)
+                    || "192.168.0.195".equals(hostname)
             );
             /* --------------------------------------------------------- */
 

@@ -1,6 +1,7 @@
 package com.proyecto.facilgimapp.ui.workout;
 
 import android.app.DatePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,77 +14,105 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentNewWorkoutBinding;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
+import com.proyecto.facilgimapp.ui.exercises.ExerciseSelectionAdapter;
 import com.proyecto.facilgimapp.util.SessionManager;
+import com.proyecto.facilgimapp.viewmodel.ExercisesViewModel;
 import com.proyecto.facilgimapp.viewmodel.TypeViewModel;
-import com.proyecto.facilgimapp.viewmodel.WorkoutViewModel;
 
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.List;
 
 public class NewWorkoutFragment extends Fragment {
+
     private FragmentNewWorkoutBinding b;
     private TypeViewModel typeVM;
-    private WorkoutViewModel workoutVM;
+    private ExercisesViewModel exercisesVM;
+    private ExerciseSelectionAdapter exerciseAdapter;
     private LocalDate selectedDate;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inf, ViewGroup ctr, Bundle bdl) {
-        b = FragmentNewWorkoutBinding.inflate(inf, ctr, false);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+        b = FragmentNewWorkoutBinding.inflate(inflater, container, false);
         typeVM = new ViewModelProvider(this).get(TypeViewModel.class);
-        workoutVM = new ViewModelProvider(this).get(WorkoutViewModel.class);
+        exercisesVM = new ViewModelProvider(this).get(ExercisesViewModel.class);
         return b.getRoot();
     }
 
     @Override
-    public void onViewCreated(@NonNull View v, @Nullable Bundle bdl) {
-        // 1) Spinner de tipos: carga y adapta
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        // Spinner de tipos
+        if (!SessionManager.isAdmin(requireContext())) {
+            b.btnAddType.setVisibility(View.GONE);
+        }
         typeVM.getTypes().observe(getViewLifecycleOwner(), types -> {
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                    requireContext(),
-                    android.R.layout.simple_spinner_item,
-                    types.stream().map(t -> t.getNombre()).toList()
-            );
+            ArrayAdapter<String> adapter = null;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                adapter = new ArrayAdapter<>(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        types.stream().map(t -> t.getNombre()).toList()
+                );
+            }
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             b.spinnerType.setAdapter(adapter);
         });
         typeVM.loadTypes();
 
-        // 2) Selector de fecha
-        b.btnPickDate.setOnClickListener(__ -> {
+        // Selector de fecha
+        b.btnPickDate.setOnClickListener(v -> {
             Calendar c = Calendar.getInstance();
             new DatePickerDialog(requireContext(),
-                    (view, y, m, d) -> {
-                        selectedDate = LocalDate.of(y, m+1, d);
+                    (DatePicker dp, int y, int m, int d) -> {
+                        selectedDate = LocalDate.of(y, m + 1, d);
                         b.btnPickDate.setText(selectedDate.toString());
                     },
-                    c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)
+                    c.get(Calendar.YEAR),
+                    c.get(Calendar.MONTH),
+                    c.get(Calendar.DAY_OF_MONTH)
             ).show();
         });
 
-        // 3) “Siguiente” a lista de ejercicios (pasamos EntrenamientoDTO parcial)
-        b.btnNextToExercises.setOnClickListener(__ -> {
+        // RecyclerView para selección de ejercicios
+        exerciseAdapter = new ExerciseSelectionAdapter();
+        b.rvAvailableExercises.setLayoutManager(
+                new LinearLayoutManager(requireContext())
+        );
+        b.rvAvailableExercises.setAdapter(exerciseAdapter);
+
+        // Cargar catálogo completo
+        exercisesVM.listAllExercises();
+        exercisesVM.getAllExercises().observe(getViewLifecycleOwner(), list -> {
+            exerciseAdapter.setExercises(list);
+        });
+
+        // Botón “Siguiente”
+        b.btnNextToExercises.setOnClickListener(v -> {
             EntrenamientoDTO dto = new EntrenamientoDTO();
             dto.setNombre(b.etName.getText().toString());
             dto.setDescripcion(b.etDescription.getText().toString());
-            dto.setDuracion(Integer.parseInt(b.etDuration.getText().toString()));
             dto.setFechaEntrenamiento(selectedDate);
-            // tipoSeleccionado -> buscamos su id en TypeViewModel.getTypes()
-            long typeId = typeVM.getTypes().getValue()
-                    .get(b.spinnerType.getSelectedItemPosition())
-                    .getId();
-            dto.setTipoEntrenamientoId(typeId);
+            dto.setTipoEntrenamientoId(
+                    typeVM.getTypes().getValue()
+                            .get(b.spinnerType.getSelectedItemPosition())
+                            .getId()
+            );
             dto.setUsuarioId(SessionManager.getUserId(requireContext()));
+            dto.setEjerciciosId(exerciseAdapter.getSelectedExerciseIds());
 
-            // Navegar a WorkoutExercisesFragment (pendiente de crear) llevando el DTO
-            Bundle args = new Bundle();
-            args.putSerializable("newWorkoutDTO", dto);
-            Navigation.findNavController(b.getRoot())
-                    .navigate(R.id.action_newWorkoutFragment_to_workoutExercisesFragment, args);
+            Navigation.findNavController(v)
+                    .navigate(
+                            R.id.action_newWorkoutFragment_to_workoutExercisesFragment,
+                            NewWorkoutFragmentDirections
+                                    .actionNewWorkoutFragmentToWorkoutExercisesFragment(dto)
+                                    .getArguments()
+                    );
         });
     }
 
