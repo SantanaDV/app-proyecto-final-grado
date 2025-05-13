@@ -17,7 +17,7 @@
         android:title="@string/ejercicios" />
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/userFragment"
         android:icon="@drawable/ic_user"
         android:title="@string/usuario" />
 

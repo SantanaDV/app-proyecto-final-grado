@@ -22,14 +22,14 @@ public class TypeRepository {
         return apiService.createType(dto);
     }
 
-    public Call<TipoEntrenamientoDTO> updateType(Long id, TipoEntrenamientoDTO dto) {
+    public Call<TipoEntrenamientoDTO> updateType(int id, TipoEntrenamientoDTO dto) {
         return apiService.updateType(id, dto);
     }
 
-    public Call<Void> deleteType(Long id) {
+    public Call<Void> deleteType(int id) {
         return apiService.deleteType(id);
     }
-    public Call<TipoEntrenamientoDTO> getType(Long id) {
+    public Call<TipoEntrenamientoDTO> getType(int id) {
         return apiService.getType(id);
     }
 }

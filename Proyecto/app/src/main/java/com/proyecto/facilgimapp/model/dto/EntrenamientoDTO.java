@@ -15,7 +15,7 @@ public class EntrenamientoDTO implements Serializable {
     private int duracion;
 
     @SerializedName("tipoEntrenamientoId")
-    private Long tipoEntrenamientoId;
+    private Integer tipoEntrenamientoId;
 
     @SerializedName("usuarioId")
     private Integer usuarioId;
@@ -62,10 +62,10 @@ public class EntrenamientoDTO implements Serializable {
         this.duracion = duracion;
     }
 
-    public Long getTipoEntrenamientoId() {
+    public int getTipoEntrenamientoId() {
         return tipoEntrenamientoId;
     }
-    public void setTipoEntrenamientoId(Long tipoEntrenamientoId) {
+    public void setTipoEntrenamientoId(int tipoEntrenamientoId) {
         this.tipoEntrenamientoId = tipoEntrenamientoId;
     }
 

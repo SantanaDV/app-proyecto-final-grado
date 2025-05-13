@@ -51,6 +51,10 @@ public class NewWorkoutFragment extends Fragment {
         // Spinner de tipos
         if (!SessionManager.isAdmin(requireContext())) {
             b.btnAddType.setVisibility(View.GONE);
+        }else {
+            b.btnAddType.setOnClickListener(v -> {
+                Navigation.findNavController(v).navigate(R.id.action_newWorkoutFragment_to_typeListFragment);
+            });
         }
         typeVM.getTypes().observe(getViewLifecycleOwner(), types -> {
             ArrayAdapter<String> adapter = null;

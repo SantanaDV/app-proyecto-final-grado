@@ -32,6 +32,7 @@ public class RetrofitClient {
             // 3) Construir el OkHttpClient con interceptores
             OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                     .addInterceptor(new AuthInterceptor(context))
+                    .addInterceptor(new ErrorInterceptor(context)) // añadimos el manejo de errores 40 sesion expirada
                     .addInterceptor(logging);
 
             /* ---------------------------------------------------------

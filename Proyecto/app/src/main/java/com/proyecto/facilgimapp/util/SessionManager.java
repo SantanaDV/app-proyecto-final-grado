@@ -76,6 +76,15 @@ public class SessionManager {
     public static void clearSession(Context ctx) {
         prefs(ctx).edit().clear().apply();
     }
+    // Solo borra la sesión, pero conserva las credenciales recordadas
+    public static void clearLoginOnly(Context ctx) {
+        prefs(ctx).edit()
+                .remove(KEY_TOKEN)
+                .remove(KEY_USERNAME)
+                .remove(KEY_AUTHORITIES)
+                .remove(KEY_USER_ID)
+                .apply();
+    }
 
     // ————— Métodos nuevos para “Recordar credenciales” —————
 
@@ -112,6 +121,11 @@ public class SessionManager {
     public static void saveUserEmail(Context context, String email) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         prefs.edit().putString(KEY_USER_EMAIL, email).apply();
+    }
+
+    public static boolean isLoggedIn(Context context) {
+        String token = getToken(context);
+        return token != null && !token.isEmpty();
     }
 
 }

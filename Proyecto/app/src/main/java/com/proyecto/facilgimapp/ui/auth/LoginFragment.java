@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.proyecto.facilgimapp.R;
@@ -34,6 +37,19 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        // Si ya hay sesión iniciada, redirigir al Home directamente
+        if (SessionManager.isLoggedIn(requireContext())) {
+            Navigation.findNavController(view).navigate(
+                    R.id.action_loginFragment_to_homeFragment,
+                    null,
+                    new androidx.navigation.NavOptions.Builder()
+                            .setPopUpTo(R.id.loginFragment, true)
+                            .build()
+            );
+            return;
+        }
 
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
@@ -75,8 +91,20 @@ public class LoginFragment extends Fragment {
                                     resp.getMensaje(),
                                     Toast.LENGTH_SHORT).show();
                             // Navegar al Home
-                            NavHostFragment.findNavController(this)
-                                    .navigate(R.id.action_loginFragment_to_homeFragment);
+
+                            NavController navController = Navigation.findNavController(requireView());
+                            NavDestination currentDestination = navController.getCurrentDestination();
+                            if (currentDestination != null && currentDestination.getId() == R.id.loginFragment) {
+                                navController.navigate(
+                                        R.id.action_loginFragment_to_homeFragment,
+                                        null,
+                                        new androidx.navigation.NavOptions.Builder()
+                                                .setPopUpTo(R.id.loginFragment, true) // Elimina el LoginFragment del back stack
+                                                .build()
+                                );
+                            } else {
+                                Toast.makeText(requireContext(), "No se ha podido navegar", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             Toast.makeText(requireContext(),
                                     getString(R.string.error_login_failed),

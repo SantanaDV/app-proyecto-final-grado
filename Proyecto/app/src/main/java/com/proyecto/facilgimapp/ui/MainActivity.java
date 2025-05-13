@@ -12,12 +12,18 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.proyecto.facilgimapp.R;
+import com.proyecto.facilgimapp.util.AppContextProvider;
 import com.proyecto.facilgimapp.util.PreferenceManager;
 
 /**
  * Activity principal que contiene el NavHostFragment y la BottomNavigationView.
  */
 public class MainActivity extends AppCompatActivity {
+    private NavController navController;
+
+    public NavController getNavController() {
+        return navController;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +52,14 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(toolbar, navController, config);
             NavigationUI.setupWithNavController(bottomNav, navController);
 
-            // Aquí ocultas/enseñas toolbar y bottomNav según destino
+            // Aquí se oculta/enseña toolbar y bottomNav según destino
             navController.addOnDestinationChangedListener((controller, destination, args) -> {
                 boolean showToolbarAndBottomNav = !(destination.getId() == R.id.loginFragment || destination.getId() == R.id.registerFragment);
                 toolbar.setVisibility(showToolbarAndBottomNav ? View.VISIBLE : View.GONE);
                 bottomNav.setVisibility(showToolbarAndBottomNav ? View.VISIBLE : View.GONE);
             });
+
+            AppContextProvider.set(this);
 
         }
     }

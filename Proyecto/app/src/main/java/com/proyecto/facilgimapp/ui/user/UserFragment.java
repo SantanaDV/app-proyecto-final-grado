@@ -176,7 +176,7 @@ public class UserFragment extends Fragment {
     }
 
     private void logout() {
-        SessionManager.clearSession(requireContext());
+        SessionManager.clearLoginOnly(requireContext());
         Toast.makeText(requireContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show();
         // Navegar a la pantalla de login
         NavHostFragment.findNavController(this)

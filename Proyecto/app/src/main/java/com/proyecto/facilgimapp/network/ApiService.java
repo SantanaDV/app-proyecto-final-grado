@@ -127,16 +127,16 @@ public interface ApiService {
     Call<List<TipoEntrenamientoDTO>> listTypes();
 
     @GET("api/tipos-entrenamiento/{id}")
-    Call<TipoEntrenamientoDTO> getType(@Path("id") long id);
+    Call<TipoEntrenamientoDTO> getType(@Path("id") int id);
 
     @POST("api/tipos-entrenamiento")
     Call<TipoEntrenamientoDTO> createType(@Body TipoEntrenamientoDTO dto);
 
     @PUT("api/tipos-entrenamiento/{id}")
-    Call<TipoEntrenamientoDTO> updateType(@Path("id") long id, @Body TipoEntrenamientoDTO dto);
+    Call<TipoEntrenamientoDTO> updateType(@Path("id") int id, @Body TipoEntrenamientoDTO dto);
 
     @DELETE("api/tipos-entrenamiento/{id}")
-    Call<Void> deleteType(@Path("id") long id);
+    Call<Void> deleteType(@Path("id") int id);
 
     // ===== USUARIOS =====
     @GET("api/usuarios")

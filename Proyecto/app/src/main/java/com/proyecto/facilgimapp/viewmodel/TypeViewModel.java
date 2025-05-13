@@ -19,7 +19,7 @@ public class TypeViewModel extends AndroidViewModel {
 
     public TypeViewModel(@NonNull Application application) {
         super(application);
-        repository = new TypeRepository(application.getApplicationContext());
+        repository = new TypeRepository(application);
     }
 
     public void loadTypes() {
@@ -40,7 +40,8 @@ public class TypeViewModel extends AndroidViewModel {
     }
 
     public void addType(String nombre) {
-        TipoEntrenamientoDTO dto = new TipoEntrenamientoDTO(null, nombre);
+        TipoEntrenamientoDTO dto = new TipoEntrenamientoDTO(nombre);
+
         repository.createType(dto).enqueue(new Callback<TipoEntrenamientoDTO>() {
             @Override
             public void onResponse(Call<TipoEntrenamientoDTO> call,
@@ -53,7 +54,7 @@ public class TypeViewModel extends AndroidViewModel {
         });
     }
 
-    public void updateType(Long id, String nombre) {
+    public void updateType(int id, String nombre) {
         TipoEntrenamientoDTO dto = new TipoEntrenamientoDTO(id, nombre);
         repository.updateType(id, dto).enqueue(new Callback<TipoEntrenamientoDTO>() {
             @Override
@@ -67,15 +68,27 @@ public class TypeViewModel extends AndroidViewModel {
         });
     }
 
-    public void deleteType(Long id) {
-        repository.deleteType(id).enqueue(new Callback<Void>() {
+    public void deleteType(int typeId, DeletionCallback callback) {
+        repository.deleteType(typeId).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) loadTypes();
+                if (response.isSuccessful()) {
+                    loadTypes(); // Actualizar lista
+                    callback.onSuccess();
+                } else {
+                    callback.onFailure("No se puede eliminar el tipo porque está en uso.");
+                }
             }
+
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                callback.onFailure("Error al intentar eliminar el tipo: " + t.getMessage());
             }
         });
+    }
+
+    public interface DeletionCallback {
+        void onSuccess();
+        void onFailure(String message);
     }
 }

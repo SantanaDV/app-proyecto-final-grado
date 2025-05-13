@@ -27,7 +27,7 @@ public class TypeAdapter extends ListAdapter<TipoEntrenamientoDTO, TypeAdapter.T
                 @Override
                 public boolean areItemsTheSame(@NonNull TipoEntrenamientoDTO oldItem,
                                                @NonNull TipoEntrenamientoDTO newItem) {
-                    return oldItem.getId().equals(newItem.getId());
+                    return oldItem.getId() == (newItem.getId());
                 }
                 @Override
                 public boolean areContentsTheSame(@NonNull TipoEntrenamientoDTO oldItem,

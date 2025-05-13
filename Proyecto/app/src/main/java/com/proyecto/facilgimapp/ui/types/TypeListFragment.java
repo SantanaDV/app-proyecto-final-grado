@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -36,11 +38,13 @@ public class TypeListFragment extends Fragment implements TypeAdapter.OnTypeInte
 
         binding.rvTypes.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvTypes.setAdapter(adapter);
-
-
+        //Boton flotante para crear nuevo tipo de entrenamiento
+        binding.fabNewWorkout.setOnClickListener(v -> showAddOrEditDialog(null));
 
         viewModel.getTypes().observe(getViewLifecycleOwner(), types -> adapter.submitList(types));
         viewModel.loadTypes();
+
+
     }
 
     private void showAddOrEditDialog(@Nullable TipoEntrenamientoDTO editType) {
@@ -52,14 +56,35 @@ public class TypeListFragment extends Fragment implements TypeAdapter.OnTypeInte
 
         builder.setTitle(editType == null ? "Nuevo tipo" : "Editar tipo")
                 .setView(dialogView)
-                .setPositiveButton(editType == null ? "Crear" : "Guardar", (d, w) -> {
-                    String name = etName.getText().toString();
-                    if (editType == null) viewModel.addType(name);
-                    else viewModel.updateType(editType.getId(), name);
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
+                .setPositiveButton(editType == null ? "Crear" : "Guardar", null) // ← manejamos el click después
+                .setNegativeButton("Cancelar", null);
+
+        AlertDialog dialog = builder.create();
+
+        dialog.setOnShowListener(dlg -> {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                String name = etName.getText().toString().trim();
+
+                if (name.isEmpty()) {
+                    etName.setError("Este campo es obligatorio");
+                    return;
+                }
+
+                if (editType == null) {
+                    viewModel.addType(name);
+                    Toast.makeText(requireContext(), "Tipo creado", Toast.LENGTH_SHORT).show();
+                } else {
+                    viewModel.updateType(editType.getId(), name);
+                    Toast.makeText(requireContext(), "Tipo actualizado", Toast.LENGTH_SHORT).show();
+                }
+
+                dialog.dismiss(); // Cierra el diálogo sólo si la validación es correcta
+            });
+        });
+
+        dialog.show();
     }
+
 
     @Override
     public void onEdit(TipoEntrenamientoDTO type) {
@@ -71,8 +96,21 @@ public class TypeListFragment extends Fragment implements TypeAdapter.OnTypeInte
         new AlertDialog.Builder(requireContext())
                 .setTitle("Eliminar tipo")
                 .setMessage("¿Eliminar “" + type.getNombre() + "”?")
-                .setPositiveButton("Eliminar", (d, w) -> viewModel.deleteType(type.getId()))
+                .setPositiveButton("Eliminar", (d, w) -> {
+                    viewModel.deleteType(type.getId(), new TypeViewModel.DeletionCallback() {
+                        @Override
+                        public void onSuccess() {
+                            Toast.makeText(requireContext(), "Tipo eliminado correctamente", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(String message) {
+                            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                })
                 .setNegativeButton("Cancelar", null)
                 .show();
     }
+
 }

@@ -48,7 +48,7 @@ public class WorkoutExercisesFragment extends Fragment {
         // Cargar ejercicios según el tipo
         exercisesVM = new ViewModelProvider(this).get(ExercisesViewModel.class);
         exercisesVM.loadExercises(
-                dto.getTipoEntrenamientoId().intValue(),
+                dto.getTipoEntrenamientoId(),
                 SessionManager.getUsername(requireContext())
         );
         exercisesVM.getExercises().observe(getViewLifecycleOwner(), list -> {

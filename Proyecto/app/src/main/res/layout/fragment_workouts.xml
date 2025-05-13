@@ -23,13 +23,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvWorkouts"
-            android:layout_width="416dp"
-            android:layout_height="522dp"
+            android:layout_width="423dp"
+            android:layout_height="495dp"
             android:layout_marginBottom="15dp"
             android:padding="8dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintBottom_toTopOf="@+id/fabNewWorkout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
@@ -38,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/nuevo_entrenamiento"
             android:tint="@android:color/white"
