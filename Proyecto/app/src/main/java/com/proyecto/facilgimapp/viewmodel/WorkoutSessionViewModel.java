@@ -5,10 +5,16 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
+import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
 import com.proyecto.facilgimapp.model.dto.SerieDTO;
 import com.proyecto.facilgimapp.repository.WorkoutRepository;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,17 +33,22 @@ public class WorkoutSessionViewModel extends AndroidViewModel {
         return errorMessage;
     }
 
-    public void saveWorkoutSession(EntrenamientoDTO workoutDTO, List<SerieDTO> seriesList) {
-        // Guardamos las series asociadas al entrenamiento
-        workoutDTO.setSeries(seriesList);
+    public void saveWorkoutSession(EntrenamientoDTO workoutDTO, Map<EjercicioDTO, List<SerieDTO>> seriesMap) {
+        List<EntrenamientoEjercicioDTO> relaciones = new ArrayList<>();
 
-        // Llamada al repositorio para guardar los datos en la API
+        for (Map.Entry<EjercicioDTO, List<SerieDTO>> entry : seriesMap.entrySet()) {
+            EntrenamientoEjercicioDTO relacion = new EntrenamientoEjercicioDTO();
+            relacion.setEjercicio(entry.getKey());
+            relacion.setSeries(entry.getValue());
+            relaciones.add(relacion);
+        }
+
+        workoutDTO.setEntrenamientosEjercicios(relaciones);
+
         workoutRepo.createWorkout(workoutDTO).enqueue(new Callback<EntrenamientoDTO>() {
             @Override
             public void onResponse(Call<EntrenamientoDTO> call, Response<EntrenamientoDTO> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // El entrenamiento se ha guardado correctamente
-                } else {
+                if (!response.isSuccessful() || response.body() == null) {
                     errorMessage.setValue("Error al guardar el entrenamiento.");
                 }
             }

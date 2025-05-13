@@ -1,6 +1,7 @@
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +10,7 @@ import java.util.List;
 public class EntrenamientoDTO implements Serializable {
     @SerializedName("idEntrenamiento")
     private Integer id;
+
     private String nombre;
     private LocalDate fechaEntrenamiento;
     private String descripcion;
@@ -23,85 +25,51 @@ public class EntrenamientoDTO implements Serializable {
     @SerializedName("ejerciciosId")
     private List<Integer> ejerciciosId;
 
+    @SerializedName("entrenamientosEjercicios")
+    private List<EntrenamientoEjercicioDTO> entrenamientosEjercicios;
 
-    private List<SerieDTO> series;
+    // === Getters / Setters ===
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public Integer getId() {
-        return id;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public LocalDate getFechaEntrenamiento() { return fechaEntrenamiento; }
+    public void setFechaEntrenamiento(LocalDate fechaEntrenamiento) { this.fechaEntrenamiento = fechaEntrenamiento; }
 
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public LocalDate getFechaEntrenamiento() {
-        return fechaEntrenamiento;
-    }
-    public void setFechaEntrenamiento(LocalDate fechaEntrenamiento) {
-        this.fechaEntrenamiento = fechaEntrenamiento;
-    }
+    public int getDuracion() { return duracion; }
+    public void setDuracion(int duracion) { this.duracion = duracion; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    public Integer getTipoEntrenamientoId() { return tipoEntrenamientoId; }
+    public void setTipoEntrenamientoId(Integer tipoEntrenamientoId) { this.tipoEntrenamientoId = tipoEntrenamientoId; }
 
-    public int getDuracion() {
-        return duracion;
-    }
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
+    public Integer getUsuarioId() { return usuarioId; }
+    public void setUsuarioId(Integer usuarioId) { this.usuarioId = usuarioId; }
+
+    public List<Integer> getEjerciciosId() { return ejerciciosId; }
+    public void setEjerciciosId(List<Integer> ejerciciosId) { this.ejerciciosId = ejerciciosId; }
+
+    public List<EntrenamientoEjercicioDTO> getEntrenamientosEjercicios() {
+        return entrenamientosEjercicios;
     }
 
-    public int getTipoEntrenamientoId() {
-        return tipoEntrenamientoId;
-    }
-    public void setTipoEntrenamientoId(int tipoEntrenamientoId) {
-        this.tipoEntrenamientoId = tipoEntrenamientoId;
-    }
-
-    public Integer getUsuarioId() {
-        return usuarioId;
-    }
-    public void setUsuarioId(Integer usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
-    public List<Integer> getEjerciciosId() {
-        return ejerciciosId;
-    }
-    public void setEjerciciosId(List<Integer> ejerciciosId) {
-        this.ejerciciosId = ejerciciosId;
-    }
-
-    public List<SerieDTO> getSeries() {
-        return series;
-    }
-
-    public void setSeries(List<SerieDTO> series) {
-        this.series = series;
+    public void setEntrenamientosEjercicios(List<EntrenamientoEjercicioDTO> entrenamientosEjercicios) {
+        this.entrenamientosEjercicios = entrenamientosEjercicios;
     }
 
     public boolean isValid() {
         return nombre != null && !nombre.isEmpty()
                 && fechaEntrenamiento != null
-                && ejerciciosId != null && !ejerciciosId.isEmpty();
+                && (ejerciciosId != null && !ejerciciosId.isEmpty()
+                || (entrenamientosEjercicios != null && !entrenamientosEjercicios.isEmpty()));
     }
-
 
     public String convertirLFechaAString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return this.fechaEntrenamiento.format(formatter);
     }
-
-
 }

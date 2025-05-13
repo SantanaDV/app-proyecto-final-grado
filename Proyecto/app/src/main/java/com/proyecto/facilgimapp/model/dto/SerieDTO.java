@@ -2,6 +2,8 @@ package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class SerieDTO {
     @SerializedName("id")
     private Integer id;
@@ -67,5 +69,17 @@ public class SerieDTO {
     }
     public void setCompletada(boolean completada) {
         this.completada = completada;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        SerieDTO serieDTO = (SerieDTO) o;
+        return completada == serieDTO.completada && Objects.equals(id, serieDTO.id) && Objects.equals(numeroSerie, serieDTO.numeroSerie) && Objects.equals(repeticiones, serieDTO.repeticiones) && Objects.equals(peso, serieDTO.peso);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, numeroSerie, repeticiones, peso, completada);
     }
 }

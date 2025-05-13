@@ -128,5 +128,6 @@
     <string name="error_username_required">El nombre de usuario es obligatorio.</string>
     <string name="error_password_required">La contraseña es obligatoria.</string>
     <string name="error_invalid_email">Por favor ingresa un correo electrónico válido.</string>
+    <string name="nombre_del_ejercicio">Nombre del ejercicio</string>
 
 </resources>

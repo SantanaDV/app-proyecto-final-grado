@@ -32,14 +32,11 @@ public class ErrorInterceptor implements Interceptor {
         Response response = chain.proceed(request);
 
         if (response.code() == 401) {
-            // Token expirado o inválido
-            Context activityContext = AppContextProvider.get();
-            if (activityContext != null) {
-                SessionManager.clearSession(activityContext);
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    SessionRedirector.redirectToLogin(activityContext);
-                });
-            }
+            SessionManager.clearSession(appContext);
+
+            new Handler(Looper.getMainLooper()).post(() -> {
+                SessionRedirector.redirectToLogin(appContext);
+            });
         }
 
         return response;
