@@ -115,13 +115,19 @@ public class NewWorkoutFragment extends Fragment {
             dto.setUsuarioId(SessionManager.getUserId(requireContext()));
             dto.setEjerciciosId(exerciseAdapter.getSelectedExerciseIds());
 
-            Navigation.findNavController(v)
-                    .navigate(
-                            R.id.action_newWorkoutFragment_to_workoutExercisesFragment,
-                            NewWorkoutFragmentDirections
-                                    .actionNewWorkoutFragmentToWorkoutExercisesFragment(dto)
-                                    .getArguments()
-                    );
+            int[] exerciseIdsArray = exerciseAdapter
+                    .getSelectedExerciseIds()
+                    .stream()
+                    .mapToInt(Integer::intValue)
+                    .toArray();
+
+            Navigation.findNavController(v).navigate(
+                    R.id.action_newWorkoutFragment_to_workoutSessionFragment,
+                    NewWorkoutFragmentDirections
+                            .actionNewWorkoutFragmentToWorkoutSessionFragment(dto, exerciseIdsArray)
+                            .getArguments()
+            );
+
         });
     }
 

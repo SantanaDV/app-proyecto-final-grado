@@ -58,27 +58,7 @@
             android:id="@+id/action_newWorkoutFragment_to_typeListFragment"
             app:destination="@id/typeListFragment" />
         <action
-            android:id="@+id/action_newWorkoutFragment_to_workoutExercisesFragment"
-            app:destination="@id/workoutExercisesFragment">
-            <argument
-                android:name="newWorkoutDTO"
-                app:argType="com.proyecto.facilgimapp.model.dto.EntrenamientoDTO" />
-        </action>
-    </fragment>
-
-    <!-- Select exercises for new workout -->
-    <fragment
-        android:id="@+id/workoutExercisesFragment"
-        android:name="com.proyecto.facilgimapp.ui.workout.WorkoutExercisesFragment"
-        android:label="@string/seleccionar_ejercicios"
-        tools:layout="@layout/fragment_workout_exercises">
-        <!-- recibimos el DTO que creamos en NewWorkoutFragment -->
-        <argument
-            android:name="newWorkoutDTO"
-            app:argType="com.proyecto.facilgimapp.model.dto.EntrenamientoDTO" />
-        <!-- al confirmar, pasamos también la lista de IDs seleccionados -->
-        <action
-            android:id="@+id/action_workoutExercisesFragment_to_workoutSessionFragment"
+            android:id="@+id/action_newWorkoutFragment_to_workoutSessionFragment"
             app:destination="@id/workoutSessionFragment">
             <argument
                 android:name="newWorkoutDTO"
@@ -88,6 +68,17 @@
                 app:argType="integer[]" />
         </action>
     </fragment>
+
+    <action
+        android:id="@+id/action_newWorkoutFragment_to_workoutSessionFragment"
+        app:destination="@id/workoutSessionFragment">
+        <argument
+            android:name="newWorkoutDTO"
+            app:argType="com.proyecto.facilgimapp.model.dto.EntrenamientoDTO" />
+        <argument
+            android:name="exerciseIds"
+            app:argType="integer[]" />
+    </action>
 
     <!-- Session (timer + series) -->
     <fragment
