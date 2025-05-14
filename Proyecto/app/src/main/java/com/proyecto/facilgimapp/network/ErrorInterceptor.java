@@ -32,7 +32,7 @@ public class ErrorInterceptor implements Interceptor {
         Response response = chain.proceed(request);
 
         if (response.code() == 401) {
-            SessionManager.clearSession(appContext);
+            SessionManager.clearLoginOnly(appContext);
 
             new Handler(Looper.getMainLooper()).post(() -> {
                 SessionRedirector.redirectToLogin(appContext);

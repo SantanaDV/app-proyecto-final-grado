@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.proyecto.facilgimapp.R;
@@ -76,11 +77,24 @@ public class WorkoutSessionFragment extends Fragment {
             if (!adapter.allCompleted()) return;
 
             long elapsed = SystemClock.elapsedRealtime() - chronometer.getBase();
-            workoutDTO.setDuracion((int) elapsed);
+            int duracionMin = Math.round(elapsed / 60000f); // convierte a minutos y redondea
 
+            if (duracionMin < 1) duracionMin = 1; // si es menos de 1 min, se guarda como 1
+
+            workoutDTO.setDuracion(duracionMin);
+
+            workoutDTO.setEntrenamientosEjercicios(adapter.getEntrenamientoEjercicioDTOList());
             viewModel.saveWorkoutSession(workoutDTO, adapter.getSeriesMap());
 
-            Navigation.findNavController(btn).popBackStack();
+            Navigation.findNavController(btn).navigate(
+                    R.id.workoutsFragment,
+                    null,
+                    new NavOptions.Builder()
+                            .setPopUpTo(R.id.workoutSessionFragment, true)
+                            .setPopUpTo(R.id.workoutsFragment, true)
+                            .build()
+            );
+
         });
     }
 

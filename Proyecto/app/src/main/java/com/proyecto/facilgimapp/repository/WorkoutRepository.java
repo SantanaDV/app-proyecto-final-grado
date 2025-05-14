@@ -36,6 +36,8 @@ public class WorkoutRepository {
         return apiService.createTraining(dto);
     }
 
+
+
     // Actualizar un entrenamiento existente
     public Call<Entrenamiento> updateWorkout(int id, EntrenamientoDTO dto) {
         return apiService.updateTraining(id, dto);

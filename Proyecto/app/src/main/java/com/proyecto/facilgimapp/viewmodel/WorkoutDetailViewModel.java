@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.proyecto.facilgimapp.model.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
 import com.proyecto.facilgimapp.repository.TrainingExerciseRepository;
@@ -42,26 +44,27 @@ public class WorkoutDetailViewModel extends AndroidViewModel {
     }
 
     /** Carga los detalles de un entrenamiento por el ID del usuario */
-    public void loadDetails(int userId) {
-        // Ahora usamos getWorkoutsByUserId que devuelve una lista de entrenamientos
-        workoutRepo.getWorkoutsByUserId(userId).enqueue(new Callback<List<EntrenamientoDTO>>() {
+    public void loadDetails(int entrenamientoId) {
+        workoutRepo.getWorkout(entrenamientoId).enqueue(new Callback<Entrenamiento>() {
             @Override
-            public void onResponse(Call<List<EntrenamientoDTO>> call, Response<List<EntrenamientoDTO>> response) {
-                if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
-                    // En este caso seleccionamos el primer entrenamiento de la lista
-                    // Aquí asumiríamos que la lista tiene al menos un entrenamiento
-                    _workout.setValue(response.body().get(0)); // Asignamos el primer entrenamiento de la lista
+            public void onResponse(Call<Entrenamiento> call, Response<Entrenamiento> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Convertimos a DTO si lo necesitas, o adapta el tipo directamente
+                    Entrenamiento entrenamiento = response.body();
+                    EntrenamientoDTO dto = new EntrenamientoDTO(entrenamiento);
+                    _workout.setValue(dto);
                 } else {
-                    errorMessage.setValue("Error al cargar los entrenamientos del usuario");
+                    errorMessage.setValue("No se encontró el entrenamiento.");
                 }
             }
 
             @Override
-            public void onFailure(Call<List<EntrenamientoDTO>> call, Throwable t) {
-                errorMessage.setValue("Error al cargar los entrenamientos: " + t.getMessage());
+            public void onFailure(Call<Entrenamiento> call, Throwable t) {
+                errorMessage.setValue("Error al cargar entrenamiento: " + t.getMessage());
             }
         });
     }
+
     /** Carga la lista de relaciones entre entrenamiento y ejercicios */
     public void loadRelations(int workoutId) {
         relationRepo.listExercisesForWorkout(workoutId).enqueue(new Callback<List<EntrenamientoEjercicioDTO>>() {

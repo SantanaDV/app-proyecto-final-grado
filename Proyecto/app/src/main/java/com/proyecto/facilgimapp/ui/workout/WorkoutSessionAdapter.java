@@ -1,11 +1,14 @@
 package com.proyecto.facilgimapp.ui.workout;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -97,24 +100,40 @@ public class WorkoutSessionAdapter extends RecyclerView.Adapter<WorkoutSessionAd
             CheckBox cbDone = serieView.findViewById(R.id.cbDoneSerie);
 
             SerieDTO serie = new SerieDTO();
+            seriesMap.get(ejercicio).add(serie); // << Agregar la serie inmediatamente
 
-            cbDone.setOnCheckedChangeListener((btn, isChecked) -> {
-                try {
-                    int reps = Integer.parseInt(etReps.getText().toString());
-                    double weight = Double.parseDouble(etWeight.getText().toString());
+            // Escuchadores
+            cbDone.setOnCheckedChangeListener((btn, isChecked) -> serie.setCompletada(isChecked));
 
-                    serie.setRepeticiones(reps);
-                    serie.setPeso(weight);
-                    serie.setCompletada(isChecked);
+            etReps.addTextChangedListener(new TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
-                    if (!seriesMap.get(ejercicio).contains(serie)) {
-                        seriesMap.get(ejercicio).add(serie);
+                @Override
+                public void afterTextChanged(Editable s) {
+                    try {
+                        serie.setRepeticiones(Integer.parseInt(s.toString()));
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(itemView.getContext(), "Número de repeticiones inválido", Toast.LENGTH_SHORT).show();
                     }
-
-                } catch (NumberFormatException ignored) {}
+                }
             });
 
-            // Eliminar serie con long click
+            etWeight.addTextChangedListener(new TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    try {
+                        serie.setPeso(Double.parseDouble(s.toString()));
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(itemView.getContext(), "Número de peso inválido", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            // Eliminar serie
             serieView.setOnLongClickListener(view -> {
                 llSeriesContainer.removeView(serieView);
                 seriesMap.get(ejercicio).remove(serie);
@@ -123,5 +142,23 @@ public class WorkoutSessionAdapter extends RecyclerView.Adapter<WorkoutSessionAd
 
             llSeriesContainer.addView(serieView);
         }
+    }
+
+    public List<EntrenamientoEjercicioDTO> getEntrenamientoEjercicioDTOList() {
+        List<EntrenamientoEjercicioDTO> list = new ArrayList<>();
+        for (int i = 0; i < exerciseList.size(); i++) {
+            EjercicioDTO ejercicio = exerciseList.get(i);
+            List<SerieDTO> series = seriesMap.get(ejercicio);
+
+            if (series == null || series.isEmpty()) continue;
+
+            EntrenamientoEjercicioDTO rel = new EntrenamientoEjercicioDTO();
+            rel.setEjercicio(ejercicio);
+            rel.setOrden(i + 1); // orden basado en la posición del RecyclerView
+            rel.setSeries(series);
+
+            list.add(rel);
+        }
+        return list;
     }
 }

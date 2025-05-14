@@ -34,18 +34,31 @@ public class WorkoutSessionViewModel extends AndroidViewModel {
     }
 
     public void saveWorkoutSession(EntrenamientoDTO workoutDTO, Map<EjercicioDTO, List<SerieDTO>> seriesMap) {
+        // Construye la relación ejercicio-series
         List<EntrenamientoEjercicioDTO> relaciones = new ArrayList<>();
 
+        int orden = 1;
         for (Map.Entry<EjercicioDTO, List<SerieDTO>> entry : seriesMap.entrySet()) {
             EntrenamientoEjercicioDTO relacion = new EntrenamientoEjercicioDTO();
             relacion.setEjercicio(entry.getKey());
             relacion.setSeries(entry.getValue());
+            relacion.setOrden(orden++); // Establece el orden de aparición
             relaciones.add(relacion);
         }
 
+        // Asignamos al DTO principal
         workoutDTO.setEntrenamientosEjercicios(relaciones);
 
-        workoutRepo.createWorkout(workoutDTO).enqueue(new Callback<EntrenamientoDTO>() {
+        // Validación adicional
+        if (workoutDTO.getUsuario() == null || workoutDTO.getUsuario().getIdUsuario() == null
+                || workoutDTO.getTipoEntrenamiento() == null)
+        {
+            errorMessage.setValue("Faltan datos obligatorios para guardar el entrenamiento.");
+            return;
+        }
+
+        // Envío a API
+        workoutRepo.createWorkout(workoutDTO).enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<EntrenamientoDTO> call, Response<EntrenamientoDTO> response) {
                 if (!response.isSuccessful() || response.body() == null) {
@@ -59,4 +72,5 @@ public class WorkoutSessionViewModel extends AndroidViewModel {
             }
         });
     }
+
 }

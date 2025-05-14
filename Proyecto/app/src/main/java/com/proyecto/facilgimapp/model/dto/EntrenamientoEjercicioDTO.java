@@ -6,22 +6,25 @@ import java.util.List;
 import java.util.Objects;
 
 public class EntrenamientoEjercicioDTO {
-    // 1) El ID de la relación
+
     @SerializedName("id")
     private Integer id;
 
-    // 2) El ejercicio anidado (reusa tu EjercicioDTO)
+
     @SerializedName("ejercicio")
     private EjercicioDTO ejercicio;
 
-    // 3) La lista de series
     @SerializedName("series")
     private List<SerieDTO> series;
 
-    // getters & setters
+    private int orden;
+
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
+
+    public int getOrden() { return orden; }
+    public void setOrden(int orden) { this.orden = orden; }
 
     public EjercicioDTO getEjercicio() { return ejercicio; }
     public void setEjercicio(EjercicioDTO ejercicio) { this.ejercicio = ejercicio; }

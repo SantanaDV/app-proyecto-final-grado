@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentNewWorkoutBinding;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
+import com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO;
+import com.proyecto.facilgimapp.model.dto.UsuarioDTO;
 import com.proyecto.facilgimapp.ui.exercises.ExerciseSelectionAdapter;
 import com.proyecto.facilgimapp.util.SessionManager;
 import com.proyecto.facilgimapp.viewmodel.ExercisesViewModel;
@@ -27,6 +29,7 @@ import com.proyecto.facilgimapp.viewmodel.TypeViewModel;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.List;
 
 public class NewWorkoutFragment extends Fragment {
 
@@ -107,12 +110,13 @@ public class NewWorkoutFragment extends Fragment {
             dto.setNombre(b.etName.getText().toString());
             dto.setDescripcion(b.etDescription.getText().toString());
             dto.setFechaEntrenamiento(selectedDate);
-            dto.setTipoEntrenamientoId(
-                    typeVM.getTypes().getValue()
-                            .get(b.spinnerType.getSelectedItemPosition())
-                            .getId()
-            );
-            dto.setUsuarioId(SessionManager.getUserId(requireContext()));
+            int tipoId = typeVM.getTypes().getValue()
+                    .get(b.spinnerType.getSelectedItemPosition())
+                    .getId();
+
+            dto.setTipoEntrenamiento(new TipoEntrenamientoDTO(tipoId));
+            dto.setUsuario(new UsuarioDTO());
+            dto.getUsuario().setIdUsuario(SessionManager.getUserId(requireContext()));
             dto.setEjerciciosId(exerciseAdapter.getSelectedExerciseIds());
 
             int[] exerciseIdsArray = exerciseAdapter

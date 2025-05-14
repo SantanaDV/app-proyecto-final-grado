@@ -1,6 +1,7 @@
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
+import com.proyecto.facilgimapp.model.Entrenamiento;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,21 +13,34 @@ public class EntrenamientoDTO implements Serializable {
     private Integer id;
 
     private String nombre;
+
     private LocalDate fechaEntrenamiento;
     private String descripcion;
     private int duracion;
 
-    @SerializedName("tipoEntrenamientoId")
-    private Integer tipoEntrenamientoId;
+    @SerializedName("tipoEntrenamiento")
+    private TipoEntrenamientoDTO tipoEntrenamiento;
 
-    @SerializedName("usuarioId")
-    private Integer usuarioId;
+
+    @SerializedName("usuario")
+    private UsuarioDTO usuario;
 
     @SerializedName("ejerciciosId")
     private List<Integer> ejerciciosId;
 
     @SerializedName("entrenamientosEjercicios")
     private List<EntrenamientoEjercicioDTO> entrenamientosEjercicios;
+
+    public EntrenamientoDTO() {
+    }
+
+    public EntrenamientoDTO(Entrenamiento entrenamiento) {
+        this.id = entrenamiento.getId();
+        this.nombre = entrenamiento.getNombre();
+        this.fechaEntrenamiento = LocalDate.parse(entrenamiento.getFechaEntrenamiento());
+        this.descripcion = entrenamiento.getDescripcion();
+        this.duracion = entrenamiento.getDuracionMinutos();
+    }
 
     // === Getters / Setters ===
     public Integer getId() { return id; }
@@ -44,11 +58,21 @@ public class EntrenamientoDTO implements Serializable {
     public int getDuracion() { return duracion; }
     public void setDuracion(int duracion) { this.duracion = duracion; }
 
-    public Integer getTipoEntrenamientoId() { return tipoEntrenamientoId; }
-    public void setTipoEntrenamientoId(Integer tipoEntrenamientoId) { this.tipoEntrenamientoId = tipoEntrenamientoId; }
+    public TipoEntrenamientoDTO getTipoEntrenamiento() {
+        return tipoEntrenamiento;
+    }
 
-    public Integer getUsuarioId() { return usuarioId; }
-    public void setUsuarioId(Integer usuarioId) { this.usuarioId = usuarioId; }
+    public void setTipoEntrenamiento(TipoEntrenamientoDTO tipoEntrenamiento) {
+        this.tipoEntrenamiento = tipoEntrenamiento;
+    }
+
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
+    }
 
     public List<Integer> getEjerciciosId() { return ejerciciosId; }
     public void setEjerciciosId(List<Integer> ejerciciosId) { this.ejerciciosId = ejerciciosId; }
