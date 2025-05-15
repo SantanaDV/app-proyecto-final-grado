@@ -1,8 +1,9 @@
 package com.proyecto.facilgimapp.ui.exercises;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.*;
-import android.widget.SearchView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
 
 
@@ -14,7 +15,6 @@ import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.proyecto.facilgimapp.R;
@@ -28,7 +28,7 @@ public class ExercisesFragment extends Fragment {
 
     private FragmentExercisesBinding binding;
     private ExercisesViewModel viewModel;
-    private EjercicioDTOAdapter adapter;
+    private EjercicioCatalogAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -47,15 +47,7 @@ public class ExercisesFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
 
-        adapter = new EjercicioDTOAdapter(
-                ejercicioId -> {
-                    Bundle args = new Bundle();
-                    args.putInt("exerciseId", ejercicioId);
-                    Navigation.findNavController(binding.getRoot())
-                            .navigate(R.id.action_exercisesFragment_to_workoutSessionFragment, args);
-                },
-                ejercicioDTO -> eliminarEjercicio(ejercicioDTO)
-        );
+        adapter = new EjercicioCatalogAdapter(ejercicioDTO -> confirmarEliminacion(ejercicioDTO));
 
         binding.rvExercises.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvExercises.setAdapter(adapter);
@@ -75,12 +67,20 @@ public class ExercisesFragment extends Fragment {
     }
 
     private void cargarEjercicios() {
-        String username = SessionManager.getUsername(requireContext());
-        int idUser = SessionManager.getUserId(requireContext());
-
-        viewModel.loadExercises(idUser, username);
-        viewModel.getExercises().observe(getViewLifecycleOwner(), adapter::submitList);
+        viewModel.listAllExercises();
+        viewModel.getAllExercises().observe(getViewLifecycleOwner(), list -> {
+            adapter.submitList(list, true);
+        });    }
+    private void confirmarEliminacion(EjercicioDTO ejercicio) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Eliminar ejercicio")
+                .setMessage("¿Estás seguro de que quieres eliminar este ejercicio?\n" +
+                        "Si está asociado a entrenamientos, se eliminarán los ejercicios de ese entrenamiento.")
+                .setPositiveButton("Eliminar", (dialog, which) -> eliminarEjercicio(ejercicio))
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
+
 
     private void eliminarEjercicio(EjercicioDTO ejercicio) {
         EjercicioRepository repo = new EjercicioRepository(requireContext());
@@ -110,17 +110,27 @@ public class ExercisesFragment extends Fragment {
             public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
                 inflater.inflate(R.menu.menu_search, menu);
                 MenuItem searchItem = menu.findItem(R.id.action_search);
-                SearchView searchView = (SearchView) searchItem.getActionView();
+                androidx.appcompat.widget.SearchView searchView =
+                        (androidx.appcompat.widget.SearchView) searchItem.getActionView();
 
                 searchView.setQueryHint("Buscar ejercicios...");
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override public boolean onQueryTextSubmit(String query) { return false; }
+                searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
 
                     @Override
                     public boolean onQueryTextChange(String newText) {
                         adapter.filter(newText);
                         return true;
                     }
+                });
+
+                //  Restaurar la lista completa al cerrar el SearchView
+                searchView.setOnCloseListener(() -> {
+                    adapter.filter(""); // vacía el texto, fuerza el reset
+                    return false;
                 });
             }
 
@@ -130,6 +140,7 @@ public class ExercisesFragment extends Fragment {
             }
         }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
     }
+
 
     @Override
     public void onDestroyView() {

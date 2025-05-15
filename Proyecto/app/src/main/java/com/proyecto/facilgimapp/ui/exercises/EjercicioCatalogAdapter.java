@@ -19,23 +19,19 @@ import com.proyecto.facilgimapp.util.SessionManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EjercicioDTOAdapter extends ListAdapter<EjercicioDTO, EjercicioDTOAdapter.ViewHolder> {
+public class EjercicioCatalogAdapter extends ListAdapter<EjercicioDTO, EjercicioCatalogAdapter.ViewHolder> {
 
-    public interface OnItemClick {
-        void onClick(int ejercicioId);
-    }
 
     public interface OnLongItemClick {
         void onLongClick(EjercicioDTO ejercicio);
     }
 
-    private final OnItemClick clickListener;
+
     private final OnLongItemClick longClickListener;
     private final List<EjercicioDTO> fullList = new ArrayList<>();
 
-    public EjercicioDTOAdapter(OnItemClick clickListener, OnLongItemClick longClickListener) {
+    public EjercicioCatalogAdapter( OnLongItemClick longClickListener) {
         super(DIFF_CALLBACK);
-        this.clickListener = clickListener;
         this.longClickListener = longClickListener;
     }
 
@@ -50,14 +46,15 @@ public class EjercicioDTOAdapter extends ListAdapter<EjercicioDTO, EjercicioDTOA
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         EjercicioDTO dto = getItem(position);
-        holder.bind(dto, clickListener, longClickListener);
+        holder.bind(dto, longClickListener);
     }
 
-    @Override
-    public void submitList(List<EjercicioDTO> list) {
+    public void submitList(List<EjercicioDTO> list, boolean isFullUpdate) {
         super.submitList(list);
-        fullList.clear();
-        if (list != null) fullList.addAll(list);
+        if (isFullUpdate) {
+            fullList.clear();
+            if (list != null) fullList.addAll(list);
+        }
     }
 
     public void filter(String query) {
@@ -72,7 +69,7 @@ public class EjercicioDTOAdapter extends ListAdapter<EjercicioDTO, EjercicioDTOA
                 filtered.add(e);
             }
         }
-        submitList(filtered);
+        submitList(filtered, false); //No sobreescribimos la lista para poder recuperarla
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -85,7 +82,7 @@ public class EjercicioDTOAdapter extends ListAdapter<EjercicioDTO, EjercicioDTOA
             tvName = itemView.findViewById(R.id.tvExerciseName);
         }
 
-        void bind(EjercicioDTO dto, OnItemClick clickListener, OnLongItemClick longClickListener) {
+        void bind(EjercicioDTO dto,  OnLongItemClick longClickListener) {
             tvName.setText(dto.getNombre());
 
             String url = dto.getImagenUrl();
@@ -99,8 +96,6 @@ public class EjercicioDTOAdapter extends ListAdapter<EjercicioDTO, EjercicioDTOA
             } else {
                 ivImage.setImageResource(R.drawable.placeholder);
             }
-
-            itemView.setOnClickListener(v -> clickListener.onClick(dto.getIdEjercicio()));
 
             if (SessionManager.getAuthorities(ivImage.getContext()).contains("ROLE_ADMIN")) {
                 itemView.setOnLongClickListener(v -> {

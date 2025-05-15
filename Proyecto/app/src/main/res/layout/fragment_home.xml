@@ -132,7 +132,11 @@
                 android:paddingTop="8dp"
                 android:clipToPadding="false"
                 android:layout_marginBottom="24dp"/>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calendario_de_entrenamientos"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
             <!-- Calendario con días entrenados en verde -->
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"

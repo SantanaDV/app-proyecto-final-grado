@@ -7,5 +7,5 @@
         android:title="@string/buscar"
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="always|collapseActionView"
-        app:actionViewClass="android.widget.SearchView" />
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
 </menu>

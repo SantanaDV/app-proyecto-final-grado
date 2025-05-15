@@ -130,5 +130,6 @@
     <string name="error_invalid_email">Por favor ingresa un correo electrónico válido.</string>
     <string name="nombre_del_ejercicio">Nombre del ejercicio</string>
     <string name="buscar">Buscar</string>
+    <string name="calendario_de_entrenamientos">Calendario de entrenamientos</string>
 
 </resources>
