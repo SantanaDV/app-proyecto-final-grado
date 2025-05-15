@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         if (getIntent().getBooleanExtra("forceLogout", false)) {
             NavHostFragment host = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
             if (host != null) {
@@ -42,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
+        // Quitar el título automáticamente
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_view);
 
         // Obtiene el NavController desde el NavHostFragment
@@ -57,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
                     R.id.exercisesFragment,
                     R.id.userFragment
             ).build();
-            NavigationUI.setupWithNavController(toolbar, navController, config);
+            //NavigationUI.setupWithNavController(toolbar, navController, config);
+            NavigationUI.setupActionBarWithNavController(this, navController, config);
             NavigationUI.setupWithNavController(bottomNav, navController);
 
             // Aquí se oculta/enseña toolbar y bottomNav según destino

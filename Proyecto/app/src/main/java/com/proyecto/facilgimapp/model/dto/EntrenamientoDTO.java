@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 public class EntrenamientoDTO implements Serializable {
     @SerializedName("idEntrenamiento")
@@ -30,6 +31,18 @@ public class EntrenamientoDTO implements Serializable {
 
     @SerializedName("entrenamientosEjercicios")
     private List<EntrenamientoEjercicioDTO> entrenamientosEjercicios;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        EntrenamientoDTO that = (EntrenamientoDTO) o;
+        return duracion == that.duracion && Objects.equals(id, that.id) && Objects.equals(nombre, that.nombre) && Objects.equals(fechaEntrenamiento, that.fechaEntrenamiento) && Objects.equals(descripcion, that.descripcion) && Objects.equals(tipoEntrenamiento, that.tipoEntrenamiento) && Objects.equals(usuario, that.usuario) && Objects.equals(ejerciciosId, that.ejerciciosId) && Objects.equals(entrenamientosEjercicios, that.entrenamientosEjercicios);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, fechaEntrenamiento, descripcion, duracion, tipoEntrenamiento, usuario, ejerciciosId, entrenamientosEjercicios);
+    }
 
     public EntrenamientoDTO() {
     }

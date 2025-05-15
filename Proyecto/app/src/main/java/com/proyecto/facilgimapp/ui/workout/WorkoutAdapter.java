@@ -1,57 +1,96 @@
 package com.proyecto.facilgimapp.ui.workout;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.proyecto.facilgimapp.R;
-import com.proyecto.facilgimapp.model.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.H> {
-    private List<EntrenamientoDTO> datos;
-    private java.util.function.Consumer<Integer> onClick;
+
+    private final List<EntrenamientoDTO> datos = new ArrayList<>();
+    private final List<EntrenamientoDTO> fullList = new ArrayList<>();
+    private final Consumer<Integer> onClick;
 
     public WorkoutAdapter(List<EntrenamientoDTO> d, Consumer<Integer> click) {
-        datos = d;
+        if (d != null) {
+            datos.addAll(d);
+            fullList.addAll(d);
+        }
         onClick = click;
     }
-    @NonNull @Override public H onCreateViewHolder(@NonNull ViewGroup p, int i) {
-        View v = LayoutInflater.from(p.getContext()).inflate(R.layout.item_workout, p, false);
+
+    public void updateList(List<EntrenamientoDTO> list) {
+        datos.clear();
+        fullList.clear();
+        if (list != null) {
+            datos.addAll(list);
+            fullList.addAll(list);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void filter(String query) {
+        datos.clear();
+        if (query == null || query.trim().isEmpty()) {
+            datos.addAll(fullList);
+        } else {
+            String lowerQuery = query.toLowerCase();
+            for (EntrenamientoDTO e : fullList) {
+                if (e.getNombre().toLowerCase().contains(lowerQuery)) {
+                    datos.add(e);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public H onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_workout, parent, false);
         return new H(v);
     }
-    @Override
-    public void onBindViewHolder(@NonNull H h, int pos) {
-        EntrenamientoDTO e = datos.get(pos);
 
-        // Verificar si el id es nulo antes de continuar
+    @Override
+    public void onBindViewHolder(@NonNull H holder, int pos) {
+        EntrenamientoDTO e = datos.get(pos);
         Integer idEntrenamiento = e.getId();
+
         if (idEntrenamiento != null) {
-            h.tv.setText(e.getNombre());
-            h.itemView.setOnClickListener(v -> {
-                // Log para verificar que el id no es nulo
+            holder.tv.setText(e.getNombre());
+            holder.itemView.setOnClickListener(v -> {
                 Log.d("DEBUG", "ID del entrenamiento: " + idEntrenamiento);
-                Bundle args = new Bundle();
-                args.putInt("workoutId", idEntrenamiento.intValue());
-                Navigation.findNavController(v).navigate(R.id.action_workoutsFragment_to_workoutDetailFragment, args);
+                onClick.accept(idEntrenamiento);
             });
         } else {
-            // Si el id es nulo, loguear y manejar el error
             Log.e("DEBUG", "ID del entrenamiento es nulo para: " + e.getNombre());
-            h.tv.setText("Entrenamiento no disponible");
+            holder.tv.setText("Entrenamiento no disponible");
         }
     }
-    @Override public int getItemCount(){ return datos.size(); }
+
+    @Override
+    public int getItemCount() {
+        return datos.size();
+    }
+
     static class H extends RecyclerView.ViewHolder {
         TextView tv;
-        H(View v){ super(v); tv = v.findViewById(R.id.tvWorkoutName);}
+
+        H(View v) {
+            super(v);
+            tv = v.findViewById(R.id.tvWorkoutName);
+        }
     }
 }
