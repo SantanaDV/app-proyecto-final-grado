@@ -1,67 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:background="@color/colorFragmentBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!-- Toolbar -->
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarWorkoutDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorSurface"
-            android:elevation="4dp"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            app:title="Detalle Entrenamiento" />
-
         <!-- Contenido bajo la toolbar -->
         <LinearLayout
             android:id="@+id/contentLayout"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="674dp"
             android:layout_marginTop="?attr/actionBarSize"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:padding="16dp">
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <!-- Card con los datos del entrenamiento -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp"
+                android:layout_marginBottom="12dp"
                 android:elevation="2dp"
-                android:layout_marginBottom="12dp">
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:padding="12dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
                     <TextView
                         android:id="@+id/tvWorkoutName"
+                        style="@style/TextAppearance.MaterialComponents.Headline6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nombre Entrenamiento"
-                        style="@style/TextAppearance.MaterialComponents.Headline6"/>
+                        android:text="Nombre Entrenamiento" />
 
                     <TextView
                         android:id="@+id/tvWorkoutDate"
+                        style="@style/TextAppearance.MaterialComponents.Body2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Fecha: 2025-05-01"
-                        style="@style/TextAppearance.MaterialComponents.Body2"/>
+                        android:text="Fecha: 2025-05-01" />
 
                     <TextView
                         android:id="@+id/tvWorkoutDuration"
+                        style="@style/TextAppearance.MaterialComponents.Body2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Duración: 45 min"
-                        style="@style/TextAppearance.MaterialComponents.Body2"/>
+                        android:text="Duración: 45 min" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -72,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:clipToPadding="false"/>
+                android:clipToPadding="false" />
 
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

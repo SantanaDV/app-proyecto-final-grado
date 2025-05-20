@@ -7,11 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.proyecto.facilgimapp.model.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
+import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
+import com.proyecto.facilgimapp.repository.TrainingExerciseRepository;
 import com.proyecto.facilgimapp.repository.WorkoutRepository;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,6 +61,66 @@ public class WorkoutViewModel extends AndroidViewModel {
                 errorMessage.setValue("Error al cargar los entrenamientos: " + t.getMessage());
             }
         });
+    }
+
+    public void deleteWorkout(int workoutId, Runnable onSuccess, Runnable onFailure) {
+        repo.deleteWorkout(workoutId).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    onSuccess.run();
+                } else {
+                    errorMessage.setValue("Error del servidor al eliminar.");
+                    onFailure.run();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                errorMessage.setValue("Error al eliminar el entrenamiento: " + t.getMessage());
+                onFailure.run();
+            }
+        });
+    }
+
+    public void updateWorkout(int id, EntrenamientoDTO dto, Runnable onSuccess, Runnable onFailure) {
+        repo.updateWorkoutFromDto(id, dto).enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<Entrenamiento> call, Response<Entrenamiento> response) {
+                if (response.isSuccessful()) {
+                    onSuccess.run();
+                } else {
+                    errorMessage.setValue("Error del servidor al actualizar.");
+                    onFailure.run();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Entrenamiento> call, Throwable t) {
+                errorMessage.setValue("Error de red al actualizar: " + t.getMessage());
+                onFailure.run();
+            }
+        });
+    }
+
+    public void loadWorkoutRelations(int workoutId, Consumer<List<EntrenamientoEjercicioDTO>> onResult) {
+        new TrainingExerciseRepository(getApplication().getApplicationContext())
+                .listExercisesForWorkout(workoutId)
+                .enqueue(new Callback<List<EntrenamientoEjercicioDTO>>() {
+                    @Override
+                    public void onResponse(Call<List<EntrenamientoEjercicioDTO>> call, Response<List<EntrenamientoEjercicioDTO>> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            onResult.accept(response.body());
+                        } else {
+                            Log.e("DEBUG", "No se pudieron obtener las relaciones");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<EntrenamientoEjercicioDTO>> call, Throwable t) {
+                        Log.e("DEBUG", "Error al cargar relaciones: " + t.getMessage());
+                    }
+                });
     }
 
 }

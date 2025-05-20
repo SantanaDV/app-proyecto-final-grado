@@ -131,5 +131,14 @@
     <string name="nombre_del_ejercicio">Nombre del ejercicio</string>
     <string name="buscar">Buscar</string>
     <string name="calendario_de_entrenamientos">Calendario de entrenamientos</string>
+    <string name="options">opciones</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="ver_descripcion">Ver descripción</string>
+    <string name="entrenamiento">Entrenamiento</string>
+    <string name="entrenamiento_no_disponible">Entrenamiento no disponible</string>
+    <string name="nombre_del_entrenamiento">Nombre del entrenamiento</string>
+    <string name="duraci_n_min">Duración (min)</string>
+    <string name="fecha_yyyy_mm_dd">Fecha (YYYY-MM-DD)</string>
 
 </resources>

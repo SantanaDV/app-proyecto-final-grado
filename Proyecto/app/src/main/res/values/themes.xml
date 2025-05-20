@@ -20,8 +20,9 @@
         <item name="android:windowBackground">@color/colorBackground</item>
 
         <!-- Barra de estado y navegación -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+
     </style>
 
     <!-- Variantes de tema en otros colores -->

@@ -75,10 +75,6 @@ public class WorkoutDetailFragment extends Fragment {
         vm.loadDetails(workoutId);
         vm.loadRelations(workoutId);
 
-        // Back arrow
-        b.toolbarWorkoutDetail.setNavigationOnClickListener(v ->
-                Navigation.findNavController(v).navigateUp()
-        );
 
         return b.getRoot();
     }

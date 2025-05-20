@@ -1,13 +1,14 @@
 package com.proyecto.facilgimapp.ui.workout;
 
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
@@ -20,14 +21,25 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.H> {
 
     private final List<EntrenamientoDTO> datos = new ArrayList<>();
     private final List<EntrenamientoDTO> fullList = new ArrayList<>();
-    private final Consumer<Integer> onClick;
 
-    public WorkoutAdapter(List<EntrenamientoDTO> d, Consumer<Integer> click) {
+    private final Consumer<EntrenamientoDTO> onItemClick;
+    private final Consumer<EntrenamientoDTO> onViewDescription;
+    private final Consumer<EntrenamientoDTO> onEdit;
+    private final Consumer<EntrenamientoDTO> onDelete;
+
+    public WorkoutAdapter(List<EntrenamientoDTO> d,
+                          Consumer<EntrenamientoDTO> onClick,
+                          Consumer<EntrenamientoDTO> onViewDescription,
+                          Consumer<EntrenamientoDTO> onEdit,
+                          Consumer<EntrenamientoDTO> onDelete) {
+        this.onItemClick = onClick;
+        this.onViewDescription = onViewDescription;
+        this.onEdit = onEdit;
+        this.onDelete = onDelete;
         if (d != null) {
             datos.addAll(d);
             fullList.addAll(d);
         }
-        onClick = click;
     }
 
     public void updateList(List<EntrenamientoDTO> list) {
@@ -70,13 +82,41 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.H> {
 
         if (idEntrenamiento != null) {
             holder.tv.setText(e.getNombre());
+
+            // Click en la tarjeta para ver detalle
             holder.itemView.setOnClickListener(v -> {
                 Log.d("DEBUG", "ID del entrenamiento: " + idEntrenamiento);
-                onClick.accept(idEntrenamiento);
+                onItemClick.accept(e);
             });
+
+            // Menú de opciones
+            holder.btnOptions.setOnClickListener(view -> {
+                PopupMenu popup = new PopupMenu(view.getContext(), view);
+                popup.inflate(R.menu.menu_workout_item);
+
+                popup.setOnMenuItemClickListener(item -> {
+                    int id = item.getItemId();
+
+                    if (id == R.id.action_view_description) {
+                        onViewDescription.accept(e);
+                        return true;
+                    } else if (id == R.id.action_edit) {
+                        onEdit.accept(e);
+                        return true;
+                    } else if (id == R.id.action_delete) {
+                        onDelete.accept(e);
+                        return true;
+                    }
+
+                    return false;
+                });
+
+                popup.show();
+            });
+
         } else {
             Log.e("DEBUG", "ID del entrenamiento es nulo para: " + e.getNombre());
-            holder.tv.setText("Entrenamiento no disponible");
+            holder.tv.setText(R.string.entrenamiento_no_disponible);
         }
     }
 
@@ -87,10 +127,12 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.H> {
 
     static class H extends RecyclerView.ViewHolder {
         TextView tv;
+        ImageButton btnOptions;
 
         H(View v) {
             super(v);
             tv = v.findViewById(R.id.tvWorkoutName);
+            btnOptions = v.findViewById(R.id.btnOptions);
         }
     }
 }

@@ -2,6 +2,8 @@ package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class TipoEntrenamientoDTO {
     @SerializedName("id")
     private Integer id;
@@ -34,4 +36,15 @@ public class TipoEntrenamientoDTO {
         return nombre;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TipoEntrenamientoDTO that = (TipoEntrenamientoDTO) o;
+        return Objects.equals(id, that.id) && Objects.equals(nombre, that.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre);
+    }
 }

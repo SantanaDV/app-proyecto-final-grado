@@ -11,6 +11,7 @@ import com.proyecto.facilgimapp.model.Ejercicio;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 import com.proyecto.facilgimapp.repository.EjercicioRepository;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,4 +73,44 @@ public class ExercisesViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void deleteExercise(int ejercicioId, Runnable onSuccess, Runnable onError) {
+        repo.deleteExercise(ejercicioId).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if (response.isSuccessful()) {
+                    onSuccess.run();
+                } else {
+                    onError.run();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void updateExercise(EjercicioDTO ejercicio, File imagen,
+                               Runnable onSuccess, Runnable onError) {
+        repo.createOrUpdateExercise(ejercicio, imagen)
+                .enqueue(new Callback<EjercicioDTO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<EjercicioDTO> call,
+                                           @NonNull Response<EjercicioDTO> response) {
+                        if (response.isSuccessful()) {
+                            onSuccess.run();
+                        } else {
+                            onError.run();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<EjercicioDTO> call, @NonNull Throwable t) {
+                        onError.run();
+                    }
+                });
+    }
+
 }
