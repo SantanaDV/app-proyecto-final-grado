@@ -2,7 +2,13 @@ package com.proyecto.facilgimapp.ui.exercises;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.view.*;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,16 +18,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuHost;
-import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentExercisesBinding;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
@@ -37,27 +40,25 @@ public class ExercisesFragment extends Fragment {
     private ExercisesViewModel viewModel;
     private EjercicioCatalogAdapter adapter;
 
-    private ActivityResultLauncher<String> imagePickerLauncher;
+    private ActivityResultLauncher<String> pickImageLauncher;
     private ImageView ivPreview;
-    private File selectedImageFile; // Campo compartido
+    private File selectedImageFile;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
-        // Configura el selector de imágenes
-        imagePickerLauncher = registerForActivityResult(
+        // Inicializa el selector de imágenes
+        pickImageLauncher = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),
                 uri -> {
-                    if (uri != null && getContext() != null) {
+                    if (uri != null && getContext() != null && ivPreview != null) {
                         selectedImageFile = FileUtils.copyUriToFile(requireContext(), uri);
-
-                        if (ivPreview != null) {
-                            Glide.with(requireContext())
-                                    .load(selectedImageFile)
-                                    .placeholder(R.drawable.placeholder)
-                                    .into(ivPreview);
-                        }
+                        Glide.with(requireContext())
+                                .load(selectedImageFile)
+                                .placeholder(R.drawable.placeholder)
+                                .into(ivPreview);
                     }
                 }
         );
@@ -76,142 +77,167 @@ public class ExercisesFragment extends Fragment {
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle("Ejercicios");
-
+        // Configura RecyclerView
         viewModel = new ViewModelProvider(this).get(ExercisesViewModel.class);
-
-        adapter = new EjercicioCatalogAdapter(this::mostrarOpciones);
+        adapter = new EjercicioCatalogAdapter(this::onLongPressItem);
         binding.rvExercises.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvExercises.setAdapter(adapter);
+        binding.rvExercises.setClipToPadding(false);
 
-        configurarMenu();
-        cargarEjercicios();
+        // Configura FAB
+        FloatingActionButton fab = binding.fabAddExercise;
 
-        if (SessionManager.getAuthorities(requireContext()).contains("ROLE_ADMIN")) {
-            binding.fabAddExercise.setVisibility(View.VISIBLE);
-            binding.fabAddExercise.setOnClickListener(v ->
-                    Toast.makeText(requireContext(), "Aquí iría la creación", Toast.LENGTH_SHORT).show()
-            );
+        boolean admin = SessionManager.isAdmin(requireContext());
+        if (admin) {
+            fab.setVisibility(View.VISIBLE);
+            fab.bringToFront();
+            fab.setOnClickListener(v -> showCreateDialog());
+        } else {
+            fab.setVisibility(View.GONE);
         }
+
+        // Carga datos inicial
+        loadExercises();
     }
 
-    private void cargarEjercicios() {
+    private void loadExercises() {
         viewModel.listAllExercises();
-        viewModel.getAllExercises().observe(getViewLifecycleOwner(), list -> {
-            adapter.submitList(list, true);
-        });
+        viewModel.getAllExercises()
+                .observe(getViewLifecycleOwner(), list ->
+                        adapter.submitList(list, true)
+                );
     }
 
-    private void mostrarOpciones(EjercicioDTO ejercicio) {
-        String[] opciones = {"Editar", "Eliminar"};
-
+    private void onLongPressItem(EjercicioDTO dto) {
+        String[] opts = {"Editar", "Eliminar"};
         new AlertDialog.Builder(requireContext())
-                .setTitle("Opciones del ejercicio")
-                .setItems(opciones, (dialog, which) -> {
-                    if (which == 0) {
-                        mostrarDialogoEdicion(ejercicio);
-                    } else {
-                        confirmarEliminacion(ejercicio);
-                    }
+                .setTitle(dto.getNombre())
+                .setItems(opts, (d, which) -> {
+                    if (which == 0) showEditDialog(dto);
+                    else           confirmDelete(dto);
                 })
                 .show();
     }
 
-    private void mostrarDialogoEdicion(EjercicioDTO ejercicio) {
-        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_exercise, null);
-        EditText etNombre = dialogView.findViewById(R.id.etNombreEjercicio);
-        ivPreview = dialogView.findViewById(R.id.ivImagenPreview);
-        Button btnCargarImagen = dialogView.findViewById(R.id.btnCargarImagen);
+    private void showCreateDialog() {
+        View dlg = LayoutInflater.from(requireContext())
+                .inflate(R.layout.dialog_edit_exercise, null);
+        EditText etName = dlg.findViewById(R.id.etNombreEjercicio);
+        ivPreview = dlg.findViewById(R.id.ivImagenPreview);
+        Button btnImg = dlg.findViewById(R.id.btnCargarImagen);
 
-        etNombre.setText(ejercicio.getNombre());
-        selectedImageFile = null; // Limpiar selección previa
-
-        // Mostrar imagen actual
+        etName.setText("");
+        selectedImageFile = null;
         Glide.with(requireContext())
-                .load(ejercicio.getImagenUrl())
-                .placeholder(R.drawable.placeholder)
-                .fitCenter()
+                .load(R.drawable.placeholder)
                 .into(ivPreview);
 
-        btnCargarImagen.setOnClickListener(v -> imagePickerLauncher.launch("image/*"));
+        btnImg.setOnClickListener(v ->
+                pickImageLauncher.launch("image/*")
+        );
 
         new AlertDialog.Builder(requireContext())
-                .setTitle("Editar ejercicio")
-                .setView(dialogView)
-                .setPositiveButton("Guardar", (dialog, which) -> {
-                    ejercicio.setNombre(etNombre.getText().toString());
-
+                .setTitle("Crear ejercicio")
+                .setView(dlg)
+                .setPositiveButton("Crear", (d, w) -> {
+                    EjercicioDTO nuevo = new EjercicioDTO();
+                    nuevo.setNombre(etName.getText().toString().trim());
                     viewModel.updateExercise(
-                            ejercicio,
+                            nuevo,
                             selectedImageFile,
                             () -> {
-                                Toast.makeText(requireContext(), "Ejercicio actualizado", Toast.LENGTH_SHORT).show();
-                                selectedImageFile = null;
-                                ivPreview = null;
-                                cargarEjercicios();
+                                Toast.makeText(requireContext(),
+                                        "Ejercicio creado",
+                                        Toast.LENGTH_SHORT).show();
+                                loadExercises();
                             },
-                            () -> Toast.makeText(requireContext(), "Error al actualizar", Toast.LENGTH_SHORT).show()
+                            () -> Toast.makeText(requireContext(),
+                                    "Error al crear",
+                                    Toast.LENGTH_SHORT).show()
                     );
                 })
                 .setNegativeButton("Cancelar", null)
                 .show();
     }
 
-    private void confirmarEliminacion(EjercicioDTO ejercicio) {
+    private void showEditDialog(EjercicioDTO dto) {
+        View dlg = LayoutInflater.from(requireContext())
+                .inflate(R.layout.dialog_edit_exercise, null);
+        EditText etName = dlg.findViewById(R.id.etNombreEjercicio);
+        ivPreview = dlg.findViewById(R.id.ivImagenPreview);
+        Button btnImg = dlg.findViewById(R.id.btnCargarImagen);
+
+        etName.setText(dto.getNombre());
+        selectedImageFile = null;
+        Glide.with(requireContext())
+                .load(dto.getImagenUrl())
+                .placeholder(R.drawable.placeholder)
+                .into(ivPreview);
+
+        btnImg.setOnClickListener(v ->
+                pickImageLauncher.launch("image/*")
+        );
+
         new AlertDialog.Builder(requireContext())
-                .setTitle("Eliminar ejercicio")
-                .setMessage("¿Estás seguro de que quieres eliminar este ejercicio?\n" +
-                        "Si está asociado a entrenamientos, se eliminarán también.")
-                .setPositiveButton("Eliminar", (dialog, which) -> eliminarEjercicio(ejercicio))
+                .setTitle("Editar ejercicio")
+                .setView(dlg)
+                .setPositiveButton("Guardar", (d, w) -> {
+                    dto.setNombre(etName.getText().toString().trim());
+                    viewModel.updateExercise(
+                            dto,
+                            selectedImageFile,
+                            () -> {
+                                Toast.makeText(requireContext(),
+                                        "Actualizado",
+                                        Toast.LENGTH_SHORT).show();
+                                loadExercises();
+                            },
+                            () -> Toast.makeText(requireContext(),
+                                    "Error al actualizar",
+                                    Toast.LENGTH_SHORT).show()
+                    );
+                })
                 .setNegativeButton("Cancelar", null)
                 .show();
     }
 
-    private void eliminarEjercicio(EjercicioDTO ejercicio) {
-        viewModel.deleteExercise(
-                ejercicio.getIdEjercicio(),
-                () -> {
-                    Toast.makeText(requireContext(), "Ejercicio eliminado", Toast.LENGTH_SHORT).show();
-                    cargarEjercicios();
-                },
-                () -> Toast.makeText(requireContext(), "Error al eliminar", Toast.LENGTH_SHORT).show()
-        );
+    private void confirmDelete(EjercicioDTO dto) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Eliminar")
+                .setMessage("¿Eliminar \"" + dto.getNombre() + "\"?")
+                .setPositiveButton("Eliminar", (d, w) -> {
+                    viewModel.deleteExercise(
+                            dto.getIdEjercicio(),
+                            () -> {
+                                Toast.makeText(requireContext(),
+                                        "Ejercicio eliminado",
+                                        Toast.LENGTH_SHORT).show();
+                                loadExercises();
+                            },
+                            () -> Toast.makeText(requireContext(),
+                                    "Error al eliminar",
+                                    Toast.LENGTH_SHORT).show()
+                    );
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
 
-    private void configurarMenu() {
-        MenuHost menuHost = requireActivity();
-        menuHost.addMenuProvider(new MenuProvider() {
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu,
+                                    @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView sv = (SearchView) item.getActionView();
+        sv.setQueryHint("Buscar...");
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override public boolean onQueryTextSubmit(String q) { return false; }
             @Override
-            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-                inflater.inflate(R.menu.menu_search, menu);
-                MenuItem searchItem = menu.findItem(R.id.action_search);
-                SearchView searchView = (SearchView) searchItem.getActionView();
-
-                searchView.setQueryHint("Buscar ejercicios...");
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        adapter.filter(newText);
-                        return true;
-                    }
-                });
-
-                searchView.setOnCloseListener(() -> {
-                    adapter.filter("");
-                    return false;
-                });
+            public boolean onQueryTextChange(String txt) {
+                adapter.filter(txt);
+                return true;
             }
-
-            @Override
-            public boolean onMenuItemSelected(@NonNull MenuItem item) {
-                return false;
-            }
-        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+        });
     }
 
     @Override

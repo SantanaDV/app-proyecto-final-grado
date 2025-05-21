@@ -91,50 +91,55 @@ public class WorkoutSessionAdapter extends RecyclerView.Adapter<WorkoutSessionAd
             btnAddSerie.setOnClickListener(v -> addSerieView(ejercicio));
         }
 
+        // Ruta: app/src/main/java/com/proyecto/facilgimapp/ui/workout/WorkoutSessionAdapter.java
+
         private void addSerieView(EjercicioDTO ejercicio) {
             View serieView = LayoutInflater.from(itemView.getContext())
                     .inflate(R.layout.item_serie, llSeriesContainer, false);
 
-            EditText etReps = serieView.findViewById(R.id.etRepsSerie);
+            EditText etReps   = serieView.findViewById(R.id.etRepsSerie);
             EditText etWeight = serieView.findViewById(R.id.etWeightSerie);
-            CheckBox cbDone = serieView.findViewById(R.id.cbDoneSerie);
+            CheckBox cbDone   = serieView.findViewById(R.id.cbDoneSerie);
 
+            // Creamos la serie en blanco
             SerieDTO serie = new SerieDTO();
-            seriesMap.get(ejercicio).add(serie); // << Agregar la serie inmediatamente
+            seriesMap.get(ejercicio).add(serie);
 
-            // Escuchadores
-            cbDone.setOnCheckedChangeListener((btn, isChecked) -> serie.setCompletada(isChecked));
-
-            etReps.addTextChangedListener(new TextWatcher() {
-                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    try {
-                        serie.setRepeticiones(Integer.parseInt(s.toString()));
-                    } catch (NumberFormatException e) {
-                        Toast.makeText(itemView.getContext(), "Número de repeticiones inválido", Toast.LENGTH_SHORT).show();
-                    }
-                }
+            // Listener de checkbox
+            cbDone.setOnCheckedChangeListener((button, isChecked) -> {
+                serie.setCompletada(isChecked);
             });
 
-            etWeight.addTextChangedListener(new TextWatcher() {
-                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
+            // TextWatcher común para ambas cajas
+            TextWatcher autoCheckWatcher = new TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
+                @Override public void onTextChanged(CharSequence s, int st, int b, int c) {}
                 @Override
                 public void afterTextChanged(Editable s) {
-                    try {
-                        serie.setPeso(Double.parseDouble(s.toString()));
-                    } catch (NumberFormatException e) {
-                        Toast.makeText(itemView.getContext(), "Número de peso inválido", Toast.LENGTH_SHORT).show();
+                    // parseo seguro de repeticiones
+                    String repsStr = etReps.getText().toString().trim();
+                    int reps = repsStr.isEmpty() ? 0 : Integer.parseInt(repsStr);
+                    serie.setRepeticiones(reps);
+
+                    // parseo seguro de peso
+                    String wStr = etWeight.getText().toString().trim();
+                    double peso = wStr.isEmpty() ? 0 : Double.parseDouble(wStr);
+                    serie.setPeso(peso);
+
+                    // **Auto-check**: si ambas tienen datos, marcamos el checkbox
+                    boolean hasReps   = repsStr.length() > 0;
+                    boolean hasWeight = wStr.length() > 0;
+                    if (hasReps && hasWeight && !cbDone.isChecked()) {
+                        cbDone.setChecked(true);
                     }
                 }
-            });
+            };
 
-            // Eliminar serie
-            serieView.setOnLongClickListener(view -> {
+            etReps.addTextChangedListener(autoCheckWatcher);
+            etWeight.addTextChangedListener(autoCheckWatcher);
+
+            // Eliminar la serie si hacemos long click
+            serieView.setOnLongClickListener(v -> {
                 llSeriesContainer.removeView(serieView);
                 seriesMap.get(ejercicio).remove(serie);
                 return true;
@@ -142,6 +147,7 @@ public class WorkoutSessionAdapter extends RecyclerView.Adapter<WorkoutSessionAd
 
             llSeriesContainer.addView(serieView);
         }
+
     }
 
     public List<EntrenamientoEjercicioDTO> getEntrenamientoEjercicioDTOList() {

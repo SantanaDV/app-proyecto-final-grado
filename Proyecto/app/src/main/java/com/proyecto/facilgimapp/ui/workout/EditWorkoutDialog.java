@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -41,6 +42,7 @@ public class EditWorkoutDialog {
         EditText etDescripcion = root.findViewById(R.id.etDescripcion);
         EditText etDuracion    = root.findViewById(R.id.etDuracion);
         EditText etFecha       = root.findViewById(R.id.etFecha);
+
         Spinner spinnerTipo    = root.findViewById(R.id.spinnerTipo);
         LinearLayout llExercises = root.findViewById(R.id.llExercisesContainer);
 
