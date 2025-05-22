@@ -1,7 +1,7 @@
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
-import com.proyecto.facilgimapp.model.Ejercicio;
+import com.proyecto.facilgimapp.model.entity.Ejercicio;
 
 import java.util.Objects;
 

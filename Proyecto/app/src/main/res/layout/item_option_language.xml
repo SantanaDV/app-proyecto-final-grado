@@ -1,0 +1,39 @@
+<!-- res/layout/item_option_language.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/tvLanguageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/option_change_language"
+        style="@style/TextAppearance.MaterialComponents.Body1" />
+
+    <LinearLayout
+        android:layout_width="397dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivFlagEs"
+            android:layout_width="59dp"
+            android:layout_height="57dp"
+            android:layout_marginRight="40dp"
+            android:contentDescription="@string/flag_spanish"
+            android:padding="4dp"
+            android:src="@drawable/ic_flag_es" />
+
+        <ImageView
+            android:id="@+id/ivFlagEn"
+            android:layout_width="61dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/flag_english"
+            android:padding="4dp"
+            android:src="@drawable/ic_flag_en" />
+    </LinearLayout>
+</LinearLayout>

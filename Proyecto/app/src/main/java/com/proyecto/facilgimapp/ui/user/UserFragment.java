@@ -5,31 +5,28 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentUserBinding;
+import com.proyecto.facilgimapp.model.entity.UserOptionItem;
+import com.proyecto.facilgimapp.model.entity.UserOptionType;
 import com.proyecto.facilgimapp.util.PreferenceManager;
 import com.proyecto.facilgimapp.util.SessionManager;
-import com.proyecto.facilgimapp.ui.user.adapters.UserOptionsAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class UserFragment extends Fragment {
-
+public class UserFragment extends Fragment implements UserOptionsAdapter.Listener {
     private FragmentUserBinding binding;
     private UserOptionsAdapter adapter;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentUserBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -39,148 +36,105 @@ public class UserFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Obtener datos del usuario
-        String username = SessionManager.getUsername(requireContext());
-        String email = SessionManager.getUserEmail(requireContext());
+        // 1) Usuario
+        binding.tvUsername.setText(SessionManager.getUsername(requireContext()));
 
-        binding.tvUsername.setText(username);
-        binding.tvEmail.setText(email);
-
-        // Configurar el RecyclerView con las opciones
-        adapter = new UserOptionsAdapter(getContext(), this);
+        // 2) RecyclerView + LayoutManager
+        binding.rvUserOptions.setLayoutManager(new LinearLayoutManager(requireContext()));
+        adapter = new UserOptionsAdapter(
+                requireContext(),
+                getUserOptions(),
+                this
+        );
         binding.rvUserOptions.setAdapter(adapter);
 
-        // Cargar las opciones según si el usuario es admin o no
-        adapter.setUserOptions(getUserOptions());
-
-        // Configurar el Switch de tema del sistema
-        boolean useSystemTheme = PreferenceManager.useSystemTheme(requireContext());
-        binding.switchUseSystemTheme.setChecked(useSystemTheme);
-
-        if (useSystemTheme) {
-            // Cambiar el tema según el sistema
-            int nightModeFlags = requireContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-            if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
-                PreferenceManager.setDarkMode(requireContext(), true); // Si el sistema tiene tema oscuro
-            } else {
-                PreferenceManager.setDarkMode(requireContext(), false); // Si el sistema tiene tema claro
-            }
-        } else {
-            // Si no usa el tema del sistema, mantener el valor almacenado en las preferencias
-            boolean isDarkMode = PreferenceManager.isDarkModeEnabled(requireContext());
-            PreferenceManager.setDarkMode(requireContext(), isDarkMode);
-        }
-
-        // Listener para el cambio de tema
-        binding.switchUseSystemTheme.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            PreferenceManager.setUseSystemTheme(requireContext(), isChecked);
-            if (isChecked) {
-                // Si está activado el tema del sistema, se ajustará el tema de la app según el sistema
-                int nightModeFlags = requireContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-                if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
-                    PreferenceManager.setDarkMode(requireContext(), true);
-                } else {
-                    PreferenceManager.setDarkMode(requireContext(), false);
-                }
-            } else {
-                // Si no usa el tema del sistema, aplicar el tema según la preferencia del usuario
-                boolean isDarkMode = PreferenceManager.isDarkModeEnabled(requireContext());
-                PreferenceManager.setDarkMode(requireContext(), isDarkMode);
-            }
-            getActivity().recreate();  // Recrear la actividad para aplicar el nuevo tema
+        // 3) Switch tema sistema
+        boolean useSystem = PreferenceManager.isUseSystemTheme(requireContext());
+        binding.switchUseSystemTheme.setChecked(useSystem);
+        applyDarkMode(useSystem);
+        binding.switchUseSystemTheme.setOnCheckedChangeListener((btn, checked) -> {
+            PreferenceManager.setUseSystemTheme(requireContext(), checked);
+            applyDarkMode(checked);
+            requireActivity().recreate();
         });
 
-        // Cerrar sesión
-        binding.btnLogout.setOnClickListener(v -> logout());
+        // 4) Cerrar sesión
+        binding.btnLogout.setOnClickListener(v -> {
+            SessionManager.clearLoginOnly(requireContext());
+            Toast.makeText(requireContext(),
+                    R.string.session_closed, Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_userFragment_to_loginFragment);
+        });
     }
 
-    private List<String> getUserOptions() {
-        List<String> options = new ArrayList<>();
-        options.add("Cambiar Tema");
-        options.add("Cambiar Idioma");
-        options.add("Cambiar Nombre de Usuario");
-        options.add("Cambiar Contraseña");
-        options.add("Notificaciones");
-        options.add("Privacidad");
+    private void applyDarkMode(boolean useSystem) {
+        if (useSystem) {
+            // Sigo el tema actual del sistema
+            int mode = requireContext().getResources().getConfiguration().uiMode
+                    & Configuration.UI_MODE_NIGHT_MASK;
+            boolean sysDark = (mode == Configuration.UI_MODE_NIGHT_YES);
+            PreferenceManager.setDarkMode(requireContext(), sysDark);
+        }
+    }
 
-        // Solo admins verán la opción para gestionar usuarios
+    private List<UserOptionItem> getUserOptions() {
+        var opts = new ArrayList<UserOptionItem>();
+        opts.add(new UserOptionItem(UserOptionType.DARK_MODE));
+        opts.add(new UserOptionItem(UserOptionType.FONT_SIZE));
+        opts.add(new UserOptionItem(UserOptionType.THEME_COLOR));
+        opts.add(new UserOptionItem(UserOptionType.LANGUAGE));
+        opts.add(new UserOptionItem(UserOptionType.CHANGE_PASSWORD));
         if (SessionManager.isAdmin(requireContext())) {
-            options.add("Gestionar Usuarios");
+            opts.add(new UserOptionItem(UserOptionType.MANAGE_USERS));
         }
-
-        return options;
+        opts.add(new UserOptionItem(UserOptionType.CLEAR_PREFERENCES));
+        return opts;
     }
 
-    // Gestión de las opciones
-    public void onOptionSelected(String option) {
-        switch (option) {
-            case "Cambiar Tema":
-                openAppearanceSettings();
-                break;
-            case "Cambiar Idioma":
-                openLanguageSettings();
-                break;
-            case "Cambiar Nombre de Usuario":
-                openUsernameChangeDialog();
-                break;
-            case "Cambiar Contraseña":
-                openPasswordChangeDialog();
-                break;
-            case "Notificaciones":
-                changeNotificationSettings();
-                break;
-            case "Privacidad":
-                changePrivacySettings();
-                break;
-            case "Gestionar Usuarios":
-                goToAdminUserFragment();
-                break;
-            default:
-                break;
-        }
+    // --- Callbacks from adapter ---
+    @Override public void onDarkModeToggled(boolean on) {
+        // Al cambiar manualmente el modo oscuro desactivamos el usar tema del sistema
+        PreferenceManager.setUseSystemTheme(requireContext(), false);
+        binding.switchUseSystemTheme.setChecked(false);
+
+        // 2) Guardamos el dark mode y recreamos
+        PreferenceManager.setDarkMode(requireContext(), on);
+        requireActivity().recreate();
+    }
+    @Override
+    public void onFontSizeChanged(int size) {
+        PreferenceManager.setFontSize(requireContext(), size);
+        requireActivity().recreate();
     }
 
-    private void openAppearanceSettings() {
-        // Lógica para cambiar tema
-        Toast.makeText(requireContext(), "Cambiar Tema", Toast.LENGTH_SHORT).show();
+    @Override public void onThemeColorSelected(int resId) {
+        PreferenceManager.setThemeColor(requireContext(), resId);
+        requireActivity().recreate();
     }
-
-    private void openLanguageSettings() {
-        // Lógica para cambiar idioma
-        Toast.makeText(requireContext(), "Cambiar Idioma", Toast.LENGTH_SHORT).show();
+    @Override public void onLanguageChanged(String code) {
+        PreferenceManager.setLanguage(requireContext(), code);
+        requireActivity().recreate();
     }
-
-    private void openUsernameChangeDialog() {
-        // Lógica para cambiar nombre de usuario
-        Toast.makeText(requireContext(), "Cambiar Nombre de Usuario", Toast.LENGTH_SHORT).show();
+    @Override public void onChangePassword() {
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_userFragment_to_changePasswordFragment);
     }
-
-    private void openPasswordChangeDialog() {
-        // Lógica para cambiar contraseña
-        Toast.makeText(requireContext(), "Cambiar Contraseña", Toast.LENGTH_SHORT).show();
-    }
-
-    private void changeNotificationSettings() {
-        // Lógica para habilitar/deshabilitar notificaciones
-        Toast.makeText(requireContext(), "Cambiar Notificaciones", Toast.LENGTH_SHORT).show();
-    }
-
-    private void changePrivacySettings() {
-        // Lógica para habilitar/deshabilitar privacidad
-        Toast.makeText(requireContext(), "Cambiar Privacidad", Toast.LENGTH_SHORT).show();
-    }
-
-    private void goToAdminUserFragment() {
+    @Override public void onManageUsers() {
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_userFragment_to_adminUserFragment);
     }
-
-    private void logout() {
-        SessionManager.clearLoginOnly(requireContext());
-        Toast.makeText(requireContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show();
-        // Navegar a la pantalla de login
-        NavHostFragment.findNavController(this)
-                .navigate(R.id.action_userFragment_to_loginFragment);
+    @Override public void onClearPreferences() {
+        PreferenceManager.clearAll(requireContext());
+        // restablecer valores por defecto:
+        PreferenceManager.setUseSystemTheme(requireContext(), true);
+        PreferenceManager.setLanguage(requireContext(), "es");
+        PreferenceManager.setFontSize(requireContext(), 2);
+        PreferenceManager.setThemeColor(requireContext(), R.drawable.circle_blue);
+        applyDarkMode(true);
+        Toast.makeText(requireContext(),
+                R.string.preferencias_restablecidas, Toast.LENGTH_SHORT).show();
+        requireActivity().recreate();
     }
 
     @Override
@@ -188,4 +142,5 @@ public class UserFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

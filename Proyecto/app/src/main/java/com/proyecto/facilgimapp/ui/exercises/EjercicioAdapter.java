@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.proyecto.facilgimapp.R;
-import com.proyecto.facilgimapp.model.Ejercicio;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 
 import java.util.ArrayList;

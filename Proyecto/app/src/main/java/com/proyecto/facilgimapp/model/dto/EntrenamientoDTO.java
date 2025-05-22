@@ -1,7 +1,7 @@
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
-import com.proyecto.facilgimapp.model.Entrenamiento;
+import com.proyecto.facilgimapp.model.entity.Entrenamiento;
 
 import java.io.Serializable;
 import java.time.LocalDate;

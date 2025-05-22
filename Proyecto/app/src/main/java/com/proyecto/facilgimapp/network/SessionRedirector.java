@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.proyecto.facilgimapp.ui.MainActivity;
+import com.proyecto.facilgimapp.ui.activities.MainActivity;
 
 public class SessionRedirector {
 

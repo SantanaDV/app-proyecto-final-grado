@@ -9,9 +9,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.proyecto.facilgimapp.BuildConfig;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://10.0.2.2:8443/";
+    private static final String BASE_URL = BuildConfig.BASE_URL ;
     //Para pruebas en el movil
     //private static final String BASE_URL = "https://192.168.0.195:8443/";
     private static Retrofit retrofit;
@@ -32,7 +33,8 @@ public class RetrofitClient {
             // 3) Construir el OkHttpClient con interceptores
             OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                     .addInterceptor(new AuthInterceptor(context))
-                    .addInterceptor(new ErrorInterceptor(context)) // añadimos el manejo de errores 40 sesion expirada
+                    .addInterceptor(new ErrorInterceptor(context)) // añadimos el manejo de errores 401 sesion expirada
+                    .addInterceptor(new NetworkErrorInterceptor())  // captura timeouts, IO, 5xx…
                     .addInterceptor(logging);
 
             /* ---------------------------------------------------------
@@ -44,7 +46,7 @@ public class RetrofitClient {
             clientBuilder.hostnameVerifier((hostname, session) ->
                     "10.0.2.2".equals(hostname)
                             || "localhost".equals(hostname)
-                            || "10.110.4.196".equals(hostname)
+                            || "10.110.4.43".equals(hostname)
                     || "192.168.0.195".equals(hostname)
             );
             /* --------------------------------------------------------- */

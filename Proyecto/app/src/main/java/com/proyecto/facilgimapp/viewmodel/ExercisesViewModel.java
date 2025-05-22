@@ -7,12 +7,10 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.proyecto.facilgimapp.model.Ejercicio;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 import com.proyecto.facilgimapp.repository.EjercicioRepository;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

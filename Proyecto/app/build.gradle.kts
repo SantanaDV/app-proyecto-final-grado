@@ -25,15 +25,18 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://10.110.4.43:8443/\"")
+        }
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            //Cambiar cuando llegue a release:
+            buildConfigField ("String", "BASE_URL", "\"https://api.tu-dominio.com/\"")
+
         }
     }
     compileOptions {

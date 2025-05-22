@@ -8,7 +8,6 @@
     <string name="action_cancel">Cancelar</string>
     <string name="action_delete">Eliminar</string>
     <string name="action_save_changes">Guardar cambios</string>
-    <string name="action_update_password">Actualizar contraseña</string>
     <string name="action_login">Iniciar sesión</string>
     <string name="action_register">Registrarse</string>
 
@@ -44,13 +43,6 @@
     <string name="total_workouts">Entrenamientos</string>
     <string name="total_types">Tipos</string>
     <string name="last_added_exercises">Últimos ejercicios</string>
-    <!-- Stats & Calendar -->
-    <string name="title_stats">Estadísticas</string>
-    <string name="stats_placeholder">Aquí irán tus estadísticas</string>
-    <string name="desc_stats">Gráfico de estadísticas</string>
-    <string name="title_calendar">Calendario</string>
-    <string name="calendar_placeholder">Aquí irá tu calendario de entrenamientos</string>
-    <string name="desc_calendar">Calendario</string>
 
     <!-- Settings -->
     <string name="title_settings">Ajustes</string>
@@ -65,7 +57,9 @@
     <string name="font_small">Pequeña</string>
     <string name="font_medium">Mediana</string>
     <string name="font_large">Grande</string>
-    <string name="label_color_theme">Tema de color</string>
+    <string name="label_color_theme">Color del tema</string>
+    <string name="session_closed">Cerrando sesión..</string>
+
 
     <!-- User & Auth Hints -->
     <string name="hint_username">Usuario</string>
@@ -141,4 +135,24 @@
     <string name="duraci_n_min">Duración (min)</string>
     <string name="fecha_yyyy_mm_dd">Fecha (YYYY-MM-DD)</string>
 
+
+    <string name="option_change_password">Cambiar contraseña</string>
+    <string name="option_manage_users">Gestionar usuarios</string>
+
+    <string name="option_change_language">Cambiar idioma</string>
+    <string name="flag_spanish">Español</string>
+    <string name="flag_english">Inglés</string>
+    <string name="actualizar_contrasena">Actualizar Contraseña</string>
+
+
+    <string name="option_clear_preferences">Restablecer valores por defecto</string>
+    <string name="preferencias_restablecidas">Preferencias restablecidas</string>
+    <string name="usar_tema_del_sistema">Usar tema del sistema</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
+
+
+
+    <string name="label_use_system_theme">Usar tema del sistema</string>
+    <string name="preferences_reset">Preferencias restablecidas</string>
+    <string name="nuevo_tipo">Nuevo tipo</string>
 </resources>

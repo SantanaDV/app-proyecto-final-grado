@@ -2,7 +2,6 @@ package com.proyecto.facilgimapp.repository;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import com.proyecto.facilgimapp.model.Ejercicio;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 import com.proyecto.facilgimapp.model.dto.EjercicioDeleteDTO;
 import com.proyecto.facilgimapp.network.ApiService;

@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.proyecto.facilgimapp.model.Entrenamiento;
+import com.proyecto.facilgimapp.model.entity.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
 import com.proyecto.facilgimapp.repository.TrainingExerciseRepository;

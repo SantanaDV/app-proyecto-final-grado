@@ -1,4 +1,4 @@
-package com.proyecto.facilgimapp.model;
+package com.proyecto.facilgimapp.model.entity;
 
 import androidx.annotation.Nullable;
 

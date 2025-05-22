@@ -2,7 +2,7 @@ package com.proyecto.facilgimapp.repository;
 
 import android.content.Context;
 
-import com.proyecto.facilgimapp.model.Entrenamiento;
+import com.proyecto.facilgimapp.model.entity.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 import com.proyecto.facilgimapp.network.ApiService;
 import com.proyecto.facilgimapp.network.RetrofitClient;

@@ -2,82 +2,76 @@ package com.proyecto.facilgimapp.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import com.proyecto.facilgimapp.R;
+
 import java.util.Locale;
 
 public class PreferenceManager {
-    private static final String PREFS_NAME = "facilgim_prefs";
-    private static final String KEY_DARK_MODE = "dark_mode";
-    private static final String KEY_FONT_SIZE = "font_size";
-    private static final String KEY_APP_COLOR = "app_color";
-    private static final String KEY_LANGUAGE = "language";
+    private static final String PREFS_NAME           = "facilgim_prefs";
+    private static final String KEY_DARK_MODE        = "dark_mode";
+    private static final String KEY_FONT_SIZE        = "font_size";
+    private static final String KEY_THEME_COLOR      = "theme_color";
+    private static final String KEY_LANGUAGE         = "language";
     private static final String KEY_USE_SYSTEM_THEME = "use_system_theme";
 
     private static SharedPreferences prefs(Context ctx) {
         return ctx.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 
-    // Obtener el tema oscuro o claro
+    /** 1) Dark Mode */
     public static boolean isDarkModeEnabled(Context ctx) {
         return prefs(ctx).getBoolean(KEY_DARK_MODE, false);
     }
-
-    // Establecer el tema oscuro o claro
     public static void setDarkMode(Context ctx, boolean enabled) {
         prefs(ctx).edit()
                 .putBoolean(KEY_DARK_MODE, enabled)
                 .apply();
     }
 
-    // Obtener el tamaño de la fuente
+    /** 2) Font Size (1=small, 2=medium, 3=large). Por defecto medium=2 */
     public static int getFontSize(Context ctx) {
-        return prefs(ctx).getInt(KEY_FONT_SIZE, 1);
+        return prefs(ctx).getInt(KEY_FONT_SIZE, 2);
     }
-
-    // Establecer el tamaño de la fuente
     public static void setFontSize(Context ctx, int size) {
         prefs(ctx).edit()
                 .putInt(KEY_FONT_SIZE, size)
                 .apply();
     }
 
-    // Obtener el color de la aplicación
-    public static int getAppColor(Context ctx) {
-        return prefs(ctx).getInt(KEY_APP_COLOR, R.style.Theme_FacilGimApp);
+    /** 3) Theme Color (almacena el drawable o style id) */
+    public static int getThemeColor(Context ctx) {
+        // Por defecto usaremos el círculo azul
+        return prefs(ctx).getInt(KEY_THEME_COLOR, R.drawable.circle_blue);
     }
-
-    // Establecer el color de la aplicación
-    public static void setAppColor(Context ctx, int themeResId) {
+    public static void setThemeColor(Context ctx, int resId) {
         prefs(ctx).edit()
-                .putInt(KEY_APP_COLOR, themeResId)
+                .putInt(KEY_THEME_COLOR, resId)
                 .apply();
     }
 
-    // Obtener el idioma de la aplicación
+    /** 4) Language */
     public static String getLanguage(Context ctx) {
         return prefs(ctx).getString(KEY_LANGUAGE, Locale.getDefault().getLanguage());
     }
-
-    // Establecer el idioma de la aplicación
     public static void setLanguage(Context ctx, String language) {
         prefs(ctx).edit()
                 .putString(KEY_LANGUAGE, language)
                 .apply();
     }
 
-    // Obtener si usa el tema del sistema
-    public static boolean useSystemTheme(Context ctx) {
+    /** 5) Usar tema del sistema */
+    public static boolean isUseSystemTheme(Context ctx) {
+        // true = respetar el modo oscuro del sistema
         return prefs(ctx).getBoolean(KEY_USE_SYSTEM_THEME, true);
     }
-
-    // Establecer si usa el tema del sistema
-    public static void setUseSystemTheme(Context ctx, boolean useSystemTheme) {
+    public static void setUseSystemTheme(Context ctx, boolean use) {
         prefs(ctx).edit()
-                .putBoolean(KEY_USE_SYSTEM_THEME, useSystemTheme)
+                .putBoolean(KEY_USE_SYSTEM_THEME, use)
                 .apply();
     }
 
-    // Limpiar todas las preferencias
+    /** Limpia todas las preferencias */
     public static void clearAll(Context ctx) {
         prefs(ctx).edit().clear().apply();
     }

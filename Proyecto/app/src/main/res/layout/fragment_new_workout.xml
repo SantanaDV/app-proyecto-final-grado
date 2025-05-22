@@ -17,7 +17,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del entrenamiento">
+                android:hint="@string/nombre_del_entrenamiento">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etName"
                     android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Descripción">
+                android:hint="@string/descripcion">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDescription"
                     android:layout_width="match_parent"
@@ -39,14 +39,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Fecha de entrenamiento" />
+                android:text="@string/fecha_entrenamiento" />
 
             <Button
                 android:id="@+id/btnPickDate"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SELECCIONAR FECHA"
+                android:text="@string/seleccionar_fecha"
                 android:layout_marginTop="4dp" />
 
             <LinearLayout
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tipo de entrenamiento:" />
+                    android:text="@string/tipo_entrenamiento" />
 
                 <Spinner
                     android:id="@+id/spinnerType"
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_add"
-                    android:contentDescription="Nuevo tipo"
+                    android:contentDescription="@string/nuevo_tipo"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:layout_marginStart="8dp"
                     app:tint="@color/blue_500" />

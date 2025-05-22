@@ -1,6 +1,7 @@
 package com.proyecto.facilgimapp.network;
 
-import com.proyecto.facilgimapp.model.Entrenamiento;
+import com.proyecto.facilgimapp.model.dto.HealthStatus;
+import com.proyecto.facilgimapp.model.entity.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 import com.proyecto.facilgimapp.model.dto.EjercicioDeleteDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
@@ -16,7 +17,6 @@ import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -169,4 +169,10 @@ public interface ApiService {
     // ===== AUTH =====
     @POST("login")
     Call<LoginResponse> login(@Body LoginRequest request);
+
+
+    // ===== CHECK SERVER STATUS =====
+
+    @GET("actuator/health")
+    Call<HealthStatus> getHealth();
 }
