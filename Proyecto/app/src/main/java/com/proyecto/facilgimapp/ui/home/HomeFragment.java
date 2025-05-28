@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentHomeBinding;
 import com.proyecto.facilgimapp.ui.exercises.EjercicioAdapter;
 import com.proyecto.facilgimapp.viewmodel.HomeViewModel;
@@ -64,12 +66,11 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void handleOnBackPressed() {
                         new AlertDialog.Builder(requireContext())
-                                .setTitle("¿Salir de la app?")
-                                .setMessage("¿Seguro que quieres salir?")
-                                .setPositiveButton("Salir", (dialog, which) -> {
-                                    requireActivity().finish(); // Cierra la app
-                                })
-                                .setNegativeButton("Cancelar", null)
+                                .setTitle(R.string.salir_app)
+                                .setMessage(R.string.seguro_salir_app)
+                                .setPositiveButton(R.string.salir,
+                                        (d, w) -> requireActivity().finish())
+                                .setNegativeButton(R.string.action_cancel, null)
                                 .show();
                     }
                 }

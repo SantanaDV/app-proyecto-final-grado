@@ -1,9 +1,10 @@
 package com.proyecto.facilgimapp.ui.activities;
 
 import android.os.Bundle;
+import android.view.WindowManager;
+import android.widget.Toast;
 import android.view.View;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -11,58 +12,76 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.network.ConnectionState;
 import com.proyecto.facilgimapp.util.SessionManager;
-import com.proyecto.facilgimapp.util.ThemeUtils;
 
 import java.util.Set;
 
 public class MainActivity extends BaseActivity {
     private NavController navController;
-    private Toolbar toolbar;
+
+    private static final Set<Integer> SHOW_IN = Set.of(
+            R.id.homeFragment,
+            R.id.userFragment,
+            R.id.exercisesFragment,
+            R.id.workoutsFragment
+    );
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 1) NavController
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.blue_primary));
+
+        // 1) Obtener el NavController
         NavHostFragment host = (NavHostFragment)
                 getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        if (host == null) finish();
+        if (host == null) {
+            finish();
+            return;
+        }
         navController = host.getNavController();
 
-        // 2) Forzar logout si procede
+        // 2) Si venimos forzados a logout...
         if (getIntent().getBooleanExtra("forceLogout", false)) {
             navController.navigate(R.id.loginFragment);
         }
 
-        // 3) Observa conexión/sesión
+        // 3) Observador de estado de red/servidor
         ConnectionState.get().isNetworkUp().observe(this, up -> {
             if (!up) {
+                // Limpiamos credenciales de sesión
                 SessionManager.clearLoginOnly(this);
-                Integer cur = navController.getCurrentDestination() != null
+                // Sólo navegamos si NO estamos ya en login o register
+                Integer currentId = navController.getCurrentDestination() != null
                         ? navController.getCurrentDestination().getId()
                         : null;
-                if (cur != null
-                        && cur != R.id.loginFragment
-                        && cur != R.id.registerFragment) {
+                if (currentId != null
+                        && currentId != R.id.loginFragment
+                        && currentId != R.id.registerFragment) {
+                    // vaciamos back-stack hasta login y navegamos ahí
                     navController.popBackStack(R.id.loginFragment, false);
                     navController.navigate(R.id.loginFragment);
                 }
+                Toast.makeText(this,
+                        "No hay conexión o sesión inválida",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
-        // 4) Toolbar (sólo espacio)
-        toolbar = findViewById(R.id.toolbarMain);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar()!=null)
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // 4) Toolbar y BottomNavigationView
+        Toolbar toolbar = findViewById(R.id.toolbarMain);
 
-        // 5) BottomNav + AppBarConfiguration
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_view);
+
         AppBarConfiguration config = new AppBarConfiguration.Builder(
                 R.id.homeFragment,
                 R.id.workoutsFragment,
@@ -72,48 +91,24 @@ public class MainActivity extends BaseActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, config);
         NavigationUI.setupWithNavController(bottomNav, navController);
 
-        // 6) Pantallas
-        Set<Integer> bottomVisible = Set.of(
-                R.id.homeFragment,
-                R.id.workoutsFragment,
-                R.id.exercisesFragment,
-                R.id.userFragment
-        );
-        Set<Integer> toolbarContent = Set.of(
-                R.id.workoutsFragment,
-                R.id.exercisesFragment,
-                R.id.newWorkoutFragment,
-                R.id.typeListFragment,
-                R.id.workoutDetailFragment,
-                R.id.workoutSessionFragment,
-                R.id.adminUserFragment
-        );
 
-        // 7) Cada vez que cambias de fragment:
-        navController.addOnDestinationChangedListener((ctl, dest, args) -> {
-            int id = dest.getId();
 
-            // — BottomNav
-            bottomNav.setVisibility(
-                    bottomVisible.contains(id) ? View.VISIBLE : View.GONE
-            );
-
-            // — Color de la status bar
-            @ColorInt int statusColor = ThemeUtils.resolveColor(
-                    this,
-                    com.google.android.material.R.attr.colorPrimary
-            );
-            getWindow().setStatusBarColor(statusColor);
-
-            // — Toolbar sólo en los destinos que la usan
-            if (toolbarContent.contains(id)) {
-                toolbar.setVisibility(View.VISIBLE);
-                toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-                toolbar.setNavigationOnClickListener(v -> onSupportNavigateUp());
-            } else {
-                toolbar.setVisibility(View.GONE);
-            }
+        // 5) Mostrar/ocultar UI según fragmento
+        navController.addOnDestinationChangedListener((controller, destination, args) -> {
+            boolean show = destination.getId() != R.id.loginFragment
+                    && destination.getId() != R.id.registerFragment;
+            toolbar.setVisibility(show ? View.VISIBLE : View.GONE);
+            bottomNav.setVisibility(show ? View.VISIBLE : View.GONE);
         });
+
+        navController.addOnDestinationChangedListener(
+                (controller, destination, args) -> {
+                    int id = destination.getId();
+                    boolean show = SHOW_IN.contains(id);
+                    // BottomNav
+                    bottomNav.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
+        );
     }
 
     @Override

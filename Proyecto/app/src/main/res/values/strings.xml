@@ -165,4 +165,7 @@
     <string name="error_invalid_password">
         La contraseña debe tener entre 8 y 15 caracteres, incluir mayúscula, minúscula, dígito, un carácter especial y no contener espacios
     </string>
+    <string name="salir_app">¿Salir de la app?</string>
+    <string name="seguro_salir_app">¿Seguro que quieres salir?</string>
+    <string name="salir">Salir</string>
 </resources>
