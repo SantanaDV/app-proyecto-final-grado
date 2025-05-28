@@ -15,7 +15,6 @@ public class EjercicioDTO {
     @SerializedName("imagenUrl")
     private String imagenUrl;
 
-    // Si en el futuro añades más campos (p.ej. repeticiones), inclúyelos también aquí.
 
     public Integer getIdEjercicio() {
         return idEjercicio;

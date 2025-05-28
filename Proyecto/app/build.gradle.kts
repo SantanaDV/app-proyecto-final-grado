@@ -30,7 +30,8 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://10.110.4.43:8443/\"")
+            //poner localhost para movil fisico
+            buildConfigField("String", "BASE_URL", "\"https://10.0.2.2:8443/\"")
         }
         release {
             isMinifyEnabled = false
@@ -47,12 +48,13 @@ android {
 
 dependencies {
     implementation("com.github.prolificinteractive:material-calendarview:2.0.0")
-    implementation("com.google.android.material:material:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
     implementation (libs.glide)
+    implementation(libs.firebase.inappmessaging)
+    implementation(libs.cardview)
     annotationProcessor (libs.compiler)
     implementation(libs.logging.interceptor)
     implementation(libs.appcompat)
-    implementation(libs.material)
     implementation(libs.constraintlayout)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.livedata.ktx)

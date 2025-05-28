@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data />
-
+    <data/>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,14 +20,14 @@
                 android:id="@+id/tvUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1" />
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
 
             <TextView
                 android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="4dp"
+                style="@style/TextAppearance.MaterialComponents.Body2"/>
 
             <TextView
                 android:id="@+id/tvAdminStatus"
@@ -37,7 +36,7 @@
                 android:layout_marginTop="4dp"
                 style="@style/TextAppearance.MaterialComponents.Body2"
                 android:textStyle="italic"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/darker_gray"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,22 +45,33 @@
                 android:orientation="horizontal"
                 android:gravity="end">
 
+                <!-- Botón Editar -->
+                <Button
+                    android:id="@+id/btnEditUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_edit"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+                <!-- Botón Toggle Admin -->
                 <Button
                     android:id="@+id/btnToggleAdmin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:text="@string/action_toggle_admin"
-                    style="@style/Widget.MaterialComponents.Button.TextButton" />
+                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
+                <!-- Botón Eliminar -->
                 <Button
                     android:id="@+id/btnDeleteUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/action_delete"
                     android:layout_marginStart="8dp"
-                    style="@style/Widget.MaterialComponents.Button.TextButton" />
-            </LinearLayout>
+                    android:text="@string/action_delete"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
+            </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

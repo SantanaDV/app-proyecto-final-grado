@@ -15,6 +15,8 @@ public class RetrofitClient {
     private static final String BASE_URL = BuildConfig.BASE_URL ;
     //Para pruebas en el movil
     //private static final String BASE_URL = "https://192.168.0.195:8443/";
+    //Este comando hay que hacerlo cada vez que enchufe el usb
+    //comando para aceptar peticiones https en el dispositivo fisico: adb -s PVEM6DHELBNN5THQ reverse tcp:8443 tcp:8443
     private static Retrofit retrofit;
 
     public static ApiService getApiService(Context context) {

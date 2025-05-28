@@ -4,49 +4,53 @@
     <data/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/colorFragmentBackground"
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorFragmentBackground"
+        android:padding="16dp"
+        tools:context=".ui.workout.WorkoutsFragment">
 
+        <!-- AppBar vacío (tu toolbar se infla por código o nav) -->
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="56dp"
-            app:layout_constraintBottom_toTopOf="@+id/rvWorkouts"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent" />
 
-
-        </com.google.android.material.appbar.AppBarLayout>
-
+        <!-- RecyclerView inset  -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvWorkouts"
-            android:layout_width="401dp"
-            android:layout_height="707dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/recycler_border"
             android:padding="8dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
+        <!-- FAB con margen uniforme -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabNewWorkout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="120dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
             android:contentDescription="@string/nuevo_entrenamiento"
             android:tint="@android:color/white"
             app:backgroundTint="?attr/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.953"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.844"
+            app:rippleColor="@android:color/white"
             app:srcCompat="@drawable/ic_add" />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,8 @@
 package com.proyecto.facilgimapp.repository;
 
 import android.content.Context;
+
+import com.proyecto.facilgimapp.model.dto.PasswordDTO;
 import com.proyecto.facilgimapp.model.dto.UsuarioDTO;
 import com.proyecto.facilgimapp.network.ApiService;
 import com.proyecto.facilgimapp.network.RetrofitClient;
@@ -21,11 +23,11 @@ public class UserRepository {
         return apiService.listUsers();
     }
 
-    public Call<String> createUser(UsuarioDTO usuario) {
+    public Call<Void> createUser(UsuarioDTO usuario) {
         return apiService.createUser(usuario);
     }
 
-    public Call<String> deleteUser(int userId) {
+    public Call<Void> deleteUser(int userId) {
         return apiService.deleteUser(userId);
     }
 
@@ -47,4 +49,19 @@ public class UserRepository {
         dto.setPassword(newPassword);
         return apiService.updateUser(id, dto);
     }
+
+    public Call<Void> validateCurrentPassword(String username, String password) {
+        return apiService.validateCurrentPassword(username, new PasswordDTO(password));
+    }
+
+    public Call<UsuarioDTO> changePassword(int userId, String newPassword) {
+        return apiService.changePassword(userId, new PasswordDTO(newPassword));
+    }
+
+    public Call<UsuarioDTO> updatePasswordById(int id, String newPassword) {
+        PasswordDTO dto = new PasswordDTO();
+        dto.setPassword(newPassword);
+        return apiService.updatePassword(id, dto);
+    }
+
 }

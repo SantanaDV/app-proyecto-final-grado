@@ -3,6 +3,7 @@ package com.proyecto.facilgimapp.ui.activities;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,9 +36,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // 3) Tema de color
         int themeColor = PreferenceManager.getThemeColor(this);
-        if (themeColor == R.drawable.circle_green)      setTheme(R.style.Theme_Green);
-        else if (themeColor == R.drawable.circle_yellow) setTheme(R.style.Theme_Yellow); // o crea Theme_Yellow
-        else                                             setTheme(R.style.Theme_Blue);
+        if (themeColor == R.drawable.circle_green) {
+            setTheme(R.style.Theme_Green);
+            Log.d("THEME", "Theme aplicado: " + PreferenceManager.getThemeColor(this));
+        } else if (themeColor == R.drawable.circle_yellow) {
+            setTheme(R.style.Theme_Yellow);
+            Log.d("THEME", "Theme aplicado: " + PreferenceManager.getThemeColor(this));
+        } else {
+            setTheme(R.style.Theme_Blue);
+            Log.d("THEME", "Theme aplicado: " + PreferenceManager.getThemeColor(this));
+        }
 
         // 4) Modo noche
         if (PreferenceManager.isUseSystemTheme(this)) {

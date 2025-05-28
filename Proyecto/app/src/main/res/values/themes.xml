@@ -4,6 +4,9 @@
     <!-- Tema base de la aplicación -->
     <style name="Theme.FacilGimApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
+        <item name="buttonStyle">@style/Widget.App.PrimaryButton</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
         <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
         <!-- Primary / Secondary -->
         <item name="colorPrimary">@color/blue_500</item>
@@ -19,8 +22,9 @@
         <item name="android:windowBackground">@color/colorBackground</item>
 
         <!-- Barra de estado y navegación -->
-        <item name="android:statusBarColor">@android:color/white</item>
-        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorBackground</item>
+
 
     </style>
 
@@ -60,6 +64,8 @@
         <!-- Color oscuro sobre fondo claro -->
         <item name="android:textColor">?attr/colorOnBackground</item>
     </style>
+
+
 
 
 

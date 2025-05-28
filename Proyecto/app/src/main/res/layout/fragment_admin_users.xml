@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data/>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:background="@color/colorFragmentBackground"
@@ -25,10 +26,15 @@
             android:id="@+id/fabAddUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_anchor="@id/rvUsers"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/ic_add" />
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="120dp"
+            android:contentDescription="Añadir Ejercicio"
+            android:tint="@android:color/white"
+            app:backgroundTint="?attr/colorPrimary"
+            app:srcCompat="@drawable/ic_add"
+            tools:visibility="visible" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

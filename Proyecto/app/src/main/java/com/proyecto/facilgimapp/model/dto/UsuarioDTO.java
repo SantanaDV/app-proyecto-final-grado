@@ -1,6 +1,9 @@
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Objects;
+
 public class UsuarioDTO {
     @SerializedName("idUsuario")
     private Integer idUsuario;
@@ -59,5 +62,17 @@ public class UsuarioDTO {
     @Override
     public String toString() {
         return getNombreCompleto();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        UsuarioDTO that = (UsuarioDTO) o;
+        return admin == that.admin && Objects.equals(idUsuario, that.idUsuario) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(correo, that.correo) && Objects.equals(nombre, that.nombre) && Objects.equals(apellido, that.apellido) && Objects.equals(direccion, that.direccion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUsuario, username, password, correo, nombre, apellido, direccion, admin);
     }
 }

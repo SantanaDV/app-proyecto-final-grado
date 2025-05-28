@@ -36,6 +36,7 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.VH> 
             EjercicioDTO e = items.get(position);
         holder.tvName.setText(e.getNombre());
         Glide.with(holder.img.getContext())
+                .asDrawable()
                 .load(e.getImagenUrl())
                 .placeholder(R.drawable.placeholder)     // mientras carga
                 .error(R.drawable.placeholder)           // si falla la descarga

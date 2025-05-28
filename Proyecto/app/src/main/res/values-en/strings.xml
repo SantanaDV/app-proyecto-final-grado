@@ -103,9 +103,8 @@
     <string name="duracion_minutos">Duration</string>
     <string name="descripcion">Description</string>
     <string name="nombre_entrenamiento">Name:</string>
-    <string name="selecciona_ejercicios">Select exercise</string>
-    <string name="completar_seleccion">Complete selection</string>
     <string name="seleccionar_ejercicios">Select exercise</string>
+    <string name="completar_seleccion">Complete selection</string>
 
     <string name="ejercicio_imagen">Exercise image</string>
     <string name="iniciar_sesion">Log in</string>

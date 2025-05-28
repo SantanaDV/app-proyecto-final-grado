@@ -1,6 +1,7 @@
 package com.proyecto.facilgimapp.network;
 
 import com.proyecto.facilgimapp.model.dto.HealthStatus;
+import com.proyecto.facilgimapp.model.dto.PasswordDTO;
 import com.proyecto.facilgimapp.model.entity.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 import com.proyecto.facilgimapp.model.dto.EjercicioDeleteDTO;
@@ -149,7 +150,7 @@ public interface ApiService {
     Call<UsuarioDTO> getUserByUsername(@Path("username") String username);
 
     @POST("api/usuarios")
-    Call<String> createUser(@Body UsuarioDTO dto);
+    Call<Void> createUser(@Body UsuarioDTO dto);
 
     @POST("api/usuarios/registrar")
     Call<UsuarioDTO> registerUser(@Body UsuarioRequestDTO dto);
@@ -161,10 +162,30 @@ public interface ApiService {
     Call<UsuarioDTO> updateUserByUsername(@Path("username") String username, @Body UsuarioDTO dto);
 
     @DELETE("api/usuarios/{id}")
-    Call<String> deleteUser(@Path("id") int id);
+    Call<Void> deleteUser(@Path("id") int id);
 
     @DELETE("api/usuarios/username/{username}")
     Call<String> deleteUserByUsername(@Path("username") String username);
+
+    // valida la contraseña actual
+    @POST("api/usuarios/username/{username}/validate-password")
+    Call<Void> validateCurrentPassword(
+            @Path("username") String username,
+            @Body PasswordDTO dto
+    );
+
+    // cambia la contraseña
+    @PUT("api/usuarios/password/{id}")
+    Call<UsuarioDTO> changePassword(
+            @Path("id") int userId,
+            @Body PasswordDTO dto
+    );
+
+    @PUT("api/usuarios/password/{id}")
+    Call<UsuarioDTO> updatePassword(
+            @Path("id") int id,
+            @Body PasswordDTO dto
+    );
 
     // ===== AUTH =====
     @POST("login")

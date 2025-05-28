@@ -56,8 +56,10 @@ public class ExercisesFragment extends Fragment {
                     if (uri != null && getContext() != null && ivPreview != null) {
                         selectedImageFile = FileUtils.copyUriToFile(requireContext(), uri);
                         Glide.with(requireContext())
+                                .asDrawable()
                                 .load(selectedImageFile)
                                 .placeholder(R.drawable.placeholder)
+                                .error(R.drawable.placeholder)
                                 .into(ivPreview);
                     }
                 }
@@ -129,6 +131,7 @@ public class ExercisesFragment extends Fragment {
         etName.setText("");
         selectedImageFile = null;
         Glide.with(requireContext())
+                .asDrawable()
                 .load(R.drawable.placeholder)
                 .into(ivPreview);
 
@@ -170,8 +173,10 @@ public class ExercisesFragment extends Fragment {
         etName.setText(dto.getNombre());
         selectedImageFile = null;
         Glide.with(requireContext())
+                .asDrawable()
                 .load(dto.getImagenUrl())
                 .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
                 .into(ivPreview);
 
         btnImg.setOnClickListener(v ->

@@ -105,7 +105,6 @@
     <string name="duracion_minutos">Duración</string>
     <string name="descripcion">Descripción</string>
     <string name="nombre_entrenamiento">Nombre:</string>
-    <string name="selecciona_ejercicios">Seleccionar ejercicio</string>
     <string name="completar_seleccion">Completar selección</string>
     <string name="seleccionar_ejercicios">Seleccionar ejercicio</string>
 
@@ -118,7 +117,6 @@
     <string name="session">Sesión</string>
     <string name="error_fields_required">Los campos vacios son necesarios</string>
 
-    <string name="action_toggle_admin">Cambiar rol</string>
     <string name="error_username_required">El nombre de usuario es obligatorio.</string>
     <string name="error_password_required">La contraseña es obligatoria.</string>
     <string name="error_invalid_email">Por favor ingresa un correo electrónico válido.</string>
@@ -155,4 +153,16 @@
     <string name="label_use_system_theme">Usar tema del sistema</string>
     <string name="preferences_reset">Preferencias restablecidas</string>
     <string name="nuevo_tipo">Nuevo tipo</string>
+    <string name="action_edit">Editar</string>
+    <string name="title_edit_user">Editar usuario</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_toggle_admin">Conceder admin</string>
+    <string name="action_remove_admin">Quitar admin</string>
+    <string name="hint_grant_admin">Conceder rol admin</string>
+    <string name="hint_last_name">Apellidos</string>
+    <string name="error_required">Este campo es obligatorio</string>
+
+    <string name="error_invalid_password">
+        La contraseña debe tener entre 8 y 15 caracteres, incluir mayúscula, minúscula, dígito, un carácter especial y no contener espacios
+    </string>
 </resources>

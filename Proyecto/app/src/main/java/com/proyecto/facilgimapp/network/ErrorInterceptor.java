@@ -4,11 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
-import com.proyecto.facilgimapp.R;
-import com.proyecto.facilgimapp.util.AppContextProvider;
 import com.proyecto.facilgimapp.util.SessionManager;
 
 import java.io.IOException;
@@ -22,7 +17,6 @@ public class ErrorInterceptor implements Interceptor {
     private final Context appContext;
 
     public ErrorInterceptor(Context context) {
-        // Usamos el contexto de aplicación para evitar leaks
         this.appContext = context.getApplicationContext();
     }
 
@@ -32,8 +26,14 @@ public class ErrorInterceptor implements Interceptor {
         Response response = chain.proceed(request);
 
         if (response.code() == 401) {
+            // Si es la validación de contraseña, NO forzamos logout:
+            String path = request.url().encodedPath();
+            if (path.endsWith("/validate-password")) {
+                // devolvemos el 401 para que tu callback lo maneje
+                return response;
+            }
+            // en cualquier otro caso, sí limpiamos sesión y redirigimos:
             SessionManager.clearLoginOnly(appContext);
-
             new Handler(Looper.getMainLooper()).post(() -> {
                 SessionRedirector.redirectToLogin(appContext);
             });

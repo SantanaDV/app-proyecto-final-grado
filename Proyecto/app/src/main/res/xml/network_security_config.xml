@@ -5,8 +5,10 @@
         <trust-anchors>
             <!-- sigue confiando en los CAs del sistema -->
             <certificates src="system" />
-            <!-- y añade el CA embebida -->
+            <!-- añade el CA embebida -->
             <certificates src="@raw/ca" />
+            <!-- CA para la IP 192.168.0.195 (ip_ca.crt) -->
+            <certificates src="@raw/ip" />
         </trust-anchors>
     </base-config>
 </network-security-config>

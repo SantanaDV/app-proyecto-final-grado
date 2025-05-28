@@ -8,6 +8,32 @@
     </style>
 
 
+    <style name="ShapeAppearance.App.ButtonRounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
 
+    <!-- Estilo para MaterialButton primario -->
+    <style name="Widget.App.PrimaryButton" parent="Widget.MaterialComponents.Button">
+        <!-- Usamos inset para que el ripple no ocupe todo el ancho -->
+        <item name="android:insetLeft">16dp</item>
+        <item name="android:insetRight">16dp</item>
+        <item name="android:insetTop">8dp</item>
+        <item name="android:insetBottom">8dp</item>
+
+        <!-- Tint de fondo y ripple -->
+        <item name="rippleColor">?attr/colorOnPrimary</item>
+
+        <!-- Elevación más perceptible -->
+        <item name="android:elevation">6dp</item>
+
+        <!-- Forma redondeada -->
+        <item name="shapeAppearance">@style/ShapeAppearance.App.ButtonRounded</item>
+
+        <!-- Texto -->
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
 </resources>
