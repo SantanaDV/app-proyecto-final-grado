@@ -1,56 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Tema base de la aplicación -->
+    <!-- Tema base, MaterialComponents con DayNight y sin ActionBar -->
     <style name="Theme.FacilGimApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
-        <item name="buttonStyle">@style/Widget.App.PrimaryButton</item>
+        <!-- 1) Sistema pinta las barras con nuestros colores -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
 
-        <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
-        <!-- Primary / Secondary -->
+        <!-- 2) Colores Material (default azul) -->
         <item name="colorPrimary">@color/blue_500</item>
         <item name="colorPrimaryVariant">@color/blue_700</item>
-        <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/blue_500</item>
-        <item name="colorSecondaryVariant">@color/blue_700</item>
+        <!-- …otros atributos… -->
 
-        <!-- Surface / Background -->
-        <item name="colorSurface">@color/colorSurface</item>
-        <item name="colorOnSurface">@color/colorOnSurface</item>
-        <!-- Pinta el fondo de la ventana -->
-        <item name="android:windowBackground">@color/colorBackground</item>
-
-        <!-- Barra de estado y navegación -->
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:navigationBarColor">@color/colorBackground</item>
-
-
+        <!-- 3) Fondo de ventana también en colorPrimary -->
+        <item name="android:windowBackground">?attr/colorPrimary</item>
     </style>
 
-    <!-- Variantes de tema en otros colores -->
-    <style name="Theme_Green" parent="Theme.FacilGimApp">
+    <!-- Variante verde -->
+    <style name="Theme.Green" parent="Theme.FacilGimApp">
         <item name="colorPrimary">@color/green_500</item>
         <item name="colorPrimaryVariant">@color/green_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/green_500</item>
-        <item name="colorSecondaryVariant">@color/green_700</item>
+        <!-- ya hereda windowBackground, statusBarColor y navigationBarColor -->
     </style>
 
-    <style name="Theme_Blue" parent="Theme.FacilGimApp">
-        <item name="colorPrimary">@color/blue_500</item>
-        <item name="colorPrimaryVariant">@color/blue_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/blue_500</item>
-        <item name="colorSecondaryVariant">@color/blue_700</item>
-    </style>
-
-    <style name="Theme_Yellow" parent="Theme.FacilGimApp">
+    <!-- Variante amarilla -->
+    <style name="Theme.Yellow" parent="Theme.FacilGimApp">
         <item name="colorPrimary">@color/yellow_500</item>
         <item name="colorPrimaryVariant">@color/yellow_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/yellow_500</item>
-        <item name="colorSecondaryVariant">@color/yellow_700</item>
     </style>
 
     <!-- Aplica a los números de cada día -->

@@ -1,24 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <!-- Modo oscuro: reutilizamos Theme.FacilGimApp, sólo cambiamos surface/background defs -->
     <style name="Theme.FacilGimApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary / Secondary como ya lo tienes… -->
-        <item name="buttonStyle">@style/Widget.App.PrimaryButton</item>
-
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-
-        <item name="colorSurface">@color/colorSurface</item>
-        <item name="colorOnSurface">@color/colorOnSurface</item>
-        <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
-        <!-- Pinta el fondo de la ventana -->
-        <item name="android:windowBackground">@color/colorBackground</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:navigationBarColor">@color/colorBackground</item>
 
+        <!-- surface / fondo oscuro -->
+        <item name="colorSurface">@color/teal_700</item>
+        <item name="colorOnSurface">@color/red_900</item>
+        <item name="android:windowBackground">@color/yellow_200</item>
     </style>
+
 </resources>

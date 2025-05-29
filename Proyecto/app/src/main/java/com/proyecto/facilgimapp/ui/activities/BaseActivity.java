@@ -43,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             setTheme(R.style.Theme_Yellow);
             Log.d("THEME", "Theme aplicado: " + PreferenceManager.getThemeColor(this));
         } else {
-            setTheme(R.style.Theme_Blue);
+            setTheme(R.style.Theme_FacilGimApp);
             Log.d("THEME", "Theme aplicado: " + PreferenceManager.getThemeColor(this));
         }
 

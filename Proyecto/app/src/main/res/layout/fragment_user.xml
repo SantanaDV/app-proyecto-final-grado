@@ -20,22 +20,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:layout_marginBottom="50dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <!-- Perfil -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    android:layout_marginBottom="16dp">
+                    app:cardElevation="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_horizontal"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:padding="24dp">
 
                         <ImageView
@@ -48,7 +49,8 @@
                             android:id="@+id/tvUsername"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="20dp"
                             android:textColor="?attr/colorOnSurface"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -60,9 +62,9 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    android:layout_marginBottom="16dp">
+                    app:cardElevation="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -76,7 +78,7 @@
                             android:divider="@android:color/darker_gray"
                             android:dividerHeight="1dp"
                             android:paddingTop="8dp"
-                            android:paddingBottom="8dp"/>
+                            android:paddingBottom="8dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -84,28 +86,28 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    android:layout_marginBottom="16dp">
+                    app:cardElevation="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:padding="16dp"
-                        android:gravity="center_vertical">
+                        android:padding="16dp">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/usar_tema_del_sistema"
-                            android:textColor="?attr/colorOnSurface"/>
+                            android:textColor="?attr/colorOnSurface" />
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/switchUseSystemTheme"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -115,8 +117,8 @@
                     style="@style/Widget.App.PrimaryButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/cerrar_sesi_n"
-                    android:layout_marginBottom="32dp"/>
+                    android:layout_marginBottom="32dp"
+                    android:text="@string/cerrar_sesi_n" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
