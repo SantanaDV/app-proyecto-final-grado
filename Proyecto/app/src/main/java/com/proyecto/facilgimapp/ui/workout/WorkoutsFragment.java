@@ -70,8 +70,10 @@ public class WorkoutsFragment extends Fragment {
         b.rvWorkouts.setAdapter(adapter);
 
         vm.getWorkouts().observe(getViewLifecycleOwner(), list -> {
-            Log.d("DEBUG", "Entrenamientos recibidos: " + (list != null ? list.size() : 0));
             adapter.updateList(list);
+            boolean empty = list == null || list.isEmpty();
+            b.tvEmptyState.setVisibility(empty ? View.VISIBLE : View.GONE);
+            b.rvWorkouts.setVisibility(empty ? View.GONE : View.VISIBLE);
         });
 
         int userId = SessionManager.getUserId(requireContext());
@@ -112,7 +114,7 @@ public class WorkoutsFragment extends Fragment {
                 androidx.appcompat.widget.SearchView searchView =
                         (androidx.appcompat.widget.SearchView) searchItem.getActionView();
 
-                searchView.setQueryHint("Buscar entrenamientos...");
+                searchView.setQueryHint(String.valueOf(R.string.buscar_entrenamientos));
                 searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
                     @Override public boolean onQueryTextSubmit(String query) { return false; }
 
@@ -133,25 +135,25 @@ public class WorkoutsFragment extends Fragment {
 
     private void mostrarDescripcion(EntrenamientoDTO workout) {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Descripción")
+                .setTitle(R.string.descripcion)
                 .setMessage(workout.getDescripcion())
-                .setPositiveButton("Cerrar", null)
+                .setPositiveButton(R.string.close, null)
                 .show();
     }
 
     private void confirmarEliminacion(EntrenamientoDTO workout) {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Eliminar")
-                .setMessage("¿Deseas eliminar este entrenamiento?")
+                .setTitle(R.string.eliminar)
+                .setMessage(R.string.eliminar_entrenamiento)
                 .setPositiveButton("Sí", (dialog, which) -> {
                     vm.deleteWorkout(workout.getId(), () -> {
-                        Toast.makeText(getContext(), "Eliminado", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.eliminado, Toast.LENGTH_SHORT).show();
                         vm.loadWorkoutsByUserId(SessionManager.getUserId(requireContext()));
                     }, () -> {
-                        Toast.makeText(getContext(), "Error al eliminar", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.error_al_eliminar, Toast.LENGTH_SHORT).show();
                     });
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 
@@ -175,72 +177,29 @@ public class WorkoutsFragment extends Fragment {
                     EditWorkoutDialog.show(this, workout, tipos, updatedWorkout -> {
                         vm.updateWorkout(updatedWorkout.getId(), updatedWorkout,
                                 () -> {
-                                    Toast.makeText(requireContext(), "Actualizado", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(requireContext(), R.string.actualizado, Toast.LENGTH_SHORT).show();
                                     vm.loadWorkoutsByUserId(SessionManager.getUserId(requireContext()));
                                 },
-                                () -> Toast.makeText(requireContext(), "Error al actualizar", Toast.LENGTH_SHORT).show()
+                                () -> Toast.makeText(requireContext(), R.string.error_actualizar, Toast.LENGTH_SHORT).show()
                         );
                     });
                 } else {
                     Toast.makeText(requireContext(),
-                            "No hay tipos de entrenamiento disponibles",
+                            R.string.error_no_entrenamientos,
                             Toast.LENGTH_SHORT).show();
                 }
             });
         });
     }
 
-
-    private void mostrarDialogoEdicion(EntrenamientoDTO workout) {
-        View dialogView = LayoutInflater.from(requireContext())
-                .inflate(R.layout.dialog_edit_workout_extended, null);
-
-        EditText etNombre = dialogView.findViewById(R.id.etNombre);
-        EditText etDescripcion = dialogView.findViewById(R.id.etDescripcion);
-        EditText etDuracion = dialogView.findViewById(R.id.etDuracion);
-        EditText etFecha = dialogView.findViewById(R.id.etFecha);
-
-        etNombre.setText(workout.getNombre());
-        etDescripcion.setText(workout.getDescripcion());
-        etDuracion.setText(String.valueOf(workout.getDuracion()));
-        etFecha.setText(workout.getFechaEntrenamiento().toString());
-
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Editar entrenamiento")
-                .setView(dialogView)
-                .setPositiveButton("Guardar", (dialog, which) -> {
-                    String nombre = etNombre.getText().toString().trim();
-                    String descripcion = etDescripcion.getText().toString().trim();
-                    String duracionStr = etDuracion.getText().toString().trim();
-                    String fechaStr = etFecha.getText().toString().trim();
-
-                    if (nombre.isEmpty() || duracionStr.isEmpty() || fechaStr.isEmpty()) {
-                        Toast.makeText(requireContext(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    try {
-                        workout.setNombre(nombre);
-                        workout.setDescripcion(descripcion);
-                        workout.setDuracion(Integer.parseInt(duracionStr));
-                        workout.setFechaEntrenamiento(LocalDate.parse(fechaStr));
-
-                        vm.updateWorkout(workout.getId(), workout,
-                                () -> {
-                                    Toast.makeText(requireContext(), "Actualizado", Toast.LENGTH_SHORT).show();
-                                    vm.loadWorkoutsByUserId(SessionManager.getUserId(requireContext()));
-                                },
-                                () -> Toast.makeText(requireContext(), "Error al actualizar", Toast.LENGTH_SHORT).show()
-                        );
-
-                    } catch (Exception e) {
-                        Toast.makeText(requireContext(), "Datos inválidos", Toast.LENGTH_SHORT).show();
-                    }
-
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Fuerza recarga cada vez que regresamos aquí
+        int userId = SessionManager.getUserId(requireContext());
+        vm.loadWorkoutsByUserId(userId);
     }
+
 
 
 

@@ -58,9 +58,7 @@ public class AdminUsersFragment extends Fragment implements UserAdapter.OnUserIn
         binding.rvUsers.setAdapter(adapter);
         binding.fabAddUser.setOnClickListener(v -> showAddUserDialog());
 
-        // Navegación atrás
-        binding.toolbarUsers.setNavigationOnClickListener(v ->
-                NavHostFragment.findNavController(this).navigateUp());
+
 
         // Observers
         viewModel.getUsers().observe(getViewLifecycleOwner(), adapter::submitList);
@@ -117,11 +115,11 @@ public class AdminUsersFragment extends Fragment implements UserAdapter.OnUserIn
                 ok = false;
             }
             if (TextUtils.isEmpty(name)) {
-                dlgB.etNombre.setError(getString(R.string.error_required));
+                dlgB.etNombre.setError(getString(R.string.error_name_required));
                 ok = false;
             }
             if (TextUtils.isEmpty(last)) {
-                dlgB.etApellido.setError(getString(R.string.error_required));
+                dlgB.etApellido.setError(getString(R.string.error_lastaname_required));
                 ok = false;
             }
             if (TextUtils.isEmpty(pass)) {

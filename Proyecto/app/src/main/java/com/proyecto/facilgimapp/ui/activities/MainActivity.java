@@ -93,11 +93,18 @@ public class MainActivity extends BaseActivity {
 
         // 5) Mostrar/ocultar UI según fragmento
         navController.addOnDestinationChangedListener((controller, destination, args) -> {
-            boolean show = destination.getId() != R.id.loginFragment
-                    && destination.getId() != R.id.registerFragment;
-            toolbar.setVisibility(show ? View.VISIBLE : View.GONE);
-            bottomNav.setVisibility(show ? View.VISIBLE : View.GONE);
+            int id = destination.getId();
+
+            // 1) Toolbar solo ocultar en login, user y home
+            boolean toolbarVisible = (id != R.id.loginFragment && id != R.id.homeFragment && id != R.id.userFragment);
+            toolbar.setVisibility(toolbarVisible ? View.VISIBLE : View.GONE);
+
+            // 2) BottomNav solo mostrar en los fragments que te interesan
+            boolean bottomNavVisible = SHOW_IN.contains(id);
+            bottomNav.setVisibility(bottomNavVisible ? View.VISIBLE : View.GONE);
         });
+
+
 
         navController.addOnDestinationChangedListener(
                 (controller, destination, args) -> {

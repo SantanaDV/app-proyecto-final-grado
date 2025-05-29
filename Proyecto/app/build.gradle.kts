@@ -30,7 +30,7 @@ android {
 
     buildTypes {
         debug {
-            //poner localhost para movil fisico
+            //poner localhost para movil fisico 10.0.2.2
             buildConfigField("String", "BASE_URL", "\"https://10.0.2.2:8443/\"")
         }
         release {

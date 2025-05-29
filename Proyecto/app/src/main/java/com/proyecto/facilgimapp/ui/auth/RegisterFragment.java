@@ -16,6 +16,8 @@ import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentRegisterBinding;
 import com.proyecto.facilgimapp.model.dto.UsuarioDTO;
 import com.proyecto.facilgimapp.model.dto.UsuarioRequestDTO;
+import com.proyecto.facilgimapp.util.EmailValidator;
+import com.proyecto.facilgimapp.util.PasswordValidator;
 import com.proyecto.facilgimapp.viewmodel.AuthViewModel;
 
 public class RegisterFragment extends Fragment {
@@ -34,6 +36,13 @@ public class RegisterFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
+        // Observador de errores de registro
+        viewModel.getRegisterError().observe(getViewLifecycleOwner(), errorMsg -> {
+            if (errorMsg != null && !errorMsg.isEmpty()) {
+                Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_LONG).show();
+            }
+        });
+
         binding.btnRegister.setOnClickListener(v -> {
             // Validaciones de campos
             if (validateFields()) {
@@ -45,28 +54,55 @@ public class RegisterFragment extends Fragment {
                 dto.setCorreo(binding.etEmail.getText().toString().trim());
                 dto.setDireccion(binding.etAddress.getText().toString().trim());
 
-                // Realizar el registro con el ViewModel
-                viewModel.register(dto).observe(getViewLifecycleOwner(), this::handleRegister);
+                // Registrar y manejar resultado
+                viewModel.register(dto)
+                        .observe(getViewLifecycleOwner(), this::handleRegister);
             }
         });
     }
 
     private boolean validateFields() {
         boolean isValid = true;
-        // Validación de campos obligatorios
-        if (binding.etUsername.getText().toString().trim().isEmpty()) {
+        String username = binding.etUsername.getText().toString().trim();
+        String password = binding.etPassword.getText().toString();
+        String name     = binding.etName.getText().toString().trim();
+        String lastname = binding.etLastname.getText().toString().trim();
+        String email    = binding.etEmail.getText().toString().trim();
+
+        // Usuario obligatorio
+        if (username.isEmpty()) {
             binding.etUsername.setError(getString(R.string.error_username_required));
             isValid = false;
         }
-        if (binding.etPassword.getText().toString().trim().isEmpty()) {
+
+        // Contraseña: no vacía + cumple mínimos
+        if (password.isEmpty()) {
             binding.etPassword.setError(getString(R.string.error_password_required));
             isValid = false;
+        } else if (!PasswordValidator.isValid(password)) {
+            binding.etPassword.setError(getString(R.string.error_invalid_password));
+            isValid = false;
         }
-        if (binding.etEmail.getText().toString().trim().isEmpty() ||
-                !android.util.Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.getText().toString()).matches()) {
+
+        // Nombre y apellido
+        if (name.isEmpty()) {
+            binding.etName.setError(getString(R.string.error_name_required));
+            isValid = false;
+        }
+        if (lastname.isEmpty()) {
+            binding.etLastname.setError(getString(R.string.error_lastaname_required));
+            isValid = false;
+        }
+
+        // Email: no vacío + formato
+        if (email.isEmpty()) {
+            binding.etEmail.setError(getString(R.string.error_email_required));
+            isValid = false;
+        } else if (!EmailValidator.isValid(email)) {
             binding.etEmail.setError(getString(R.string.error_invalid_email));
             isValid = false;
         }
+
         return isValid;
     }
 
@@ -78,8 +114,15 @@ public class RegisterFragment extends Fragment {
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_registerFragment_to_loginFragment);
         } else {
+            // Ya se habrá mostrado el error concreto vía getRegisterError()
             Toast.makeText(requireContext(),
                     getString(R.string.register_failed), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

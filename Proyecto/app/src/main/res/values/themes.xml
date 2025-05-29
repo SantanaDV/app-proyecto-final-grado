@@ -11,7 +11,7 @@
         <!-- 2) Colores Material (default azul) -->
         <item name="colorPrimary">@color/blue_500</item>
         <item name="colorPrimaryVariant">@color/blue_700</item>
-        <item name="colorSecondary">@color/blue_500</item>
+        <item name="colorSecondary">@color/blue_200</item>
         <!-- …otros atributos… -->
 
         <!-- 3) Fondo de ventana también en colorPrimary -->
@@ -22,13 +22,16 @@
     <style name="Theme.Green" parent="Theme.FacilGimApp">
         <item name="colorPrimary">@color/green_500</item>
         <item name="colorPrimaryVariant">@color/green_700</item>
+        <item name="colorSecondary">@color/green_200</item>
         <!-- ya hereda windowBackground, statusBarColor y navigationBarColor -->
     </style>
 
     <!-- Variante amarilla -->
     <style name="Theme.Yellow" parent="Theme.FacilGimApp">
-        <item name="colorPrimary">@color/yellow_500</item>
-        <item name="colorPrimaryVariant">@color/yellow_700</item>
+        <item name="colorPrimary">@color/yellow_700</item>
+        <item name="colorPrimaryVariant">@color/yellow_500</item>
+        <item name="colorSecondary">@color/yellow_900</item>
+        <!-- ya hereda windowBackground, statusBarColor y navigationBarColor -->
     </style>
 
     <!-- Aplica a los números de cada día -->

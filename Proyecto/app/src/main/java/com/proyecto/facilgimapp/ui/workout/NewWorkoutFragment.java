@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +30,6 @@ import com.proyecto.facilgimapp.viewmodel.TypeViewModel;
 
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.List;
 
 public class NewWorkoutFragment extends Fragment {
 
@@ -54,14 +54,23 @@ public class NewWorkoutFragment extends Fragment {
         // Spinner de tipos
         if (!SessionManager.isAdmin(requireContext())) {
             b.btnAddType.setVisibility(View.GONE);
-        }else {
-            b.btnAddType.setOnClickListener(v -> {
-                Navigation.findNavController(v).navigate(R.id.action_newWorkoutFragment_to_typeListFragment);
-            });
+        } else {
+            b.btnAddType.setOnClickListener(v ->
+                    Navigation.findNavController(v)
+                            .navigate(R.id.action_newWorkoutFragment_to_typeListFragment)
+            );
         }
         typeVM.getTypes().observe(getViewLifecycleOwner(), types -> {
-            ArrayAdapter<String> adapter = null;
+            if (types == null) return;
+            ArrayAdapter<String> adapter;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                adapter = new ArrayAdapter<>(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        types.stream().map(T -> T.getNombre()).toList()
+                );
+            } else {
+                // Fallback sin streams
                 adapter = new ArrayAdapter<>(
                         requireContext(),
                         android.R.layout.simple_spinner_item,
@@ -98,32 +107,59 @@ public class NewWorkoutFragment extends Fragment {
         exercisesVM.listAllExercises();
         exercisesVM.getAllExercises().observe(getViewLifecycleOwner(), list -> {
             if (list != null && !list.isEmpty()) {
-                exerciseAdapter.setExercises(list);  // Aquí se actualiza el RecyclerView
+                exerciseAdapter.setExercises(list);
             } else {
                 Log.d("DEBUG", "No hay ejercicios disponibles.");
             }
         });
 
-        // Botón “Siguiente”
+        // Botón “Siguiente” con validaciones
         b.btnNextToExercises.setOnClickListener(v -> {
+            boolean valid = true;
+
+            // 1) Nombre no vacío
+            String nombre = b.etName.getText().toString().trim();
+            if (nombre.isEmpty()) {
+                b.etName.setError("El nombre es obligatorio");
+                valid = false;
+            }
+
+            // 2) Fecha seleccionada
+            if (selectedDate == null) {
+                Toast.makeText(requireContext(),
+                                "Debes seleccionar una fecha", Toast.LENGTH_SHORT)
+                        .show();
+                valid = false;
+            }
+
+            // 3) Al menos un ejercicio
+            var selectedIds = exerciseAdapter.getSelectedExerciseIds();
+            if (selectedIds == null || selectedIds.isEmpty()) {
+                Toast.makeText(requireContext(),
+                        "Selecciona al menos un ejercicio",
+                        Toast.LENGTH_SHORT).show();
+                valid = false;
+            }
+
+            if (!valid) return;  // abortar si falla alguna validación
+
+            // Construir DTO
             EntrenamientoDTO dto = new EntrenamientoDTO();
-            dto.setNombre(b.etName.getText().toString());
-            dto.setDescripcion(b.etDescription.getText().toString());
+            dto.setNombre(nombre);
+            dto.setDescripcion(b.etDescription.getText().toString().trim());
             dto.setFechaEntrenamiento(selectedDate);
             int tipoId = typeVM.getTypes().getValue()
                     .get(b.spinnerType.getSelectedItemPosition())
                     .getId();
-
             dto.setTipoEntrenamiento(new TipoEntrenamientoDTO(tipoId));
-            dto.setUsuario(new UsuarioDTO());
-            dto.getUsuario().setIdUsuario(SessionManager.getUserId(requireContext()));
-            dto.setEjerciciosId(exerciseAdapter.getSelectedExerciseIds());
+            UsuarioDTO user = new UsuarioDTO();
+            user.setIdUsuario(SessionManager.getUserId(requireContext()));
+            dto.setUsuario(user);
+            dto.setEjerciciosId(selectedIds);
 
-            int[] exerciseIdsArray = exerciseAdapter
-                    .getSelectedExerciseIds()
-                    .stream()
-                    .mapToInt(Integer::intValue)
-                    .toArray();
+            // Navegar
+            int[] exerciseIdsArray = selectedIds
+                    .stream().mapToInt(Integer::intValue).toArray();
 
             Navigation.findNavController(v).navigate(
                     R.id.action_newWorkoutFragment_to_workoutSessionFragment,
@@ -131,7 +167,6 @@ public class NewWorkoutFragment extends Fragment {
                             .actionNewWorkoutFragmentToWorkoutSessionFragment(dto, exerciseIdsArray)
                             .getArguments()
             );
-
         });
     }
 

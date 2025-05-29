@@ -168,4 +168,18 @@
     <string name="salir_app">¿Salir de la app?</string>
     <string name="seguro_salir_app">¿Seguro que quieres salir?</string>
     <string name="salir">Salir</string>
+    <string name="error_name_required">El nombre es obligatorio</string>
+    <string name="error_lastaname_required">El apellido es obligatorio</string>
+    <string name="error_unknown">Error desconocido</string>
+    <string name="error_email_required">El email es obligatorio</string>
+    <string name="no_hay_entrenamientos_registrados">No hay entrenamientos registrados</string>
+    <string name="buscar_entrenamientos">Buscar entrenamientos...</string>
+    <string name="close">Cerrar</string>
+    <string name="eliminar_entrenamiento">¿Deseas eliminar este entrenamiento?</string>
+    <string name="eliminado">Eliminado</string>
+    <string name="error_al_eliminar">Error al eliminar</string>
+    <string name="actualizado">Actualizado</string>
+    <string name="error_actualizar">Error al actualizar</string>
+    <string name="error_no_entrenamientos">\"No hay tipos de entrenamiento disponibles\"</string>
+    <string name="type_name_placeholder">Tipo de entrenamiento</string>
 </resources>
