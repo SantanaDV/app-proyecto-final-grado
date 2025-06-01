@@ -8,6 +8,8 @@ import java.util.Objects;
 
 /**
  * Modelo que mapea la entidad Entrenamiento del backend.
+ * 
+ *  @author Francisco Santana
  */
 public class Entrenamiento {
     @SerializedName("idEntrenamiento")

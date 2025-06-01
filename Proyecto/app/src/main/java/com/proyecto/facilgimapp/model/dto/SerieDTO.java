@@ -11,6 +11,11 @@ public class SerieDTO {
     @SerializedName("numeroSerie")
     private Integer numeroSerie;
 
+    /**
+     * Clase SerieDTO que representa una serie de ejercicios con su número de repeticiones.
+     * 
+     * @author Francisco Santana
+     */
     @SerializedName("repeticiones")
     private Integer repeticiones;
 

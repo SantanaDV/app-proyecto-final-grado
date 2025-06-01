@@ -10,6 +10,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class EntrenamientoDTO implements Serializable {
+    /**
+     * Data Transfer Object (DTO) que representa un entrenamiento.
+     * 
+     * Contiene el identificador único del entrenamiento.
+     * 
+     * @author Francisco Santana
+     */
     @SerializedName("idEntrenamiento")
     private Integer id;
 

@@ -1,9 +1,15 @@
+
 package com.proyecto.facilgimapp.model.entity;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
-
+/**
+ * Representa un usuario en la aplicación FacilGimApp.
+ * Contiene información básica como identificador, nombre de usuario, correo, nombre y apellido.
+ * 
+ * @author Francisco Santana
+ */
 public class Usuario {
     @SerializedName("idUsuario")
     private int idUsuario;

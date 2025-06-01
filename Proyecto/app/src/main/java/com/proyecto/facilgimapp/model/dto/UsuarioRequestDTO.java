@@ -1,5 +1,11 @@
 package com.proyecto.facilgimapp.model.dto;
 
+/**
+ * DTO para la transferencia de datos de usuario en solicitudes.
+ * Contiene la información básica necesaria para crear o actualizar un usuario.
+ * 
+ * @author Francisco Santana
+ */
 public class UsuarioRequestDTO {
     private String username;
     private String password;

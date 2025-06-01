@@ -5,6 +5,15 @@ import com.proyecto.facilgimapp.model.entity.TipoEntrenamiento;
 
 import java.util.Objects;
 
+/**
+ * DTO (Data Transfer Object) para representar un tipo de entrenamiento.
+ * Esta clase se utiliza para transferir datos entre capas de la aplicación,
+ * especialmente en operaciones relacionadas con la serialización y deserialización JSON.
+ * 
+ * Contiene los atributos identificador y nombre del tipo de entrenamiento.
+ * 
+ * @author Francisco Santana
+ */
 public class TipoEntrenamientoDTO {
     @SerializedName("id")
     private Integer id;

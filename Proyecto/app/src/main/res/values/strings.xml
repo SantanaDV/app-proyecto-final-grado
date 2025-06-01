@@ -241,4 +241,5 @@
     <string name="session_closed_by_logout">Sesión expirada. Por favor, inicia sesión de nuevo.</string>
     <string name="no_podido_navegar">No se ha podido navegar</string>
     <string name="login_success">Has iniciado sesión con exito</string>
+    <string name="sin_descripcion">Sin descripción</string>
 </resources>

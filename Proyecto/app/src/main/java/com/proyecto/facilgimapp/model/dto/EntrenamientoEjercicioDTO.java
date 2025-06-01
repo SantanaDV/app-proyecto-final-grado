@@ -13,6 +13,11 @@ public class EntrenamientoEjercicioDTO {
     @SerializedName("ejercicio")
     private EjercicioDTO ejercicio;
 
+    /**
+     * Representa la lista de series asociadas a un ejercicio de entrenamiento.
+     * 
+     * @author Francisco Santana
+     */
     @SerializedName("series")
     private List<SerieDTO> series;
 

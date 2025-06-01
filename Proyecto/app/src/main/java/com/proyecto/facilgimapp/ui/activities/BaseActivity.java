@@ -14,8 +14,26 @@ import com.proyecto.facilgimapp.util.PreferenceManager;
 
 import java.util.Locale;
 
+/**
+ * Actividad base de la aplicación que aplica configuraciones globales
+ * como el idioma, tamaño de fuente, tema de color y modo noche antes
+ * de crear la interfaz de usuario. Todas las Activities deben heredar
+ * de esta clase para mantener un comportamiento consistente en toda la app.
+ * 
+ * Autor: Francisco Santana
+ */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    /**
+     * Se ejecuta antes de onCreate y permite ajustar la configuración
+     * de contexto según las preferencias del usuario:
+     * <ol>
+     *     <li>Selecciona el idioma almacenado en {@link PreferenceManager#getLanguage(Context)}</li>
+     *     <li>Aplica la escala de fuente según {@link PreferenceManager#getFontSize(Context)}</li>
+     * </ol>
+     *
+     * @param newBase Contexto original sin modificaciones.
+     */
     @Override
     protected void attachBaseContext(Context newBase) {
         // 1) Locale
@@ -32,6 +50,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.attachBaseContext(newBase.createConfigurationContext(config));
     }
 
+    /**
+     * Se ejecuta en la creación de la Activity y aplica:
+     * <ol>
+     *     <li>El tema de color seleccionado en {@link PreferenceManager#getThemeColorIndex(Context)}</li>
+     *     <li>El modo noche (sistema, habilitado o deshabilitado) según {@link PreferenceManager}</li>
+     * </ol>
+     *
+     * @param savedInstanceState Bundle con el estado previo de la Activity, puede ser null.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // 3) Tema de color

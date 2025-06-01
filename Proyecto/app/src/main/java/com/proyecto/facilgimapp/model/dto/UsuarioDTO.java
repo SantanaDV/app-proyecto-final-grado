@@ -13,6 +13,11 @@ public class UsuarioDTO {
     private String correo;
     private String nombre;
     private String apellido;
+    /**
+     * Representa la dirección del usuario.
+     * 
+     * @author Francisco Santana
+     */
     private String direccion;
 
     @SerializedName("admin")

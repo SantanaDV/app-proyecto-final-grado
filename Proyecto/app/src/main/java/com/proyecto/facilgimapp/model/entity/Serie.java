@@ -1,10 +1,17 @@
+
 package com.proyecto.facilgimapp.model.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
-
+/**
+ * Representa una serie de ejercicios dentro de la aplicación FacilGimApp.
+ * Cada serie contiene información sobre el identificador, el ejercicio asociado,
+ * el número de repeticiones, el peso utilizado y si la serie ha sido completada.
+ * 
+ * @author Francisco Santana
+ */
 public class Serie {
     private int id;
 

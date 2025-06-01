@@ -10,7 +10,14 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import com.proyecto.facilgimapp.BuildConfig;
-
+/**
+ * Clase responsable de configurar y proporcionar una instancia de Retrofit
+ * para las llamadas a la API REST. Incluye la inicialización de GSON para 
+ * serializar/deserializar objetos LocalDate y la configuración de los 
+ * interceptores necesarios (autenticación, manejo de errores y logging).
+ *
+ * @author Francisco Santana
+ */
 public class RetrofitClient {
     private static final String BASE_URL = BuildConfig.BASE_URL ;
     //Este comando hay que hacerlo cada vez que enchufe el usb

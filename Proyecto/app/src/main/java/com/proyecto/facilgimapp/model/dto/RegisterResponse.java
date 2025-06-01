@@ -2,6 +2,12 @@ package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Clase que representa la respuesta recibida tras el registro de un usuario.
+ * Contiene los datos principales del usuario registrado.
+ * 
+ * @author Francisco Santana
+ */
 public class RegisterResponse {
     @SerializedName("idUsuario")
     private Integer idUsuario;

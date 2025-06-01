@@ -2,6 +2,8 @@ package com.proyecto.facilgimapp.model.entity;
 
 /**
  * Identifica los distintos tipos de opción en el perfil de usuario.
+ * 
+ * @author Francisco Santana
  */
 public enum UserOptionType {
     DARK_MODE,

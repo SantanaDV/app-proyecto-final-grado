@@ -5,6 +5,15 @@ import com.proyecto.facilgimapp.model.entity.Ejercicio;
 
 import java.util.Objects;
 
+/**
+ * DTO (Data Transfer Object) para representar un ejercicio.
+ * Contiene información básica como el identificador, nombre e imagen asociada.
+ * 
+ * Proporciona métodos para acceder y modificar sus propiedades, así como para convertir
+ * la instancia a un objeto de dominio {@link Ejercicio}.
+ * 
+ * @author Francisco Santana
+ */
 public class EjercicioDTO {
     @SerializedName("idEjercicio")
     private Integer idEjercicio;

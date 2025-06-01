@@ -1,5 +1,11 @@
 package com.proyecto.facilgimapp.model.dto;
 
+/**
+ * Clase que representa una solicitud de inicio de sesión.
+ * Contiene el nombre de usuario y la contraseña necesarios para autenticar a un usuario.
+ * 
+ * @author Francisco Santana
+ */
 public class LoginRequest {
     private String username;
     private String password;

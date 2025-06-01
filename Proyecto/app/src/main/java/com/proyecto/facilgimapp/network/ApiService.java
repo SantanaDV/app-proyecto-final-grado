@@ -1,3 +1,4 @@
+
 package com.proyecto.facilgimapp.network;
 
 import com.proyecto.facilgimapp.model.dto.HealthStatus;
@@ -20,7 +21,25 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.*;
-
+/**
+ * Interfaz de servicio API para la comunicación con el backend de la aplicación FacilGimApp.
+ * Define los endpoints REST disponibles para gestionar ejercicios, entrenamientos, series,
+ * tipos de entrenamiento y usuarios, así como autenticación y comprobación del estado del servidor.
+ * 
+ * <p>Utiliza Retrofit para la definición de las llamadas HTTP.</p>
+ * 
+ * <ul>
+ *   <li><b>Ejercicios:</b> CRUD de ejercicios, búsqueda por nombre, gestión de imágenes y relación con entrenamientos.</li>
+ *   <li><b>Entrenamientos:</b> CRUD de entrenamientos, filtrado por fechas, usuario y nombre.</li>
+ *   <li><b>Series:</b> CRUD de series asociadas a ejercicios en entrenamientos.</li>
+ *   <li><b>Tipos de entrenamiento:</b> CRUD de tipos de entrenamiento.</li>
+ *   <li><b>Usuarios:</b> CRUD de usuarios, registro, validación y cambio de contraseña.</li>
+ *   <li><b>Autenticación:</b> Login de usuario.</li>
+ *   <li><b>Estado del servidor:</b> Consulta de salud del backend.</li>
+ * </ul>
+ *
+ * @author Francisco Santana
+ */
 public interface ApiService {
 
     // ===== EJERCICIOS =====

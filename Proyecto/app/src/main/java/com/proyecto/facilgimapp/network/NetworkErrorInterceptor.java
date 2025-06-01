@@ -7,6 +7,9 @@ import okhttp3.Response;
 /**
  * Interceptor de OkHttp que marca la conexión como DOWN ante IOException
  * y vuelve a UP si la llamada fue bien.
+ * Esta clase se utiliza para detectar problemas de red
+ * y actualizar el estado de la conexión en la aplicación.
+ *  @author Francisco Santana
  */
 public class NetworkErrorInterceptor implements Interceptor {
     @Override

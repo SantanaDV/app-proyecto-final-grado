@@ -4,6 +4,13 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Clase que representa la respuesta de inicio de sesión recibida desde el backend.
+ * Contiene información relevante como el token de autenticación, nombre de usuario,
+ * mensaje de respuesta, roles/autorizaciones y el identificador del usuario.
+ *
+ * @author Francisco Santana
+ */
 public class LoginResponse implements Serializable {
     @SerializedName("token")
     private String token;

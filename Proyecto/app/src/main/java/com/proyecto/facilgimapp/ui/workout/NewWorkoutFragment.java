@@ -34,15 +34,57 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Fragment encargado de crear un nuevo entrenamiento paso a paso.
+ * <p>
+ * Muestra campos para nombre, descripción, fecha, tipo de entrenamiento y
+ * una lista de ejercicios seleccionables. Guarda los datos parciales en un ViewModel
+ * (borrador), valida entradas y navega al siguiente paso (WorkoutSessionFragment)
+ * con los datos compilados.
+ * </p>
+ *
+ * @author Francisco Santana
+ */
 public class NewWorkoutFragment extends Fragment {
 
+    /**
+     * Binding para acceder a las vistas del layout fragment_new_workout.xml.
+     */
     private FragmentNewWorkoutBinding b;
+
+    /**
+     * ViewModel que proporciona la lista de tipos de entrenamiento.
+     */
     private TypeViewModel typeVM;
+
+    /**
+     * ViewModel que proporciona la lista de ejercicios disponibles.
+     */
     private ExercisesViewModel exercisesVM;
+
+    /**
+     * ViewModel que guarda en borrador los datos ingresados para el nuevo entrenamiento.
+     */
     private NewWorkoutViewModel draftVM;
+
+    /**
+     * Adaptador para mostrar y seleccionar ejercicios disponibles.
+     */
     private ExerciseSelectionAdapter exerciseAdapter;
+
+    /**
+     * Fecha seleccionada para el entrenamiento.
+     */
     private LocalDate selectedDate;
 
+    /**
+     * Infla el layout del fragment, inicializa los ViewModels y devuelve la vista raíz.
+     *
+     * @param inflater           Inflador de vistas de Android.
+     * @param container          Contenedor padre donde se insertará el fragmento.
+     * @param savedInstanceState Bundle con el estado previo del fragmento; puede ser null.
+     * @return Vista raíz inflada correspondiente a fragment_new_workout.xml.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -50,16 +92,30 @@ public class NewWorkoutFragment extends Fragment {
         b = FragmentNewWorkoutBinding.inflate(inflater, container, false);
 
         // Instancia de los ViewModels
-        typeVM    = new ViewModelProvider(this).get(TypeViewModel.class);
+        typeVM     = new ViewModelProvider(this).get(TypeViewModel.class);
         exercisesVM = new ViewModelProvider(this).get(ExercisesViewModel.class);
-        draftVM   = new ViewModelProvider(this).get(NewWorkoutViewModel.class);
+        draftVM     = new ViewModelProvider(this).get(NewWorkoutViewModel.class);
 
         return b.getRoot();
     }
 
+    /**
+     * Se invoca después de que la vista ha sido creada. Configura:
+     * <ul>
+     *     <li>Spinner de tipos de entrenamiento (y botón para agregar nuevos si es admin).</li>
+     *     <li>DatePicker para seleccionar la fecha del entrenamiento.</li>
+     *     <li>RecyclerView con ExerciseSelectionAdapter para elegir ejercicios.</li>
+     *     <li>Botón "Siguiente" que valida entradas, guarda datos en el draftVM y navega
+     *         a WorkoutSessionFragment con los datos recopilados.</li>
+     *     <li>Reposición de valores guardados en el draftVM (fecha, tipo, ejercicios, nombre).</li>
+     * </ul>
+     *
+     * @param view               Vista previamente inflada devuelta por {@link #onCreateView}.
+     * @param savedInstanceState Bundle con el estado previo; puede ser null.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        //  Spinner de tipos
+        // Configuración del Spinner de tipos de entrenamiento
         if (!SessionManager.isAdmin(requireContext())) {
             b.btnAddType.setVisibility(View.GONE);
         } else {
@@ -93,7 +149,7 @@ public class NewWorkoutFragment extends Fragment {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             b.spinnerType.setAdapter(adapter);
 
-            // Si ya había una posición elegida en el ViewModel, se repone el spinner aquí
+            // Si ya había una posición guardada en draftVM, selecciónala en el Spinner
             Integer savedPos = draftVM.draftTypePosition().getValue();
             if (savedPos != null && savedPos < nombres.size()) {
                 b.spinnerType.setSelection(savedPos);
@@ -101,14 +157,14 @@ public class NewWorkoutFragment extends Fragment {
         });
         typeVM.loadTypes();
 
-        // Selector de fecha
+        // Configuración del DatePicker para la fecha de entrenamiento
         b.btnPickDate.setOnClickListener(v -> {
             Calendar c = Calendar.getInstance();
             new DatePickerDialog(requireContext(),
                     (DatePicker dp, int y, int m, int d) -> {
                         selectedDate = LocalDate.of(y, m + 1, d);
                         b.btnPickDate.setText(selectedDate.toString());
-                        draftVM.setDraftDate(selectedDate); // guardo en el ViewModel
+                        draftVM.setDraftDate(selectedDate); // Guarda en el ViewModel
                     },
                     c.get(Calendar.YEAR),
                     c.get(Calendar.MONTH),
@@ -116,25 +172,25 @@ public class NewWorkoutFragment extends Fragment {
             ).show();
         });
 
-        // Si venimos de atrás y ya había fecha elegida:
+        // Si ya había una fecha guardada en draftVM, muéstrala
         LocalDate savedDate = draftVM.draftDate().getValue();
         if (savedDate != null) {
             selectedDate = savedDate;
             b.btnPickDate.setText(savedDate.toString());
         }
 
-        //  RecyclerView de selección de ejercicios
+        // Configuración del RecyclerView de ejercicios disponibles
         exerciseAdapter = new ExerciseSelectionAdapter();
         b.rvAvailableExercises.setLayoutManager(new LinearLayoutManager(requireContext()));
         b.rvAvailableExercises.setAdapter(exerciseAdapter);
 
-        // Cargo catálogo completo
+        // Carga del catálogo de ejercicios
         exercisesVM.listAllExercises();
         exercisesVM.getAllExercises().observe(getViewLifecycleOwner(), list -> {
             if (list != null && !list.isEmpty()) {
                 exerciseAdapter.setExercises(list);
 
-                // Si venimos de atrás y ya había ejercicios seleccionados, se reponen
+                // Si ya había ejercicios seleccionados en draftVM, repónelos
                 List<Integer> savedIds = draftVM.draftExercises().getValue();
                 if (savedIds != null && !savedIds.isEmpty()) {
                     exerciseAdapter.setInitiallySelectedIds(savedIds);
@@ -144,25 +200,25 @@ public class NewWorkoutFragment extends Fragment {
             }
         });
 
-        //  Validaciones y “Siguiente”
+        // Botón "Siguiente": valida campos y navega a WorkoutSessionFragment
         b.btnNextToExercises.setOnClickListener(v -> {
             boolean valid = true;
 
-            //  Nombre no vacío
+            // Validar nombre no vacío
             String nombre = b.etName.getText().toString().trim();
             if (nombre.isEmpty()) {
                 b.etName.setError(getString(R.string.error_name_required));
                 valid = false;
             }
 
-            //  Fecha seleccionada
+            // Validar fecha seleccionada
             if (selectedDate == null) {
                 Toast.makeText(requireContext(),
                         R.string.error_date_required, Toast.LENGTH_SHORT).show();
                 valid = false;
             }
 
-            //  Al menos un ejercicio
+            // Validar al menos un ejercicio seleccionado
             List<Integer> selectedIds = exerciseAdapter.getSelectedExerciseIds();
             if (selectedIds == null || selectedIds.isEmpty()) {
                 Toast.makeText(requireContext(),
@@ -170,7 +226,7 @@ public class NewWorkoutFragment extends Fragment {
                 valid = false;
             }
 
-            //  Tipo en spinner
+            // Validar selección de tipo de entrenamiento
             if (b.spinnerType.getSelectedItemPosition() < 0) {
                 Toast.makeText(requireContext(),
                         R.string.error_type_required, Toast.LENGTH_SHORT).show();
@@ -179,12 +235,12 @@ public class NewWorkoutFragment extends Fragment {
 
             if (!valid) return;
 
-            //  Antes de navegar, guardo todo en el ViewModel
+            // Guardar valores en draftVM antes de navegar
             int pos = b.spinnerType.getSelectedItemPosition();
             draftVM.setDraftTypePosition(pos);
-
             draftVM.setDraftExercises(selectedIds);
 
+            // Construcción del DTO para el nuevo entrenamiento
             EntrenamientoDTO dto = new EntrenamientoDTO();
             dto.setNombre(nombre);
             dto.setDescripcion(b.etDescription.getText().toString().trim());
@@ -199,6 +255,7 @@ public class NewWorkoutFragment extends Fragment {
             dto.setEjerciciosId(selectedIds);
             draftVM.setDraftWorkout(dto);
 
+            // Navegar con dirección segura y argumentos al WorkoutSessionFragment
             int[] exerciseIdsArray = selectedIds.stream().mapToInt(Integer::intValue).toArray();
             Navigation.findNavController(v).navigate(
                     R.id.action_newWorkoutFragment_to_workoutSessionFragment,
@@ -208,6 +265,7 @@ public class NewWorkoutFragment extends Fragment {
             );
         });
 
+        // Si ya había datos guardados en draftVM, repón nombre y descripción
         EntrenamientoDTO savedDto = draftVM.draftWorkout().getValue();
         if (savedDto != null && savedDto.getNombre() != null) {
             b.etName.setText(savedDto.getNombre());
@@ -215,6 +273,10 @@ public class NewWorkoutFragment extends Fragment {
         }
     }
 
+    /**
+     * Se llama cuando la vista del fragmento se destruye. Libera la referencia al binding
+     * para evitar fugas de memoria.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

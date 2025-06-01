@@ -1,3 +1,4 @@
+
 package com.proyecto.facilgimapp.model.entity;
 
 import androidx.annotation.Nullable;
@@ -6,7 +7,13 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import java.util.Objects;
 
-
+/**
+ * Representa un ejercicio dentro de la aplicación FacilGimApp.
+ * Contiene información relevante como el identificador, nombre, URL de la imagen asociada
+ * y la lista de series que componen el ejercicio.
+ *
+ * @author Francisco Santana
+ */
 public class Ejercicio {
     @SerializedName("idEjercicio")
     private Integer idEjercicio;
