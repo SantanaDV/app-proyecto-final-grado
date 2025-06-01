@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
             );
         });
 
-        // Interceptar botón atrás
+        // Interceptar el botón atrás
         requireActivity().getOnBackPressedDispatcher().addCallback(
                 getViewLifecycleOwner(),
                 new OnBackPressedCallback(true) {

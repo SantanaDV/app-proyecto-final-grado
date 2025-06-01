@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO;
 import com.proyecto.facilgimapp.repository.TypeRepository;
 import java.util.List;
@@ -76,13 +78,13 @@ public class TypeViewModel extends AndroidViewModel {
                     loadTypes(); // Actualizar lista
                     callback.onSuccess();
                 } else {
-                    callback.onFailure("No se puede eliminar el tipo porque está en uso.");
+                    callback.onFailure(getApplication().getString(R.string.error_delete_type));
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                callback.onFailure("Error al intentar eliminar el tipo: " + t.getMessage());
+                callback.onFailure(R.string.error_delete_type + ": " + t.getMessage());
             }
         });
     }

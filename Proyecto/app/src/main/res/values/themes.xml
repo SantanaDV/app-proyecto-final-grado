@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Tema base, MaterialComponents con DayNight y sin ActionBar -->
+    <!-- Tema base, MaterialComponents con DayNight, sin ActionBar -->
     <style name="Theme.FacilGimApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- 1) Sistema pinta las barras con nuestros colores -->
+        <item name="themeColorOption1">@drawable/circle_blue</item>
+        <item name="themeColorOption2">@drawable/circle_green</item>
+        <item name="themeColorOption3">@drawable/circle_yellow</item>
+
+        <!-- Sistema pinta las barras con nuestros colores -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
 
-        <!-- 2) Colores Material (default azul) -->
+        <!--  Colores Material (default azul) -->
         <item name="colorPrimary">@color/blue_500</item>
         <item name="colorPrimaryVariant">@color/blue_700</item>
         <item name="colorSecondary">@color/blue_200</item>
         <!-- …otros atributos… -->
 
-        <!-- 3) Fondo de ventana también en colorPrimary -->
+        <!-- Fondo de ventana también en colorPrimary -->
         <item name="android:windowBackground">?attr/colorPrimary</item>
     </style>
 
@@ -23,7 +27,7 @@
         <item name="colorPrimary">@color/green_500</item>
         <item name="colorPrimaryVariant">@color/green_700</item>
         <item name="colorSecondary">@color/green_200</item>
-        <!-- ya hereda windowBackground, statusBarColor y navigationBarColor -->
+
     </style>
 
     <!-- Variante amarilla -->
@@ -31,7 +35,7 @@
         <item name="colorPrimary">@color/yellow_700</item>
         <item name="colorPrimaryVariant">@color/yellow_500</item>
         <item name="colorSecondary">@color/yellow_900</item>
-        <!-- ya hereda windowBackground, statusBarColor y navigationBarColor -->
+
     </style>
 
     <!-- Aplica a los números de cada día -->

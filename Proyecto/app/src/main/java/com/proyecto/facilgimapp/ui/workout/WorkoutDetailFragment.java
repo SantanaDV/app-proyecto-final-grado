@@ -9,32 +9,35 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentWorkoutDetailBinding;
+import com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO;
+import com.proyecto.facilgimapp.viewmodel.TypeViewModel;
 import com.proyecto.facilgimapp.viewmodel.WorkoutDetailViewModel;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class WorkoutDetailFragment extends Fragment {
     private FragmentWorkoutDetailBinding b;
     private WorkoutDetailViewModel vm;
     private RelationAdapter adapter;
 
+
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
         b = FragmentWorkoutDetailBinding.inflate(inflater, container, false);
-        vm = new ViewModelProvider(this).get(WorkoutDetailViewModel.class);
 
-        int workoutId = getArguments() != null
-                ? getArguments().getInt("workoutId") : 0;
+        // ViewModels
+        vm     = new ViewModelProvider(this).get(WorkoutDetailViewModel.class);
 
-        // Configura Recycler (sin adapter aún)
+        // RecyclerView de relaciones
         b.rvRelations.setLayoutManager(new LinearLayoutManager(requireContext()));
         DividerItemDecoration divider =
                 new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
@@ -43,41 +46,52 @@ public class WorkoutDetailFragment extends Fragment {
         );
         b.rvRelations.addItemDecoration(divider);
 
-        // 1) Observa los detalles del workout para inicializar el header y el adapter
-        vm.getWorkout().observe(getViewLifecycleOwner(), entrenamientoDTO -> {
-            if (entrenamientoDTO != null) {
-                // Header
-                b.tvWorkoutName.setText(entrenamientoDTO.getNombre());
 
-                // Convertir fecha de LocalDate a String con formato
-                String formattedDate = entrenamientoDTO.getFechaEntrenamiento()
-                        .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                b.tvWorkoutDate.setText("Fecha: " + formattedDate);
-                b.tvWorkoutDuration.setText("Duración: " + entrenamientoDTO.getDuracion() + " min");
 
-                // Ahora que tenemos fecha y duración, creamos el adapter
-                if (adapter == null) {
-                    adapter = new RelationAdapter(
-                            entrenamientoDTO.convertirLFechaAString(),
-                            entrenamientoDTO.getDuracion()
-                    );
-                    b.rvRelations.setAdapter(adapter);
+        // Observamos el workout
+        vm.getWorkout().observe(getViewLifecycleOwner(), dto -> {
+            if (dto == null) return;
 
-                    // Observa relaciones
-                    vm.getRelations().observe(getViewLifecycleOwner(), list -> {
-                        adapter.submitList(list);
-                    });
-                }
+            //  Header: nombre
+            b.tvWorkoutName.setText(dto.getNombre());
+
+            // Fecha
+            String fechaStr = dto.getFechaEntrenamiento()
+                    .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            b.tvWorkoutDate.setText(getString(R.string.fecha_entrenamiento) + " " + fechaStr);
+
+
+            //  Duración
+            b.tvWorkoutDuration.setText(
+                    getString(R.string.duraci_n_min, dto.getDuracion())
+            );
+            b.tvTypeName.setText(getString(R.string.tipo_entrenamiento)  + ": " + dto.getTipoEntrenamiento().getNombre());
+
+
+            // 2e) Adapter de relaciones (series/ejercicios)
+            if (adapter == null) {
+                adapter = new RelationAdapter(
+                        dto.convertirLFechaAString(),
+                        dto.getDuracion()
+                );
+                b.rvRelations.setAdapter(adapter);
+
+                vm.getRelations().observe(getViewLifecycleOwner(), list ->
+                        adapter.submitList(list)
+                );
             }
         });
 
-        // 2) Dispara las cargas
+        // Disparamos las cargas iniciales
+        int workoutId = getArguments() != null
+                ? getArguments().getInt("workoutId", 0)
+                : 0;
         vm.loadDetails(workoutId);
         vm.loadRelations(workoutId);
 
-
         return b.getRoot();
     }
+
 
     @Override
     public void onDestroyView() {

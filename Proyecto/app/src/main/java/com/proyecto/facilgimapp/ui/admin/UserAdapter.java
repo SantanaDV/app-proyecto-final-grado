@@ -1,4 +1,3 @@
-// UserAdapter.java
 package com.proyecto.facilgimapp.ui.admin;
 
 import android.view.LayoutInflater;
@@ -53,7 +52,7 @@ public class UserAdapter extends ListAdapter<UsuarioDTO, UserAdapter.UserViewHol
         holder.binding.tvUsername.setText(u.getUsername());
         holder.binding.tvEmail.setText(u.getCorreo());
         holder.binding.tvAdminStatus.setText(
-                u.isAdmin() ? "Administrador" : "Usuario"
+                u.isAdmin() ? R.string.admin : R.string.user
         );
 
         holder.binding.btnEditUser.setOnClickListener(v ->

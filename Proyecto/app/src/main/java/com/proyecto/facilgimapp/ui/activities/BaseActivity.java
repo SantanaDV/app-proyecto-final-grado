@@ -35,16 +35,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // 3) Tema de color
-        int themeColor = PreferenceManager.getThemeColor(this);
-        if (themeColor == R.drawable.circle_green) {
-            setTheme(R.style.Theme_Green);
-            Log.d("THEME", "Theme aplicado: " + PreferenceManager.getThemeColor(this));
-        } else if (themeColor == R.drawable.circle_yellow) {
-            setTheme(R.style.Theme_Yellow);
-            Log.d("THEME", "Theme aplicado: " + PreferenceManager.getThemeColor(this));
-        } else {
-            setTheme(R.style.Theme_FacilGimApp);
-            Log.d("THEME", "Theme aplicado: " + PreferenceManager.getThemeColor(this));
+        int idx  = PreferenceManager.getThemeColorIndex(this);
+        switch (idx) {
+            case 1:
+                setTheme(R.style.Theme_Green);
+                break;
+            case 2:
+                setTheme(R.style.Theme_Yellow);
+                break;
+            default:
+                setTheme(R.style.Theme_FacilGimApp);
         }
 
         // 4) Modo noche

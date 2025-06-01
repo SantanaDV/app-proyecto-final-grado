@@ -52,7 +52,7 @@ public class WorkoutSessionFragment extends Fragment {
         exercisesVM.listAllExercises();
         exercisesVM.getAllExercises().observe(getViewLifecycleOwner(), allExercises -> {
             if (allExercises == null || allExercises.isEmpty()) {
-                Toast.makeText(requireContext(), "No se pudieron cargar los ejercicios", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), R.string.no_pudieron_cargar_ejercicios, Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(v).popBackStack();
                 return;
             }
@@ -74,7 +74,11 @@ public class WorkoutSessionFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(WorkoutSessionViewModel.class);
 
         b.btnFinishSession.setOnClickListener(btn -> {
-            if (!adapter.allCompleted()) return;
+            if (!adapter.allCompleted()){
+                Toast.makeText(requireContext(), R.string.debe_completar_todas_las_series, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
 
             long elapsed = SystemClock.elapsedRealtime() - chronometer.getBase();
             int duracionMin = Math.round(elapsed / 60000f); // convierte a minutos y redondea

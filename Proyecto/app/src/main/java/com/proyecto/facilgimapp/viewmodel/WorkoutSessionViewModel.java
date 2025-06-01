@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.model.dto.EjercicioDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
@@ -53,7 +54,7 @@ public class WorkoutSessionViewModel extends AndroidViewModel {
         if (workoutDTO.getUsuario() == null || workoutDTO.getUsuario().getIdUsuario() == null
                 || workoutDTO.getTipoEntrenamiento() == null)
         {
-            errorMessage.setValue("Faltan datos obligatorios para guardar el entrenamiento.");
+            errorMessage.setValue(getApplication().getString(R.string.error_campos_vacios));
             return;
         }
 
@@ -62,13 +63,13 @@ public class WorkoutSessionViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<EntrenamientoDTO> call, Response<EntrenamientoDTO> response) {
                 if (!response.isSuccessful() || response.body() == null) {
-                    errorMessage.setValue("Error al guardar el entrenamiento.");
+                    errorMessage.setValue(getApplication().getString(R.string.error_guardar_entrenamiento));
                 }
             }
 
             @Override
             public void onFailure(Call<EntrenamientoDTO> call, Throwable t) {
-                errorMessage.setValue("Error al guardar el entrenamiento: " + t.getMessage());
+                errorMessage.setValue(R.string.error_guardar_entrenamiento+": " + t.getMessage());
             }
         });
     }

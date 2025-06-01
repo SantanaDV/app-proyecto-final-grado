@@ -1,4 +1,3 @@
-// com/proyecto/facilgimapp/ui/user/ChangePasswordFragment.java
 package com.proyecto.facilgimapp.ui.user;
 
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentSecuritySettingsBinding;
 import com.proyecto.facilgimapp.util.PasswordValidator;
 import com.proyecto.facilgimapp.util.SessionManager;
@@ -43,10 +43,10 @@ public class ChangePasswordFragment extends Fragment {
         viewModel.currentValid().observe(getViewLifecycleOwner(), valid -> {
             if (valid == null) return;
             if (valid) {
-                // Si actual OK, lanzamos cambio
+                // Si actual es OK, lanzamos cambio
                 doChangePassword();
             } else {
-                binding.etCurrentPassword.setError("Contraseña actual incorrecta");
+                binding.etCurrentPassword.setError(getString(R.string.error_invalid_password));
             }
         });
 
@@ -55,14 +55,14 @@ public class ChangePasswordFragment extends Fragment {
             if (changed == null) return;
             if (changed) {
                 Toast.makeText(requireContext(),
-                        "Contraseña actualizada con éxito",
+                        R.string.password_updated,
                         Toast.LENGTH_SHORT).show();
                 binding.etCurrentPassword.setText("");
                 binding.etNewPassword    .setText("");
                 binding.etConfirmPassword.setText("");
             } else {
                 Toast.makeText(requireContext(),
-                        "Error al actualizar la contraseña",
+                        R.string.error_password_change,
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -71,7 +71,7 @@ public class ChangePasswordFragment extends Fragment {
     }
 
     private void attemptChange() {
-        // Limpiar errores
+        // Limpiamos los errores
         binding.etCurrentPassword.setError(null);
         binding.etNewPassword    .setError(null);
         binding.etConfirmPassword.setError(null);
@@ -80,32 +80,32 @@ public class ChangePasswordFragment extends Fragment {
         String next    = binding.etNewPassword    .getText().toString().trim();
         String confirm = binding.etConfirmPassword.getText().toString().trim();
 
-        // 1) campos no vacíos
+        // campos no vacíos
         if (TextUtils.isEmpty(current)
                 || TextUtils.isEmpty(next)
                 || TextUtils.isEmpty(confirm)) {
             Toast.makeText(requireContext(),
-                    "Todos los campos son obligatorios",
+                    R.string.error_required_fields,
                     Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // 2) nueva == confirm
+        // nueva tiene que ser igual a confirm
         if (!next.equals(confirm)) {
             binding.etConfirmPassword
-                    .setError("No coincide con la nueva contraseña");
+                    .setError(getString(R.string.error_passwords_not_match));
             return;
         }
 
-        // 3) regex
+        //  regex para comprobar que la contraseña cumple con los requisitos
         if (!PasswordValidator.isValid(next)) {
             binding.etNewPassword.setError(
-                    "8–15 caracteres, dígito, mayúscula, minúscula, especial y sin espacios"
+                    getString(R.string.error_invalid_password)
             );
             return;
         }
 
-        // 4) validamos la actual contra el backend
+        //  validamos la actual contra el backend
         viewModel.validateCurrentPassword(username, current);
     }
 

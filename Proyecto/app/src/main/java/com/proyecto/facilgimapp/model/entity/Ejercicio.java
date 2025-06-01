@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import java.util.Objects;
 
+
 public class Ejercicio {
     @SerializedName("idEjercicio")
     private Integer idEjercicio;
@@ -14,7 +15,6 @@ public class Ejercicio {
     @Nullable
     private String imagenUrl;
 
-    // Opcional: lista de series asociadas
     private List<Serie> series;
 
     public Integer getIdEjercicio() {

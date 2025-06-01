@@ -75,7 +75,7 @@ public class RelationAdapter
                 ivThumb.setImageResource(R.drawable.placeholder);
             }
 
-            // Chips de series…
+            // Chips de series
             chipGroup.removeAllViews();
             for (SerieDTO s : dto.getSeries()) {
                 Chip c = new Chip(chipGroup.getContext());
@@ -84,7 +84,9 @@ public class RelationAdapter
                 chipGroup.addView(c);
             }
 
-            tvSeriesCount.setText(dto.getSeries().size() + " series");
+            int count = dto.getSeries().size();
+            String sufijo = itemView.getContext().getString(R.string.series_count);
+            tvSeriesCount.setText(count + " " + sufijo);
         }
     }
 

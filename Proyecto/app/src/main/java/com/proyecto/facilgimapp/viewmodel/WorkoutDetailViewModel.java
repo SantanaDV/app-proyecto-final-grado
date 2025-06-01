@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.model.entity.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
@@ -49,18 +50,17 @@ public class WorkoutDetailViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Entrenamiento> call, Response<Entrenamiento> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Convertimos a DTO si lo necesitas, o adapta el tipo directamente
                     Entrenamiento entrenamiento = response.body();
                     EntrenamientoDTO dto = new EntrenamientoDTO(entrenamiento);
                     _workout.setValue(dto);
                 } else {
-                    errorMessage.setValue("No se encontró el entrenamiento.");
+                    errorMessage.setValue(getApplication().getString(R.string.error_cargar_entrenamiento));
                 }
             }
 
             @Override
             public void onFailure(Call<Entrenamiento> call, Throwable t) {
-                errorMessage.setValue("Error al cargar entrenamiento: " + t.getMessage());
+                errorMessage.setValue(R.string.error_cargar_entrenamiento+": " + t.getMessage());
             }
         });
     }
@@ -73,13 +73,13 @@ public class WorkoutDetailViewModel extends AndroidViewModel {
                 if (response.isSuccessful() && response.body() != null) {
                     _relations.setValue(response.body());
                 } else {
-                    errorMessage.setValue("Error al cargar los ejercicios del entrenamiento");
+                    errorMessage.setValue(getApplication().getString(R.string.error_cargar_ejercicios_entrenamiento));
                 }
             }
 
             @Override
             public void onFailure(Call<List<EntrenamientoEjercicioDTO>> call, Throwable t) {
-                errorMessage.setValue("Error al cargar los ejercicios del entrenamiento: " + t.getMessage());
+                errorMessage.setValue(R.string.error_cargar_ejercicios_entrenamiento+": " + t.getMessage());
             }
         });
     }

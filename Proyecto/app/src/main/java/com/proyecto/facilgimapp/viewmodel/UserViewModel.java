@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.model.dto.UsuarioDTO;
 import com.proyecto.facilgimapp.repository.UserRepository;
 
@@ -25,11 +26,11 @@ public class UserViewModel extends AndroidViewModel {
     private final MutableLiveData<List<UsuarioDTO>> _usuarios = new MutableLiveData<>();
     public LiveData<List<UsuarioDTO>> getUsers() { return _usuarios; }
 
-    // Resultado de validar contraseña actual
+    // Resultado de validar la contraseña actual
     private final MutableLiveData<Boolean> _currentValid = new MutableLiveData<>();
     public LiveData<Boolean> currentValid() { return _currentValid; }
 
-    // Resultado de cambiar contraseña
+    // Resultado de cambiar la contraseña
     private final MutableLiveData<Boolean> _changed = new MutableLiveData<>();
     public LiveData<Boolean> changed() { return _changed; }
 
@@ -37,7 +38,7 @@ public class UserViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> _opSuccess = new MutableLiveData<>();
     public LiveData<Boolean> opSuccess() { return _opSuccess; }
 
-    // Mensaje de error de operación (p. ej. “Usuario en uso”)
+    // Mensaje de error de operación
     private final MutableLiveData<String> _opError = new MutableLiveData<>();
     public LiveData<String> opError() { return _opError; }
 
@@ -70,7 +71,7 @@ public class UserViewModel extends AndroidViewModel {
                     _opSuccess.setValue(true);
                     loadUsers();
                 } else {
-                    String msg = "Error al crear usuario";
+                    String msg = getApplication().getString(R.string.error_create_user);
                     ResponseBody err = response.errorBody();
                     try { if (err != null) msg = err.string(); }
                     catch (IOException ignored) { }
@@ -79,7 +80,7 @@ public class UserViewModel extends AndroidViewModel {
                 }
             }
             @Override public void onFailure(Call<Void> call, Throwable t) {
-                _opError.setValue("Fallo de red: " + t.getMessage());
+                _opError.setValue( R.string.fallo_red+": " + t.getMessage());
                 _opSuccess.setValue(false);
             }
         });
@@ -94,12 +95,12 @@ public class UserViewModel extends AndroidViewModel {
                     _opSuccess.setValue(true);
                     loadUsers();
                 } else {
-                    _opError.setValue("Error al guardar cambios");
+                    _opError.setValue(getApplication().getString(R.string.error_guardar_cambios));
                     _opSuccess.setValue(false);
                 }
             }
             @Override public void onFailure(Call<UsuarioDTO> call, Throwable t) {
-                _opError.setValue("Fallo de red: " + t.getMessage());
+                _opError.setValue(R.string.fallo_red+": " + t.getMessage());
                 _opSuccess.setValue(false);
             }
         });
@@ -114,12 +115,12 @@ public class UserViewModel extends AndroidViewModel {
                     _opSuccess.setValue(true);
                     loadUsers();
                 } else {
-                    _opError.setValue("Error al eliminar usuario");
+                    _opError.setValue(getApplication().getString(R.string.error_eliminar_usuario));
                     _opSuccess.setValue(false);
                 }
             }
             @Override public void onFailure(Call<Void> call, Throwable t) {
-                _opError.setValue("Fallo de red: " + t.getMessage());
+                _opError.setValue(R.string.fallo_red+": " + t.getMessage());
                 _opSuccess.setValue(false);
             }
         });

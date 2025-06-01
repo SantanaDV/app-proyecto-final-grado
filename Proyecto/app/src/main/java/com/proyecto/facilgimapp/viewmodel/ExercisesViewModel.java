@@ -111,4 +111,6 @@ public class ExercisesViewModel extends AndroidViewModel {
                 });
     }
 
+
+
 }

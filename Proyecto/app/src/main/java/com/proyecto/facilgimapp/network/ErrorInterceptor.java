@@ -29,7 +29,7 @@ public class ErrorInterceptor implements Interceptor {
             // Si es la validación de contraseña, NO forzamos logout:
             String path = request.url().encodedPath();
             if (path.endsWith("/validate-password")) {
-                // devolvemos el 401 para que tu callback lo maneje
+                // devolvemos el 401 para que el callback lo maneje
                 return response;
             }
             // en cualquier otro caso, sí limpiamos sesión y redirigimos:

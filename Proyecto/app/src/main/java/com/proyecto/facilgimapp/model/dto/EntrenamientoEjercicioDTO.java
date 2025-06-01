@@ -1,4 +1,3 @@
-// src/main/java/com/proyecto/facilgimapp/model/dto/EntrenamientoEjercicioDTO.java
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;

@@ -36,10 +36,10 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 1) Usuario
+        //  Usuario
         binding.tvUsername.setText(SessionManager.getUsername(requireContext()));
 
-        // 2) RecyclerView + LayoutManager
+        // RecyclerView + LayoutManager
         binding.rvUserOptions.setLayoutManager(new LinearLayoutManager(requireContext()));
         adapter = new UserOptionsAdapter(
                 requireContext(),
@@ -48,7 +48,7 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
         );
         binding.rvUserOptions.setAdapter(adapter);
 
-        // 3) Switch tema sistema
+        //  Switch tema sistema
         boolean useSystem = PreferenceManager.isUseSystemTheme(requireContext());
         binding.switchUseSystemTheme.setChecked(useSystem);
         applyDarkMode(useSystem);
@@ -58,7 +58,7 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
             requireActivity().recreate();
         });
 
-        // 4) Cerrar sesión
+        //  Cerrar sesión
         binding.btnLogout.setOnClickListener(v -> {
             SessionManager.clearLoginOnly(requireContext());
             Toast.makeText(requireContext(),
@@ -92,13 +92,13 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
         return opts;
     }
 
-    // --- Callbacks from adapter ---
+    // Callbacks del adapter
     @Override public void onDarkModeToggled(boolean on) {
         // Al cambiar manualmente el modo oscuro desactivamos el usar tema del sistema
         PreferenceManager.setUseSystemTheme(requireContext(), false);
         binding.switchUseSystemTheme.setChecked(false);
 
-        // 2) Guardamos el dark mode y recreamos
+        // Guardamos el dark mode y recreamos
         PreferenceManager.setDarkMode(requireContext(), on);
         requireActivity().recreate();
     }
@@ -108,8 +108,9 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
         requireActivity().recreate();
     }
 
-    @Override public void onThemeColorSelected(int resId) {
-        PreferenceManager.setThemeColor(requireContext(), resId);
+    @Override
+    public void onThemeColorSelected(int idx) {
+        PreferenceManager.setThemeColorIndex(requireContext(), idx);
         requireActivity().recreate();
     }
     @Override public void onLanguageChanged(String code) {
@@ -124,18 +125,20 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_userFragment_to_adminUserFragment);
     }
-    @Override public void onClearPreferences() {
+    @Override
+    public void onClearPreferences() {
         PreferenceManager.clearAll(requireContext());
-        // restablecer valores por defecto:
         PreferenceManager.setUseSystemTheme(requireContext(), true);
         PreferenceManager.setLanguage(requireContext(), "es");
         PreferenceManager.setFontSize(requireContext(), 2);
-        PreferenceManager.setThemeColor(requireContext(), R.drawable.circle_blue);
+        // restablece al índice 0
+        PreferenceManager.setThemeColorIndex(requireContext(), 0);
         applyDarkMode(true);
         Toast.makeText(requireContext(),
                 R.string.preferencias_restablecidas, Toast.LENGTH_SHORT).show();
         requireActivity().recreate();
     }
+
 
     @Override
     public void onDestroyView() {

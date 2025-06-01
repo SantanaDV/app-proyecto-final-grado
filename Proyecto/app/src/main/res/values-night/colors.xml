@@ -3,10 +3,43 @@
     <!-- Primary / Secondary en modo noche -->
     <color name="blue_primary">#90CAF9</color>
     <color name="colorOnPrimary">#000000</color>
-
+    <color name="backgroundCardView">#121212</color>
     <!-- Fondo y superficie en modo noche -->
     <color name="colorBackground">#121212</color>
+    <color name="colorFragmentBackground">#2C2B2B</color>
     <color name="colorOnBackground">#E0E0E0</color>
     <color name="colorSurface">#1E1E1E</color>
     <color name="colorOnSurface">#FFFFFF</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="green_700">#388E3C</color>
+    <color name="green_900">#1B5E20</color>
+    <color name="green_200">#A5D6A7</color>
+
+
+
+    <color name="blue_500">#2196F3</color>
+    <color name="blue_700">#1976D2</color>
+    <color name="blue_600">#1E88E5</color>
+    <color name="blue_900">#0D47A1</color>
+    <color name="blue_200">#90CAF9</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#00796B</color>
+    <color name="teal_500">#009688</color>
+
+    <color name="red_200">#EF9A9A</color>
+    <color name="red_500">#F44336</color>
+    <color name="red_700">#D32F2F</color>
+    <color name="red_900">#B71C1C</color>
+
+    <color name="yellow_500">#FFEB3B</color>
+    <color name="yellow_700">#FBC02D</color>
+    <color name="yellow_200">#FFF59D</color>
+    <color name="yellow_900">#F57F17</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="purple_200">#C36CF6</color>
+    <color name="purple_500">#9C27B0</color>
+    <color name="purple_700">#A412F6</color>
 </resources>

@@ -100,6 +100,7 @@ public class AdminUsersFragment extends Fragment implements UserAdapter.OnUserIn
             String name   = dlgB.etNombre  .getText().toString().trim();
             String last   = dlgB.etApellido.getText().toString().trim();
             String pass   = dlgB.etPassword.getText().toString();
+            String street = dlgB.etDireccion.getText().toString();
             boolean isAdmin = dlgB.switchAdmin.isChecked();
 
             boolean ok = true;
@@ -138,6 +139,7 @@ public class AdminUsersFragment extends Fragment implements UserAdapter.OnUserIn
             dto.setApellido(last);
             dto.setPassword(pass);
             dto.setAdmin(isAdmin);
+            dto.setDireccion(street);
 
             viewModel.addUser(dto);
         });
@@ -154,6 +156,7 @@ public class AdminUsersFragment extends Fragment implements UserAdapter.OnUserIn
         dlgB.etApellido .setText(user.getApellido());
         dlgB.etPassword .setVisibility(View.GONE);
         dlgB.switchAdmin.setChecked(user.isAdmin());
+        dlgB.etDireccion.setText(user.getDireccion());
         dlgB.switchAdmin.setText(R.string.hint_grant_admin);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
@@ -170,6 +173,7 @@ public class AdminUsersFragment extends Fragment implements UserAdapter.OnUserIn
             String email    = dlgB.etEmail   .getText().toString().trim();
             String name     = dlgB.etNombre  .getText().toString().trim();
             String last     = dlgB.etApellido.getText().toString().trim();
+            String street     = dlgB.etDireccion.getText().toString();
             boolean isAdmin = dlgB.switchAdmin.isChecked();
 
             boolean ok = true;
@@ -201,6 +205,7 @@ public class AdminUsersFragment extends Fragment implements UserAdapter.OnUserIn
             dto.setNombre(name);
             dto.setApellido(last);
             dto.setAdmin(isAdmin);
+            dto.setDireccion(street);
 
             viewModel.updateUser(user.getIdUsuario(), dto);
         });

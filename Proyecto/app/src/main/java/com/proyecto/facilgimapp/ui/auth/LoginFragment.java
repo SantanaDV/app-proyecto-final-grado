@@ -53,7 +53,7 @@ public class LoginFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
-        // Rellenar campos si las credenciales guardadas existen
+        // Rellena los campos si las credenciales guardadas existen
         String savedUser = SessionManager.getSavedUsername(requireContext());
         String savedPass = SessionManager.getSavedPassword(requireContext());
         if (savedUser != null && savedPass != null) {
@@ -88,7 +88,7 @@ public class LoginFragment extends Fragment {
                             }
 
                             Toast.makeText(requireContext(),
-                                    resp.getMensaje(),
+                                    R.string.login_success,
                                     Toast.LENGTH_SHORT).show();
                             // Navegar al Home
 
@@ -103,7 +103,7 @@ public class LoginFragment extends Fragment {
                                                 .build()
                                 );
                             } else {
-                                Toast.makeText(requireContext(), "No se ha podido navegar", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireContext(), R.string.no_podido_navegar, Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             Toast.makeText(requireContext(),

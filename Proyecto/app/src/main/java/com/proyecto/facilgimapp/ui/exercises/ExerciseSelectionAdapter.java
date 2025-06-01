@@ -20,6 +20,14 @@ public class ExerciseSelectionAdapter
     private final List<EjercicioDTO> exercises = new ArrayList<>();
     private final List<Integer> selectedIds = new ArrayList<>();
 
+    /** Permite inicializar el estado “marcado” cuando reaparece el fragment */
+    public void setInitiallySelectedIds(List<Integer> ids) {
+        selectedIds.clear();
+        if (ids != null) selectedIds.addAll(ids);
+        notifyDataSetChanged();
+    }
+
+
     public void setExercises(List<EjercicioDTO> list) {
         exercises.clear();
         exercises.addAll(list);

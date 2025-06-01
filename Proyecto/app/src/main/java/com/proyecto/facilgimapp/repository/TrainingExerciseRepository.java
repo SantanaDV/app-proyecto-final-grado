@@ -1,4 +1,3 @@
-// com.proyecto.facilgimapp.repository.TrainingExerciseRepository
 package com.proyecto.facilgimapp.repository;
 
 import android.content.Context;

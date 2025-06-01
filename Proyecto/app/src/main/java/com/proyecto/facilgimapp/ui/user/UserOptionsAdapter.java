@@ -25,7 +25,7 @@ public class UserOptionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public interface Listener {
         void onDarkModeToggled(boolean on);
         void onFontSizeChanged(int size);
-        void onThemeColorSelected(int resId);
+        void onThemeColorSelected(int idx);
         void onLanguageChanged(String languageCode);
         void onChangePassword();
         void onManageUsers();
@@ -146,23 +146,26 @@ public class UserOptionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
     class ThemeVH extends RecyclerView.ViewHolder {
-        private final View green, blue, yellow;
+        private final View opt1, opt2, opt3;
         ThemeVH(View v) {
             super(v);
-            green  = v.findViewById(R.id.colorGreen);
-            blue   = v.findViewById(R.id.colorBlue);
-            yellow = v.findViewById(R.id.colorYellow);
+            opt1 = v.findViewById(R.id.colorOption1);
+            opt2 = v.findViewById(R.id.colorOption2);
+            opt3 = v.findViewById(R.id.colorOption3);
         }
         void bind() {
-            int sel = PreferenceManager.getThemeColor(ctx);
-            green .setAlpha(sel==R.drawable.circle_green   ? 1f : 0.5f);
-            blue  .setAlpha(sel==R.drawable.circle_blue    ? 1f : 0.5f);
-            yellow.setAlpha(sel==R.drawable.circle_yellow  ? 1f : 0.5f);
-            green .setOnClickListener(v -> listener.onThemeColorSelected(R.drawable.circle_green));
-            blue  .setOnClickListener(v -> listener.onThemeColorSelected(R.drawable.circle_blue));
-            yellow.setOnClickListener(v -> listener.onThemeColorSelected(R.drawable.circle_yellow));
+            int sel = PreferenceManager.getThemeColorIndex(itemView.getContext());
+            View[] opts = { opt1, opt2, opt3 };
+            for (int i = 0; i < opts.length; i++) {
+                opts[i].setAlpha(sel == i ? 1f : 0.5f);
+                final int idx = i;
+                opts[i].setOnClickListener(v ->
+                        listener.onThemeColorSelected(idx)
+                );
+            }
         }
     }
+
 
     class LangVH extends RecyclerView.ViewHolder {
         private final ImageView es, en;

@@ -78,10 +78,7 @@ public class WorkoutsFragment extends Fragment {
 
         int userId = SessionManager.getUserId(requireContext());
         vm.loadWorkoutsByUserId(userId);
-
-        // Agrega aquí la configuración del menú (filtro)
         configurarMenu();
-
         return b.getRoot();
     }
 
@@ -90,7 +87,7 @@ public class WorkoutsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Botón + Nuevo entrenamiento
+        // Botón Nuevo entrenamiento
         b.fabNewWorkout.setOnClickListener(v ->
                 Navigation.findNavController(v)
                         .navigate(R.id.action_workoutsFragment_to_newWorkoutFragment)
@@ -114,7 +111,7 @@ public class WorkoutsFragment extends Fragment {
                 androidx.appcompat.widget.SearchView searchView =
                         (androidx.appcompat.widget.SearchView) searchItem.getActionView();
 
-                searchView.setQueryHint(String.valueOf(R.string.buscar_entrenamientos));
+                searchView.setQueryHint(getString(R.string.buscar_entrenamientos));
                 searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
                     @Override public boolean onQueryTextSubmit(String query) { return false; }
 
@@ -145,7 +142,7 @@ public class WorkoutsFragment extends Fragment {
         new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.eliminar)
                 .setMessage(R.string.eliminar_entrenamiento)
-                .setPositiveButton("Sí", (dialog, which) -> {
+                .setPositiveButton(R.string.si, (dialog, which) -> {
                     vm.deleteWorkout(workout.getId(), () -> {
                         Toast.makeText(getContext(), R.string.eliminado, Toast.LENGTH_SHORT).show();
                         vm.loadWorkoutsByUserId(SessionManager.getUserId(requireContext()));
@@ -158,10 +155,10 @@ public class WorkoutsFragment extends Fragment {
     }
 
     private void editarWorkout(EntrenamientoDTO workout) {
-        // 1) Cargar relaciones ejercicios-series
+        // Carga las relaciones ejercicios-series
         vm.loadWorkoutRelations(workout.getId(), relaciones -> {
             workout.setEntrenamientosEjercicios(relaciones);
-            // preparar lista ids (igual que ahora)…
+            // prepara la lista ids
             List<Integer> ids = new ArrayList<>();
             for (EntrenamientoEjercicioDTO rel : relaciones) {
                 if (rel.getEjercicio() != null && rel.getEjercicio().getIdEjercicio() != null) {
@@ -170,10 +167,10 @@ public class WorkoutsFragment extends Fragment {
             }
             workout.setEjerciciosId(ids);
 
-            // 2) Observamos la lista de tipos (puede que ya esté cargada)
+            // Observamos la lista de tipos
             typeVm.getTypes().observe(getViewLifecycleOwner(), tipos -> {
                 if (tipos != null && !tipos.isEmpty()) {
-                    // 3) Llamamos al diálogo pasando workout + tipos
+                    // Llamamos al diálogo pasando workout + tipos
                     EditWorkoutDialog.show(this, workout, tipos, updatedWorkout -> {
                         vm.updateWorkout(updatedWorkout.getId(), updatedWorkout,
                                 () -> {

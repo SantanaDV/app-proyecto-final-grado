@@ -37,7 +37,7 @@ public class EditWorkoutDialog {
         View root = LayoutInflater.from(parent.requireContext())
                 .inflate(R.layout.dialog_edit_workout_extended, null);
 
-        // 1) Referencias
+        //  Referencias
         EditText etNombre      = root.findViewById(R.id.etNombre);
         EditText etDescripcion = root.findViewById(R.id.etDescripcion);
         EditText etDuracion    = root.findViewById(R.id.etDuracion);
@@ -46,13 +46,13 @@ public class EditWorkoutDialog {
         Spinner spinnerTipo    = root.findViewById(R.id.spinnerTipo);
         LinearLayout llExercises = root.findViewById(R.id.llExercisesContainer);
 
-        // 2) Rellenar datos
+        //  Rellenar datos
         etNombre.setText(workout.getNombre());
         etDescripcion.setText(workout.getDescripcion());
         etDuracion.setText(String.valueOf(workout.getDuracion()));
         etFecha.setText(workout.getFechaEntrenamiento().toString());
 
-        // 3) DatePicker
+        //  DatePicker
         etFecha.setFocusable(false);
         etFecha.setClickable(true);
         etFecha.setOnClickListener(v -> {
@@ -69,7 +69,7 @@ public class EditWorkoutDialog {
             dp.show();
         });
 
-        // 4) Spinner de tipos
+        //  Spinner de tipos
         List<String> nombres = new ArrayList<>();
         for (TipoEntrenamientoDTO t : tipos) nombres.add(t.getNombre());
         ArrayAdapter<String> spAdapter = new ArrayAdapter<>(
@@ -87,7 +87,7 @@ public class EditWorkoutDialog {
             }
         }
 
-        // 5) Inflar cada ejercicio + sus series
+        // Inflar cada ejercicio + sus series
         LayoutInflater inf = LayoutInflater.from(parent.requireContext());
         for (EntrenamientoEjercicioDTO rel : workout.getEntrenamientosEjercicios()) {
             View ev = inf.inflate(R.layout.item_edit_ejercicio, llExercises, false);
@@ -100,11 +100,11 @@ public class EditWorkoutDialog {
             llExercises.addView(ev);
         }
 
-        // 6) Botones del diálogo
+        //  Botones del diálogo
         new AlertDialog.Builder(parent.requireContext())
-                .setTitle("Editar entrenamiento")
+                .setTitle(R.string.editar_entrenamiento)
                 .setView(root)
-                .setPositiveButton("Guardar", (dlg, which) -> {
+                .setPositiveButton(R.string.action_save, (dlg, which) -> {
                     try {
                         // Leer campos
                         workout.setNombre(etNombre.getText().toString().trim());
@@ -116,7 +116,7 @@ public class EditWorkoutDialog {
                                 tipos.get(spinnerTipo.getSelectedItemPosition())
                         );
 
-                        // **LIMPIAR IDs** para que JPA inserte nuevas relaciones
+                        // Limpiar los ids para que JPA inserte nuevas relaciones
                         for (EntrenamientoEjercicioDTO rel : workout.getEntrenamientosEjercicios()) {
                             rel.setId(null);
                             for (SerieDTO s : rel.getSeries()) {
@@ -129,10 +129,10 @@ public class EditWorkoutDialog {
 
                     } catch (Exception e) {
                         Toast.makeText(parent.requireContext(),
-                                "Datos inválidos", Toast.LENGTH_SHORT).show();
+                                R.string.error_actualizar, Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 }

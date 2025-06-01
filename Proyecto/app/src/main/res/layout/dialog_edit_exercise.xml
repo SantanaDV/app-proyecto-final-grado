@@ -8,7 +8,7 @@
         android:id="@+id/etNombreEjercicio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre del ejercicio" />
+        android:hint="@string/nombre_del_ejercicio" />
 
     <ImageView
         android:id="@+id/ivImagenPreview"
@@ -22,6 +22,6 @@
         android:id="@+id/btnCargarImagen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seleccionar imagen"
+        android:text="@string/seleccionar_imagen"
         android:layout_marginTop="8dp" />
 </LinearLayout>

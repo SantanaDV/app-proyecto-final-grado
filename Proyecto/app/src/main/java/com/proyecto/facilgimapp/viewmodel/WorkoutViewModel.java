@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.model.entity.Entrenamiento;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoDTO;
 import com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO;
@@ -40,25 +41,27 @@ public class WorkoutViewModel extends AndroidViewModel {
         repo = new WorkoutRepository(application.getApplicationContext());
     }
 
-    /** Método modificado para recibir el usuarioId y cargar solo los entrenamientos del usuario */
+    /**
+     * Método modificado para recibir el usuarioId y cargar solo los entrenamientos del usuario
+     */
     public void loadWorkoutsByUserId(int userId) {
         repo.getWorkoutsByUserId(userId).enqueue(new Callback<List<EntrenamientoDTO>>() {
             @Override
             public void onResponse(Call<List<EntrenamientoDTO>> call, Response<List<EntrenamientoDTO>> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                     _workouts.setValue(response.body());
-                    Log.d("DEBUG", "Entrenamientos cargados: " + response.body());  // Aquí
+                    Log.d("DEBUG", "Entrenamientos cargados: " + response.body());
 
                 } else {
                     _workouts.setValue(Collections.emptyList());
-                    errorMessage.setValue("No se encontraron entrenamientos para este usuario.");
+                    errorMessage.setValue(getApplication().getString(R.string.error_cargar_entrenamientos));
                 }
             }
 
             @Override
             public void onFailure(Call<List<EntrenamientoDTO>> call, Throwable t) {
                 _workouts.setValue(Collections.emptyList());
-                errorMessage.setValue("Error al cargar los entrenamientos: " + t.getMessage());
+                errorMessage.setValue(R.string.error_cargar_entrenamientos + ": " + t.getMessage());
             }
         });
     }
@@ -70,14 +73,14 @@ public class WorkoutViewModel extends AndroidViewModel {
                 if (response.isSuccessful()) {
                     onSuccess.run();
                 } else {
-                    errorMessage.setValue("Error del servidor al eliminar.");
+                    errorMessage.setValue(getApplication().getString(R.string.error_eliminar_entrenamiento));
                     onFailure.run();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                errorMessage.setValue("Error al eliminar el entrenamiento: " + t.getMessage());
+                errorMessage.setValue(R.string.error_eliminar_entrenamiento + ": " + t.getMessage());
                 onFailure.run();
             }
         });
@@ -90,14 +93,14 @@ public class WorkoutViewModel extends AndroidViewModel {
                 if (response.isSuccessful()) {
                     onSuccess.run();
                 } else {
-                    errorMessage.setValue("Error del servidor al actualizar.");
+                    errorMessage.setValue(getApplication().getString(R.string.error_actualizar_entrenamiento));
                     onFailure.run();
                 }
             }
 
             @Override
             public void onFailure(Call<Entrenamiento> call, Throwable t) {
-                errorMessage.setValue("Error de red al actualizar: " + t.getMessage());
+                errorMessage.setValue( R.string.error_actualizar_entrenamiento + ": " + t.getMessage());
                 onFailure.run();
             }
         });

@@ -10,25 +10,25 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class FileUtils {
-    public static File copyUriToFile(Context context, Uri uri) {
-        try {
-            InputStream inputStream = context.getContentResolver().openInputStream(uri);
-            File tempFile = File.createTempFile("image", ".jpg", context.getCacheDir());
-            tempFile.deleteOnExit();
-            OutputStream outputStream = new FileOutputStream(tempFile);
+    /**
+     * Copia el contenido de un Uri a un fichero local (en cacheDir),
+     * usando el nombre deseado (desiredName), que ya incluye su extensión.
+     */
+    public static File copyUriToFile(Context ctx, Uri uri, String desiredName) {
+        File dest = new File(ctx.getCacheDir(), desiredName);
+        try (InputStream is = ctx.getContentResolver().openInputStream(uri);
+             FileOutputStream fos = new FileOutputStream(dest)) {
 
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, length);
+            byte[] buf = new byte[4096];
+            int len;
+            while ((len = is.read(buf)) > 0) {
+                fos.write(buf, 0, len);
             }
-
-            inputStream.close();
-            outputStream.close();
-            return tempFile;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
+        return dest;
     }
+
 }

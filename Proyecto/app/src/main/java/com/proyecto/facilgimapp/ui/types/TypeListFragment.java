@@ -54,10 +54,10 @@ public class TypeListFragment extends Fragment implements TypeAdapter.OnTypeInte
         EditText etName = dialogView.findViewById(R.id.etTypeName);
         if (editType != null) etName.setText(editType.getNombre());
 
-        builder.setTitle(editType == null ? "Nuevo tipo" : "Editar tipo")
+        builder.setTitle(editType == null ? getString(R.string.nuevo_tipo) : getString(R.string.editar_tipo))
                 .setView(dialogView)
-                .setPositiveButton(editType == null ? "Crear" : "Guardar", null) // ← manejamos el click después
-                .setNegativeButton("Cancelar", null);
+                .setPositiveButton(editType == null ? getString(R.string.crear) : getString(R.string.action_save), null) // ← manejamos el click después
+                .setNegativeButton(getString(R.string.action_cancel), null);
 
         AlertDialog dialog = builder.create();
 
@@ -66,16 +66,16 @@ public class TypeListFragment extends Fragment implements TypeAdapter.OnTypeInte
                 String name = etName.getText().toString().trim();
 
                 if (name.isEmpty()) {
-                    etName.setError("Este campo es obligatorio");
+                    etName.setError(getString(R.string.error_required));
                     return;
                 }
 
                 if (editType == null) {
                     viewModel.addType(name);
-                    Toast.makeText(requireContext(), "Tipo creado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.tipo_creado, Toast.LENGTH_SHORT).show();
                 } else {
                     viewModel.updateType(editType.getId(), name);
-                    Toast.makeText(requireContext(), "Tipo actualizado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.tipo_actualizado, Toast.LENGTH_SHORT).show();
                 }
 
                 dialog.dismiss(); // Cierra el diálogo sólo si la validación es correcta
@@ -94,13 +94,13 @@ public class TypeListFragment extends Fragment implements TypeAdapter.OnTypeInte
     @Override
     public void onDelete(TipoEntrenamientoDTO type) {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Eliminar tipo")
-                .setMessage("¿Eliminar “" + type.getNombre() + "”?")
-                .setPositiveButton("Eliminar", (d, w) -> {
+                .setTitle(R.string.eliminar_tipo)
+                .setMessage("¿" + getString(R.string.eliminar) + " “" + type.getNombre() + "”?")
+                .setPositiveButton(getString(R.string.eliminar), (d, w) -> {
                     viewModel.deleteType(type.getId(), new TypeViewModel.DeletionCallback() {
                         @Override
                         public void onSuccess() {
-                            Toast.makeText(requireContext(), "Tipo eliminado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), R.string.tipo_eliminado_correctamente, Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -109,7 +109,7 @@ public class TypeListFragment extends Fragment implements TypeAdapter.OnTypeInte
                         }
                     });
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }
 

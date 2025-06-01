@@ -3,7 +3,7 @@
     <!-- Aplica a toda la app -->
     <base-config>
         <trust-anchors>
-            <!-- sigue confiando en los CAs del sistema -->
+            <!--  confia en los CAs del sistema -->
             <certificates src="system" />
             <!-- añade el CA embebida -->
             <certificates src="@raw/ca" />

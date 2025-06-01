@@ -34,7 +34,7 @@ public class AuthViewModel extends AndroidViewModel {
         repository = new AuthRepository(app.getApplicationContext());
     }
 
-    /** Observa el resultado del login: éxito ⇒ LoginResponse, fallo ⇒ null */
+    /** Observa el resultado del login: éxito = LoginResponse, fallo =  null */
     public LiveData<LoginResponse> login(LoginRequest req) {
         repository.login(req).enqueue(new Callback<LoginResponse>() {
             @Override
@@ -64,10 +64,10 @@ public class AuthViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<UsuarioDTO> call, Response<UsuarioDTO> resp) {
                 if (resp.isSuccessful()) {
-                    // Registro OK → emitimos el cuerpo
+                    // Registro OK, entonces emitimos el cuerpo
                     result.setValue(resp.body());
                 } else {
-                    // Registro FALLIDO → extraemos mensaje del errorBody
+                    // Registro FALLIDO, entonces extraemos mensaje del errorBody
                     String msg;
                     try {
                         msg = (resp.errorBody() != null)
@@ -82,7 +82,7 @@ public class AuthViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(Call<UsuarioDTO> call, Throwable t) {
-                // Error de red o excepción  lo publicamos también
+                // Error de red o excepción  lo mostramos tambien
                 registerError.setValue(t.getMessage());
                 result.setValue(null);
             }
@@ -91,7 +91,7 @@ public class AuthViewModel extends AndroidViewModel {
         return result;
     }
 
-    /** Para que tu Fragment observe posibles mensajes de error del registro */
+    /** Para que el Fragment observe posibles mensajes de error del registro */
     public LiveData<String> getRegisterError() {
         return registerError;
     }

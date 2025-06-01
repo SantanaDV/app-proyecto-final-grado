@@ -35,7 +35,6 @@ public class UserRepository {
         return apiService.updateUser(id, dto);
     }
 
-    // Métodos nuevos para actualizar nombre y contraseña
     public Call<UsuarioDTO> updateUsername(int id, String newUsername) {
         UsuarioDTO dto = new UsuarioDTO();
         dto.setIdUsuario(id);

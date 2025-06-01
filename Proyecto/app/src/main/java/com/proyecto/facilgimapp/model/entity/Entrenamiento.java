@@ -24,15 +24,22 @@ public class Entrenamiento {
 
     @SerializedName("duracion")
     private int duracion;
+    @SerializedName("tipoEntrenamiento")
+    private TipoEntrenamiento tipoEntrenamiento;
 
-    // Para poder mostrar el número de ejercicios en la UI (rellenarás esto tras hacer GET a ejercicios)
+    public TipoEntrenamiento getTipoEntrenamiento() {
+        return tipoEntrenamiento;
+    }
+    public void setTipoEntrenamiento(TipoEntrenamiento tipoEntrenamiento) {
+        this.tipoEntrenamiento = tipoEntrenamiento;
+    }
+
     private List<Ejercicio> ejercicios = new ArrayList<>();
 
     public Integer getIdEntrenamiento() {
         return idEntrenamiento;
     }
 
-    /** Conveniencia para usar getId() en ViewModels */
     public Integer getId() {
         return idEntrenamiento;
     }
@@ -65,7 +72,6 @@ public class Entrenamiento {
         this.fechaEntrenamiento = fechaEntrenamiento;
     }
 
-    /** Para formatear la duración en minutos en la UI */
     public int getDuracionMinutos() {
         return duracion;
     }

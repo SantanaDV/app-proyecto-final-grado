@@ -13,13 +13,13 @@ public class NetworkErrorInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         try {
             Response resp = chain.proceed(chain.request());
-            // Si queremos también detectar códigos >= 500:
+            // Si queremos también detectar códigos >= 500
              if (resp.code() >= 500) ConnectionState.get().postDown();
             ConnectionState.get().postUp();
             return resp;
         } catch (IOException e) {
             ConnectionState.get().postDown();
-            throw e;  // vuelve a lanzar para que Retrofit/Glide lo reciba
+            throw e;
         }
     }
 }

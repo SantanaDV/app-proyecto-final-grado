@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data/>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="@dimen/bottom_navigation_height"
         android:background="@color/colorFragmentBackground"
-        android:padding="16dp">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Contenedor único para logo + estadísticas -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/image_container_background"
                 android:padding="16dp"
-                app:cardElevation="4dp"
+                android:background="@drawable/image_container_background"
                 app:cardCornerRadius="8dp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:cardElevation="4dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -31,109 +37,120 @@
                     android:orientation="vertical"
                     android:gravity="center">
 
-                    <!-- Logo centrado -->
                     <ImageView
                         android:id="@+id/ivLogo"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:layout_marginBottom="16dp"
                         android:contentDescription="@string/app_logo"
-                        android:src="@drawable/ic_logo"
-                        android:layout_marginBottom="16dp"/>
+                        android:src="@drawable/ic_logo" />
 
-                    <!-- Fila de estadísticas -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="3">
 
-                        <!-- Exercises -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="8dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
+                            android:background="@drawable/image_container_background"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="8dp">
 
                             <TextView
                                 android:id="@+id/tvCountExercises"
+                                style="@style/TextAppearance.MaterialComponents.Headline5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/TextAppearance.MaterialComponents.Headline5"
-                                android:text="0"/>
+                                android:text="0" />
 
                             <TextView
+                                style="@style/TextAppearance.MaterialComponents.Body2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/TextAppearance.MaterialComponents.Body2"
-                                android:text="@string/total_exercises"
-                                android:layout_marginTop="4dp"/>
+                                android:layout_marginTop="4dp"
+                                android:text="@string/total_exercises" />
+
                         </LinearLayout>
 
-                        <!-- Workouts -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="8dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
+                            android:background="@drawable/image_container_background"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="8dp">
 
                             <TextView
                                 android:id="@+id/tvCountWorkouts"
+                                style="@style/TextAppearance.MaterialComponents.Headline5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/TextAppearance.MaterialComponents.Headline5"
-                                android:text="0"/>
+                                android:text="0" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
                                 style="@style/TextAppearance.MaterialComponents.Body2"
-                                android:text="@string/total_workouts"
-                                android:layout_marginTop="4dp"/>
+                                android:layout_width="102dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/total_workouts" />
+
                         </LinearLayout>
 
-                        <!-- Types -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="8dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
+                            android:background="@drawable/image_container_background"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="8dp">
 
                             <TextView
                                 android:id="@+id/tvCountTypes"
+                                style="@style/TextAppearance.MaterialComponents.Headline5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/TextAppearance.MaterialComponents.Headline5"
-                                android:text="0"/>
+                                android:text="0" />
 
                             <TextView
+                                style="@style/TextAppearance.MaterialComponents.Body2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/TextAppearance.MaterialComponents.Body2"
-                                android:text="@string/total_types"
-                                android:layout_marginTop="4dp"/>
+                                android:layout_marginTop="4dp"
+                                android:text="@string/total_types" />
+
                         </LinearLayout>
+
                     </LinearLayout>
+
                 </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Título últimos ejercicios -->
             <TextView
                 android:id="@+id/tvTitleLatest"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/last_added_exercises"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@id/cardHeader"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:text="@string/last_added_exercises"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardHeader" />
 
-            <!-- Carrusel de ejercicios sin recorte -->
             <FrameLayout
                 android:id="@+id/latestContainer"
                 android:layout_width="0dp"
@@ -141,31 +158,30 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/image_container_background"
                 android:padding="8dp"
-                app:layout_constraintTop_toBottomOf="@id/tvTitleLatest"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleLatest">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvLatest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:clipToPadding="false"
-                    android:overScrollMode="never"/>
+                    android:orientation="horizontal"
+                    android:overScrollMode="never" />
+
             </FrameLayout>
 
-            <!-- Título calendario -->
             <TextView
                 android:id="@+id/tvCalendarTitle"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/calendario_de_entrenamientos"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@id/latestContainer"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:text="@string/calendario_de_entrenamientos"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/latestContainer" />
 
-            <!-- Calendario en su propio contenedor -->
             <FrameLayout
                 android:id="@+id/calendarContainer"
                 android:layout_width="0dp"
@@ -173,20 +189,23 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/image_container_background"
                 android:padding="8dp"
-                app:layout_constraintTop_toBottomOf="@id/tvCalendarTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCalendarTitle">
 
                 <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:mcv_showOtherDates="all"
-                    app:mcv_selectionColor="?attr/colorPrimary"
                     app:mcv_dateTextAppearance="@style/CalendarDateTextAppearance"
-                    app:mcv_weekDayTextAppearance="@style/CalendarWeekDayTextAppearance"/>
+                    app:mcv_selectionColor="?attr/colorPrimary"
+                    app:mcv_showOtherDates="all"
+                    app:mcv_weekDayTextAppearance="@style/CalendarWeekDayTextAppearance" />
+
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
-</layout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

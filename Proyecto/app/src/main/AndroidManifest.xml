@@ -17,6 +17,7 @@
         android:theme="@style/Theme.FacilGimApp"
         tools:targetApi="33">
         <activity android:name="com.proyecto.facilgimapp.ui.activities.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

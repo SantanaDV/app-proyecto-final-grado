@@ -11,7 +11,7 @@ public class PreferenceManager {
     private static final String PREFS_NAME           = "facilgim_prefs";
     private static final String KEY_DARK_MODE        = "dark_mode";
     private static final String KEY_FONT_SIZE        = "font_size";
-    private static final String KEY_THEME_COLOR      = "theme_color";
+    private static final String KEY_THEME_COLOR_IDX  = "theme_color_idx";
     private static final String KEY_LANGUAGE         = "language";
     private static final String KEY_USE_SYSTEM_THEME = "use_system_theme";
 
@@ -40,13 +40,13 @@ public class PreferenceManager {
     }
 
     /** 3) Theme Color (almacena el drawable o style id) */
-    public static int getThemeColor(Context ctx) {
-        // Por defecto usaremos el círculo azul
-        return prefs(ctx).getInt(KEY_THEME_COLOR, R.drawable.circle_blue);
+    public static int getThemeColorIndex(Context ctx) {
+        // 0 = primera opción, 1 = segunda, 2 = tercera; por defecto 0 = azul/light o teal/dark
+        return prefs(ctx).getInt(KEY_THEME_COLOR_IDX, 0);
     }
-    public static void setThemeColor(Context ctx, int resId) {
+    public static void setThemeColorIndex(Context ctx, int idx) {
         prefs(ctx).edit()
-                .putInt(KEY_THEME_COLOR, resId)
+                .putInt(KEY_THEME_COLOR_IDX, idx)
                 .apply();
     }
 
@@ -74,5 +74,6 @@ public class PreferenceManager {
     /** Limpia todas las preferencias */
     public static void clearAll(Context ctx) {
         prefs(ctx).edit().clear().apply();
+        setThemeColorIndex(ctx,0);
     }
 }

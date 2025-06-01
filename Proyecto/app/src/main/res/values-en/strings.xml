@@ -129,8 +129,10 @@
     <string name="entrenamiento">Workout</string>
     <string name="entrenamiento_no_disponible">Workout not available</string>
     <string name="nombre_del_entrenamiento">Workout name</string>
-    <string name="duraci_n_min">Duration (min)</string>
+    <string name="duraci_n_min">Duración %1$d (min)</string>
     <string name="fecha_yyyy_mm_dd">Date (YYYY-MM-DD)</string>
+    <string name="type_name_placeholder">–</string>
+
 
     <string name="option_change_password">Change password</string>
     <string name="option_manage_users">Manage users</string>
@@ -150,4 +152,94 @@
     <string name="nuevo_tipo">New type</string>
 
 
+    <!-- Labels and Actions -->
+    <string name="duraci_n_min_editar">Duration (min)</string>
+    <string name="action_edit">Edit</string>
+    <string name="title_edit_user">Edit User</string>
+    <string name="action_save">Save</string>
+    <string name="action_remove_admin">Revoke Admin</string>
+    <string name="hint_grant_admin">Grant admin role</string>
+    <string name="hint_last_name">Last Name</string>
+    <string name="error_required">This field is required</string>
+
+    <string name="error_invalid_password">
+    Password must be 8–15 characters long, include uppercase, lowercase, a digit, a special character, and contain no spaces
+</string>
+    <string name="salir_app">Exit the app?</string>
+    <string name="seguro_salir_app">Are you sure you want to exit?</string>
+    <string name="salir">Exit</string>
+    <string name="error_name_required">Name is required</string>
+    <string name="error_lastaname_required">Last name is required</string>
+    <string name="error_unknown">Unknown error</string>
+    <string name="error_email_required">Email is required</string>
+    <string name="no_hay_entrenamientos_registrados">No workouts registered</string>
+    <string name="buscar_entrenamientos">Search workouts…</string>
+    <string name="close">Close</string>
+    <string name="eliminar_entrenamiento">Do you want to delete this workout?</string>
+    <string name="eliminado">Deleted</string>
+    <string name="error_al_eliminar">Error deleting</string>
+    <string name="actualizado">Updated</string>
+    <string name="error_actualizar">Error updating</string>
+    <string name="error_no_entrenamientos">"No workout types available"</string>
+
+    <string name="m_s_opciones">More options</string>
+    <string name="completar_todas_las_series">Complete all sets</string>
+    <string name="eliminar_una_serie">Remove one set</string>
+    <string name="debe_quedar_una_serie">At least one set must remain.</string>
+    <string name="no_hay_series_para_eliminar">No sets to remove.</string>
+    <string name="no_hay_series_para_completar">No sets to complete.</string>
+    <string name="debe_completar_todas_las_series">You must fill in reps and weight for all sets before completing.</string>
+    <string name="no_internet">No connection or invalid session</string>
+    <string name="admin">Admin</string>
+    <string name="user">User</string>
+    <string name="cear_ejercicio">Create Exercise</string>
+    <string name="crear">Create</string>
+    <string name="ejercicio_creado">Exercise created</string>
+    <string name="error_crear_ejercicio">Error creating</string>
+    <string name="title_edit_exercise">Edit Exercise</string>
+    <string name="ejercicio_actualizado">Exercise updated</string>
+    <string name="eliminar_ejercicio">Exercise deleted</string>
+    <string name="editar_tipo">Edit Type</string>
+    <string name="tipo_creado">Type created</string>
+    <string name="tipo_actualizado">Type updated</string>
+    <string name="eliminar_tipo">Delete Type</string>
+    <string name="tipo_eliminado_correctamente">Type deleted successfully</string>
+    <string name="password_updated">Password updated successfully</string>
+    <string name="error_password_change">Error updating password</string>
+    <string name="error_required_fields">All fields are required</string>
+    <string name="error_passwords_not_match">Does not match the new password</string>
+    <string name="editar_entrenamiento">Edit Workout</string>
+    <string name="error_date_required">You must select a date</string>
+    <string name="error_exercises_required">Select at least one exercise</string>
+    <string name="error_type_required">Select a workout type</string>
+    <string name="series_count">sets</string>
+    <string name="no_pudieron_cargar_ejercicios">Could not load exercises</string>
+    <string name="si">Yes</string>
+    <string name="error_delete_type">Cannot delete this type because it is in use.</string>
+    <string name="error_create_user">Error creating user</string>
+    <string name="fallo_red">Network failure</string>
+    <string name="error_guardar_cambios">Error saving changes</string>
+    <string name="error_eliminar_usuario">Error deleting user</string>
+    <string name="error_cargar_entrenamiento">Workout not found.</string>
+    <string name="error_cargar_ejercicios_entrenamiento">Error loading workout exercises</string>
+    <string name="error_campos_vacios">Missing required data to save the workout.</string>
+    <string name="error_guardar_entrenamiento">Error saving the workout.</string>
+    <string name="error_cargar_entrenamientos">No workouts found for this user.</string>
+    <string name="error_eliminar_entrenamiento">Server error deleting.</string>
+    <string name="error_actualizar_entrenamiento">Server error updating.</string>
+    <string name="nombre_del_tipo">Type name</string>
+    <string name="seleccionar_imagen">Select image</string>
+    <string name="nombre">Name</string>
+    <string name="descripci_n">Description</string>
+    <string name="fecha">Date</string>
+    <string name="ejercicios_y_series">Exercises and sets</string>
+    <string name="a_adir_ejercicio">Add Exercise</string>
+    <string name="bienvenido">Welcome</string>
+    <string name="contrase_a">Password</string>
+    <string name="a_adir_serie">+ Add set</string>
+
+
+    <string name="session_closed_by_logout">Session expired. Please log in again.</string>
+    <string name="no_podido_navegar">Unable to navigate</string>
+    <string name="login_success">You have successfully logged in</string>
 </resources>

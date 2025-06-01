@@ -1,6 +1,7 @@
 package com.proyecto.facilgimapp.model.dto;
 
 import com.google.gson.annotations.SerializedName;
+import com.proyecto.facilgimapp.model.entity.TipoEntrenamiento;
 
 import java.util.Objects;
 
@@ -11,6 +12,10 @@ public class TipoEntrenamientoDTO {
     @SerializedName("nombre")
     private String nombre;
 
+
+    public TipoEntrenamientoDTO() {
+    }
+
     public TipoEntrenamientoDTO(String nombre) {
         this.nombre = nombre;
     }
@@ -18,6 +23,11 @@ public class TipoEntrenamientoDTO {
     public TipoEntrenamientoDTO(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+    }
+
+    public TipoEntrenamientoDTO(TipoEntrenamiento tipoEntrenamiento) {
+        this.id = tipoEntrenamiento.getId();
+        this.nombre = tipoEntrenamiento.getNombre();
     }
 
     public TipoEntrenamientoDTO(Integer id) {

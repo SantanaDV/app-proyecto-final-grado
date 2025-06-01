@@ -53,6 +53,7 @@ public class EntrenamientoDTO implements Serializable {
         this.fechaEntrenamiento = LocalDate.parse(entrenamiento.getFechaEntrenamiento());
         this.descripcion = entrenamiento.getDescripcion();
         this.duracion = entrenamiento.getDuracionMinutos();
+        this.tipoEntrenamiento = new TipoEntrenamientoDTO(entrenamiento.getTipoEntrenamiento());
     }
 
     // === Getters / Setters ===

@@ -1,12 +1,10 @@
-<!-- res/layout/item_option_theme_color.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="12dp">
-
-    <!-- Tema de Color -->
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,26 +15,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:spacing="16dp">
+        android:orientation="horizontal">
 
         <View
-            android:id="@+id/colorGreen"
+            android:id="@+id/colorOption1"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/circle_green" />
+            android:layout_marginEnd="16dp"
+            android:background="?attr/themeColorOption1" />
 
         <View
-            android:id="@+id/colorBlue"
+            android:id="@+id/colorOption2"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/circle_blue" />
+            android:layout_marginEnd="16dp"
+            android:background="?attr/themeColorOption2" />
 
         <View
-            android:id="@+id/colorYellow"
+            android:id="@+id/colorOption3"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/circle_yellow" />
+            android:background="?attr/themeColorOption3" />
+
     </LinearLayout>
-
 </LinearLayout>

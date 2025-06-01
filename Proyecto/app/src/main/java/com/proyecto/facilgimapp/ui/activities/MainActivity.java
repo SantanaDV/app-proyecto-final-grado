@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity {
                     navController.navigate(R.id.loginFragment);
                 }
                 Toast.makeText(this,
-                        "No hay conexión o sesión inválida",
+                        R.string.no_internet,
                         Toast.LENGTH_SHORT).show();
             }
         });

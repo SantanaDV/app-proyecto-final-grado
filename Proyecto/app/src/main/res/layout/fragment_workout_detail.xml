@@ -10,8 +10,7 @@
         <LinearLayout
             android:id="@+id/contentLayout"
             android:layout_width="match_parent"
-            android:layout_height="674dp"
-            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -35,7 +34,7 @@
                         style="@style/TextAppearance.MaterialComponents.Headline6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nombre Entrenamiento" />
+                        android:text="@string/nombre_entrenamiento" />
 
                     <TextView
                         android:id="@+id/tvWorkoutDate"
@@ -50,6 +49,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Duración: 45 min" />
+
+                    <TextView
+                        android:id="@+id/tvTypeName"
+                        style="@style/TextAppearance.MaterialComponents.Body2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cardio" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

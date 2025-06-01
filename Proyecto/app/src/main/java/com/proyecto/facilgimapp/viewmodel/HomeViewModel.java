@@ -48,7 +48,7 @@ public class HomeViewModel extends AndroidViewModel {
     public LiveData<List<LocalDate>> getWorkoutDates() { return workoutDates; }
 
     public void loadData() {
-        // 1) Ejercicios y últimos
+        //  Ejercicios y últimos
         ejercicioRepo.listAllExercises().enqueue(new Callback<List<EjercicioDTO>>() {
             @Override public void onResponse(Call<List<EjercicioDTO>> call, Response<List<EjercicioDTO>> r) {
                 if (r.isSuccessful() && r.body() != null) {
@@ -67,7 +67,7 @@ public class HomeViewModel extends AndroidViewModel {
             }
         });
 
-        // 2) Entrenamientos + fechas para calendario
+        //  Entrenamientos y fechas para calendario
         workoutRepo.getWorkoutsByUserId(SessionManager.getUserId(this.getApplication().getApplicationContext())).enqueue(new Callback<List<EntrenamientoDTO>>() {
             @Override public void onResponse(Call<List<EntrenamientoDTO>> call, Response<List<EntrenamientoDTO>> r) {
                 if (r.isSuccessful() && r.body()!=null) {
@@ -89,7 +89,7 @@ public class HomeViewModel extends AndroidViewModel {
             }
         });
 
-        // 3) Tipos de entrenamiento
+        // Tipos de entrenamiento
         typeRepo.listTypes().enqueue(new Callback<List<TipoEntrenamientoDTO>>() {
             @Override public void onResponse(Call<List<TipoEntrenamientoDTO>> call, Response<List<TipoEntrenamientoDTO>> r) {
                 totalTypes.setValue(r.isSuccessful() && r.body()!=null ? r.body().size() : 0);

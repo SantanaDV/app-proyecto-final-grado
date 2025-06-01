@@ -15,8 +15,6 @@ public class SessionManager {
     private static final String KEY_USERNAME     = "key_username";
     private static final String KEY_AUTHORITIES  = "key_authorities";
     private static final String KEY_USER_ID      = "key_user_id";
-
-    // Nuevas claves para “recordar credenciales”
     private static final String KEY_SAVED_USER   = "key_saved_user";
     private static final String KEY_SAVED_PASS   = "key_saved_pass";
 

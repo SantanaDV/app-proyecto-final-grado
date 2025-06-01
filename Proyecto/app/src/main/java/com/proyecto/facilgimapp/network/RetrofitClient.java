@@ -13,30 +13,28 @@ import com.proyecto.facilgimapp.BuildConfig;
 
 public class RetrofitClient {
     private static final String BASE_URL = BuildConfig.BASE_URL ;
-    //Para pruebas en el movil
-    //private static final String BASE_URL = "https://192.168.0.195:8443/";
     //Este comando hay que hacerlo cada vez que enchufe el usb
     //comando para aceptar peticiones https en el dispositivo fisico: adb -s PVEM6DHELBNN5THQ reverse tcp:8443 tcp:8443
     private static Retrofit retrofit;
 
     public static ApiService getApiService(Context context) {
         if (retrofit == null) {
-            // 1) Configurar GSON para (de)serializar LocalDate
+            //  Configurar GSON para (de)serializar LocalDate
             Gson gson = new GsonBuilder()
                     .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                     .create();
 
-            // 2) Crear el interceptor de logging
+            // Crear el interceptor de logging
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor(message ->
                     android.util.Log.d("OKHTTP", message)
             );
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-            // 3) Construir el OkHttpClient con interceptores
+            // Construir el OkHttpClient con interceptores
             OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                     .addInterceptor(new AuthInterceptor(context))
                     .addInterceptor(new ErrorInterceptor(context)) // añadimos el manejo de errores 401 sesion expirada
-                    .addInterceptor(new NetworkErrorInterceptor())  // captura timeouts, IO, 5xx…
+                    .addInterceptor(new NetworkErrorInterceptor())  // captura timeouts, IO, 5xx,etc..
                     .addInterceptor(logging);
 
             /* ---------------------------------------------------------

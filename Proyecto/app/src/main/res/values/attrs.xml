@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AppTheme">
+        <attr name="themeColorOption1" format="reference"/>
+        <attr name="themeColorOption2" format="reference"/>
+        <attr name="themeColorOption3" format="reference"/>
+    </declare-styleable>
+</resources>

@@ -24,7 +24,7 @@
         <!-- Tint de fondo y ripple -->
         <item name="rippleColor">?attr/colorOnPrimary</item>
 
-        <!-- Elevación más perceptible -->
+        <!-- Elevación  -->
         <item name="android:elevation">6dp</item>
 
         <!-- Forma redondeada -->

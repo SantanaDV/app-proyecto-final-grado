@@ -1,57 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data/>
-    <ScrollView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorFragmentBackground"
-        android:padding="16dp">
+        android:background="@color/colorFragmentBackground">
+
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/image_container_background"
             android:orientation="vertical"
-            android:spacing="16dp">
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.295">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_current_password">
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/hint_current_password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="?attr/colorPrimary">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCurrentPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_new_password">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/hint_new_password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="?attr/colorPrimary">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNewPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCampo3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_confirm_password">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/hint_confirm_password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="?attr/colorPrimary">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnUpdatePassword"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/actualizar_contrasena"/>
         </LinearLayout>
-    </ScrollView>
+
+        <Button
+            android:id="@+id/btnUpdatePassword"
+            style="@style/Widget.App.PrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="@string/actualizar_contrasena"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.274" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

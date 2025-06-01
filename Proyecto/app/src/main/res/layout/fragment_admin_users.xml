@@ -23,7 +23,7 @@
             android:layout_gravity="bottom|right"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="120dp"
-            android:contentDescription="Añadir Ejercicio"
+            android:contentDescription="@string/a_adir_ejercicio"
             android:tint="@android:color/white"
             app:backgroundTint="?attr/colorPrimary"
             app:srcCompat="@drawable/ic_add"

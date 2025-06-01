@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- AppBar vacío (tu toolbar se infla por código o nav) -->
+        <!-- AppBar vacío -->
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="0dp"
@@ -32,7 +32,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- RecyclerView inset  -->
+        <!-- RecyclerView   -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvWorkouts"
             android:layout_width="0dp"
@@ -46,7 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
-        <!-- FAB con margen uniforme -->
+        <!-- FAB  -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabNewWorkout"
             android:layout_width="56dp"
