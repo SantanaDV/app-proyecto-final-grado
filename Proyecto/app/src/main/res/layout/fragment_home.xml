@@ -55,7 +55,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginRight="6dp"
                             android:layout_marginBottom="8dp"
                             android:layout_weight="1"
                             android:background="@drawable/image_container_background"
@@ -80,10 +80,8 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
                             android:layout_marginBottom="8dp"
                             android:layout_weight="1"
                             android:background="@drawable/image_container_background"
@@ -100,9 +98,10 @@
 
                             <TextView
                                 style="@style/TextAppearance.MaterialComponents.Body2"
-                                android:layout_width="102dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
+                                android:gravity="center"
                                 android:text="@string/total_workouts" />
 
                         </LinearLayout>
@@ -110,7 +109,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
+                            android:layout_marginLeft="6dp"
                             android:layout_marginRight="8dp"
                             android:layout_marginBottom="8dp"
                             android:layout_weight="1"
