@@ -1,0 +1,636 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>WorkoutViewModel </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.proyecto.facilgimapp.viewmodel</a></div>
+        <h2 title="Class WorkoutViewModel" class="title">Class WorkoutViewModel</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public class <span class="typeNameLabel"><a href=WorkoutViewModel.html>WorkoutViewModel</a></span>
+extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycle/AndroidViewModel.html>AndroidViewModel</a>
+                    </pre>
+                    <div class="block"><p>ViewModel que gestiona la lista de entrenamientos del usuario, así como las operaciones de eliminación, actualización y obtención de relaciones entre entrenamientos y ejercicios. </p><p> Expone LiveData para que la interfaz observe cambios en la lista de entrenamientos y mensajes de error. </p> Autor: Francisco Santana</div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#WorkoutViewModel(android.app.Application)">WorkoutViewModel</a></span>(<a href=https://developer.android.com/reference/kotlin/android/app/Application.html>Application</a> application)</code></th>
+                                                <td class="colLast">Constructor que inicializa el repositorio usando el contexto de la aplicación.</td>
+                                            </tr>
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html>LiveData</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutViewModel.html#getWorkouts()>getWorkouts</a>() </code>
+                                            </th>
+                                            <td class="colLast">Proporciona un LiveData que emite la lista de entrenamientos cargada para el usuario.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html>LiveData</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutViewModel.html#getErrorMessage()>getErrorMessage</a>() </code>
+                                            </th>
+                                            <td class="colLast">Proporciona un LiveData que emite mensajes de error si ocurre algún fallo al realizar operaciones de carga, eliminación o actualización de entrenamientos.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutViewModel.html#loadWorkoutsByUserId(int)>loadWorkoutsByUserId</a>(int userId) </code>
+                                            </th>
+                                            <td class="colLast">Carga del servidor todos los entrenamientos asociados al usuario cuyo ID se recibe.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutViewModel.html#deleteWorkout(int,java.lang.Runnable,java.lang.Runnable)>deleteWorkout</a>(int workoutId, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onSuccess, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onFailure) </code>
+                                            </th>
+                                            <td class="colLast">Elimina el entrenamiento identificado por <code>workoutId</code> en el servidor.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutViewModel.html#updateWorkout(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.lang.Runnable,java.lang.Runnable)>updateWorkout</a>(int id, <a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> dto, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onSuccess, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onFailure) </code>
+                                            </th>
+                                            <td class="colLast">Actualiza un entrenamiento existente en el servidor usando los datos del DTO proporcionado.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutViewModel.html#loadWorkoutRelations(int,java.util.function.Consumer)>loadWorkoutRelations</a>(int workoutId, <a href=https://developer.android.com/reference/kotlin/java/util/function/Consumer.html>Consumer</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;&gt; onResult) </code>
+                                            </th>
+                                            <td class="colLast">Carga las relaciones entre el entrenamiento (identificado por <code>workoutId</code>) y sus ejercicios asociados, devolviendo la lista resultante al <code>onResult</code>.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.androidx.lifecycle.AndroidViewModel">
+                                            <!--   -->
+                                        </a>
+                                            <h3>Methods inherited from class&nbsp;androidx.lifecycle.AndroidViewModel</h3>
+                                            <code>getApplication</code></li>
+                                 
+                                    <li class="blockList"><a id="methods.inherited.from.class.androidx.lifecycle.ViewModel">
+                                            <!--   -->
+                                        </a>
+                                            <h3>Methods inherited from class&nbsp;androidx.lifecycle.ViewModel</h3>
+                                            <code>addCloseable</code></li>
+                                 
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                                <a name="WorkoutViewModel(android.app.Application)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>WorkoutViewModel</h4>
+                                        <pre>WorkoutViewModel(<a href=https://developer.android.com/reference/kotlin/android/app/Application.html>Application</a> application)</pre>
+                                        <div class="block">Constructor que inicializa el repositorio usando el contexto de la aplicación.</div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>application</code> - Aplicación actual, necesaria para construir el repositorio.</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="getWorkouts()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getWorkouts</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html>LiveData</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a>&gt;&gt; <a href=WorkoutViewModel.html#getWorkouts()>getWorkouts</a>()</pre>
+                                        <div class="block"><p>Proporciona un LiveData que emite la lista de entrenamientos cargada para el usuario.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>LiveData con Listobtenidos del servidor.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getErrorMessage()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getErrorMessage</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html>LiveData</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; <a href=WorkoutViewModel.html#getErrorMessage()>getErrorMessage</a>()</pre>
+                                        <div class="block"><p>Proporciona un LiveData que emite mensajes de error si ocurre algún fallo al realizar operaciones de carga, eliminación o actualización de entrenamientos.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>LiveData con un mensaje de error en formato String.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="loadWorkoutsByUserId(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>loadWorkoutsByUserId</h4>
+                                        <pre class="methodSignature"> void <a href=WorkoutViewModel.html#loadWorkoutsByUserId(int)>loadWorkoutsByUserId</a>(int userId)</pre>
+                                        <div class="block"><p>Carga del servidor todos los entrenamientos asociados al usuario cuyo ID se recibe. </p><p> Si la llamada es exitosa y retorna al menos un entrenamiento, publica la lista en _workouts. Si la lista está vacía o ocurre un fallo HTTP, se asigna una lista vacía y se publica un mensaje de error. </p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>userId</code> - ID del usuario cuyas sesiones de entrenamiento se desean obtener.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="deleteWorkout(int,java.lang.Runnable,java.lang.Runnable)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>deleteWorkout</h4>
+                                        <pre class="methodSignature"> void <a href=WorkoutViewModel.html#deleteWorkout(int,java.lang.Runnable,java.lang.Runnable)>deleteWorkout</a>(int workoutId, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onSuccess, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onFailure)</pre>
+                                        <div class="block"><p>Elimina el entrenamiento identificado por <code>workoutId</code> en el servidor. </p><p> Si la eliminación es exitosa, ejecuta <code>onSuccess.run()</code>. En caso contrario, publica un mensaje de error en errorMessage y ejecuta <code>onFailure.run()</code>. </p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>workoutId</code> - ID del entrenamiento a eliminar.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>onSuccess</code> - Runnable que se ejecuta tras eliminar correctamente.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>onFailure</code> - Runnable que se ejecuta si ocurre un error.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="updateWorkout(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.lang.Runnable,java.lang.Runnable)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>updateWorkout</h4>
+                                        <pre class="methodSignature"> void <a href=WorkoutViewModel.html#updateWorkout(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.lang.Runnable,java.lang.Runnable)>updateWorkout</a>(int id, <a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> dto, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onSuccess, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onFailure)</pre>
+                                        <div class="block"><p>Actualiza un entrenamiento existente en el servidor usando los datos del DTO proporcionado. </p><p> Si la actualización es exitosa, ejecuta <code>onSuccess.run()</code>. En caso contrario, publica un mensaje de error en errorMessage y ejecuta <code>onFailure.run()</code>. </p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>id</code> - ID del entrenamiento a actualizar.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>dto</code> - DTO con los datos actualizados del entrenamiento.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>onSuccess</code> - Runnable que se ejecuta tras actualizar correctamente.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>onFailure</code> - Runnable que se ejecuta si ocurre un error.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="loadWorkoutRelations(int,java.util.function.Consumer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>loadWorkoutRelations</h4>
+                                        <pre class="methodSignature"> void <a href=WorkoutViewModel.html#loadWorkoutRelations(int,java.util.function.Consumer)>loadWorkoutRelations</a>(int workoutId, <a href=https://developer.android.com/reference/kotlin/java/util/function/Consumer.html>Consumer</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;&gt; onResult)</pre>
+                                        <div class="block"><p>Carga las relaciones entre el entrenamiento (identificado por <code>workoutId</code>) y sus ejercicios asociados, devolviendo la lista resultante al <code>onResult</code>. </p><p> Si la llamada es exitosa, invoca <code>onResult.accept(listaRelaciones)</code>. En caso de fallo, registra el error en el log de depuración. </p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>workoutId</code> - ID del entrenamiento cuyas relaciones se desean obtener.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>onResult</code> - Consumer que recibe la lista de <a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

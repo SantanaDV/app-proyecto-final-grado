@@ -27,7 +27,8 @@ import retrofit2.Response;
  * <p>
  * Se encarga de construir la lista de relaciones entre ejercicios y sus series,
  * validar campos esenciales en el DTO de entrenamiento y enviar la información al backend
- * a través de {@link WorkoutRepository}.
+ * a través de {@link WorkoutRepository}. Permite pasar callbacks de éxito/error
+ * para que la UI solo navegue cuando realmente se haya guardado.
  * </p>
  *
  * Autor: Francisco Santana
@@ -44,11 +45,6 @@ public class WorkoutSessionViewModel extends AndroidViewModel {
      */
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
-    /**
-     * Constructor que inicializa el repositorio de entrenamientos usando el contexto de la aplicación.
-     *
-     * @param application Aplicación actual, usada para obtener el contexto necesario.
-     */
     public WorkoutSessionViewModel(@NonNull Application application) {
         super(application);
         workoutRepo = new WorkoutRepository(application.getApplicationContext());
@@ -74,60 +70,72 @@ public class WorkoutSessionViewModel extends AndroidViewModel {
      *   <li>Debe haber un tipo de entrenamiento asignado en {@code workoutDTO}.</li>
      * </ul>
      * Si falta alguno de esos campos, emite un mensaje de error en {@link #errorMessage}
-     * y no realiza la llamada a la API. De lo contrario, envía la petición a través de
-     * {@link WorkoutRepository#createWorkout(EntrenamientoDTO)}.
-     * </p>
+     * y llama a onError.run(). De lo contrario, envía la petición a través de
+     * {@link WorkoutRepository#createWorkout(EntrenamientoDTO)} y, según la respuesta,
+     * invoca onSuccess.run() o onError.run().
      *
      * @param workoutDTO  DTO de entrenamiento que contiene datos generales (nombre, descripción,
      *                    fecha, tipo, usuario, etc.). Se le asignarán las relaciones ejercicio–series.
      * @param seriesMap   Mapa donde cada clave es un {@link EjercicioDTO} y el valor es
      *                    la lista de {@link SerieDTO} asociadas a ese ejercicio.
+     * @param onSuccess   Runnable que se ejecuta si la llamada finaliza con éxito.
+     * @param onError     Runnable que se ejecuta si hay un error de validación o en la llamada HTTP.
      */
-    public void saveWorkoutSession(EntrenamientoDTO workoutDTO, Map<EjercicioDTO, List<SerieDTO>> seriesMap) {
-        // Construye la lista de relaciones ejercicio–series
+    public void saveWorkoutSession(
+            EntrenamientoDTO workoutDTO,
+            Map<EjercicioDTO, List<SerieDTO>> seriesMap,
+            Runnable onSuccess,
+            Runnable onError
+    ) {
+        // Construimos lista de EntrenamientoEjercicioDTO
         List<EntrenamientoEjercicioDTO> relaciones = new ArrayList<>();
-
         int orden = 1;
         for (Map.Entry<EjercicioDTO, List<SerieDTO>> entry : seriesMap.entrySet()) {
-            EntrenamientoEjercicioDTO relacion = new EntrenamientoEjercicioDTO();
-            relacion.setEjercicio(entry.getKey());
-            relacion.setSeries(entry.getValue());
-            relacion.setOrden(orden++); // Establece el orden de aparición en la sesión
-            relaciones.add(relacion);
+            EntrenamientoEjercicioDTO rel = new EntrenamientoEjercicioDTO();
+            rel.setEjercicio(entry.getKey());
+            rel.setSeries(entry.getValue());
+            rel.setOrden(orden++);
+            relaciones.add(rel);
         }
-
-        // Asigna las relaciones construidas al DTO principal de entrenamiento
         workoutDTO.setEntrenamientosEjercicios(relaciones);
 
-        // Validaciones adicionales: usuario y tipo de entrenamiento son obligatorios
+        //Las validaciones básicas
         if (workoutDTO.getUsuario() == null
                 || workoutDTO.getUsuario().getIdUsuario() == null
                 || workoutDTO.getTipoEntrenamiento() == null) {
             errorMessage.setValue(
                     getApplication().getString(R.string.error_campos_vacios)
             );
+            onError.run();
             return;
         }
 
-        // Envío de la solicitud al backend
-        workoutRepo.createWorkout(workoutDTO).enqueue(new Callback<EntrenamientoDTO>() {
-            @Override
-            public void onResponse(Call<EntrenamientoDTO> call,
-                                   Response<EntrenamientoDTO> response) {
-                if (!response.isSuccessful() || response.body() == null) {
-                    errorMessage.setValue(
-                            getApplication().getString(R.string.error_guardar_entrenamiento)
-                    );
-                }
-            }
+        // Enviamos la petición al backend
+        workoutRepo.createWorkout(workoutDTO)
+                .enqueue(new Callback<EntrenamientoDTO>() {
+                    @Override
+                    public void onResponse(
+                            Call<EntrenamientoDTO> call,
+                            Response<EntrenamientoDTO> response
+                    ) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            onSuccess.run();
+                        } else {
+                            errorMessage.setValue(
+                                    getApplication().getString(R.string.error_guardar_entrenamiento)
+                            );
+                            onError.run();
+                        }
+                    }
 
-            @Override
-            public void onFailure(Call<EntrenamientoDTO> call, Throwable t) {
-                errorMessage.setValue(
-                        getApplication().getString(R.string.error_guardar_entrenamiento)
-                                + ": " + t.getMessage()
-                );
-            }
-        });
+                    @Override
+                    public void onFailure(Call<EntrenamientoDTO> call, Throwable t) {
+                        errorMessage.setValue(
+                                getApplication().getString(R.string.error_guardar_entrenamiento)
+                                        + ": " + t.getMessage()
+                        );
+                        onError.run();
+                    }
+                });
     }
 }

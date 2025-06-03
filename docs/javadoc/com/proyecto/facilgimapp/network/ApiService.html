@@ -1,0 +1,1755 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>ApiService </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.proyecto.facilgimapp.network</a></div>
+        <h2 title="Interface ApiService" class="title">Interface ApiService</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public interface <span class="typeNameLabel"><a href=ApiService.html>ApiService</a></span>
+
+                    </pre>
+                    <div class="block"><p>Interfaz de servicio API para la comunicación con el backend de la aplicación FacilGimApp. Define los endpoints REST disponibles para gestionar ejercicios, entrenamientos, series, tipos de entrenamiento y usuarios, así como autenticación y comprobación del estado del servidor. </p><p>Utiliza Retrofit para la definición de las llamadas HTTP.</p><ul><li>Ejercicios: CRUD de ejercicios, búsqueda por nombre, gestión de imágenes y relación con entrenamientos.</li><li>Entrenamientos: CRUD de entrenamientos, filtrado por fechas, usuario y nombre.</li><li>Series: CRUD de series asociadas a ejercicios en entrenamientos.</li><li>Tipos de entrenamiento: CRUD de tipos de entrenamiento.</li><li>Usuarios: CRUD de usuarios, registro, validación y cambio de contraseña.</li><li>Autenticación: Login de usuario.</li><li>Estado del servidor: Consulta de salud del backend.</li></ul></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Francisco Santana</p></dd>
+                        
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listAllExercises()>listAllExercises</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getExercise(int)>getExercise</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getExerciseByName(java.lang.String)>getExerciseByName</a>(@Path(value = &quot;nombre&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> nombre) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#createOrUpdateExercise(okhttp3.RequestBody,okhttp3.MultipartBody.Part)>createOrUpdateExercise</a>(@Part(value = &quot;ejercicio&quot;) RequestBody ejercicioJson, @Part() MultipartBody.Part imagen) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#deleteExerciseByName(com.proyecto.facilgimapp.model.dto.EjercicioDeleteDTO)>deleteExerciseByName</a>(@Body() <a href=../model/dto/EjercicioDeleteDTO.html>EjercicioDeleteDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listExercisesByTraining(int,java.lang.String)>listExercisesByTraining</a>(@Path(value = &quot;idEntrenamiento&quot;) int trainingId, @Query(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listTrainingRelations(int)>listTrainingRelations</a>(@Path(value = &quot;idEntrenamiento&quot;) int trainingId) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getTrainingExerciseRelation(int)>getTrainingExerciseRelation</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#deleteExercise(int)>deleteExercise</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listAllTrainings()>listAllTrainings</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getTraining(int)>getTraining</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listTrainingsBetweenDates(java.lang.String,java.lang.String)>listTrainingsBetweenDates</a>(@Query(value = &quot;fechaInicio&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> from, @Query(value = &quot;fechaFin&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> to) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#createTraining(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)>createTraining</a>(@Body() <a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#updateTraining(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)>updateTraining</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#deleteTraining(int)>deleteTraining</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getWorkoutsByName(java.lang.String)>getWorkoutsByName</a>(@Path(value = &quot;nombre&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> nombre) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#updateWorkoutFromDto(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)>updateWorkoutFromDto</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getWorkoutsByUserId(int)>getWorkoutsByUserId</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#addExerciseToTraining(com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO)>addExerciseToTraining</a>(@Body() <a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#removeExerciseFromTraining(int)>removeExerciseFromTraining</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listExercisesInTraining(int)>listExercisesInTraining</a>(@Path(value = &quot;idEntrenamiento&quot;) int idEntrenamiento) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listSeries(int)>listSeries</a>(@Path(value = &quot;id&quot;) int relacionId) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getSeries(int)>getSeries</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#createSeries(com.proyecto.facilgimapp.model.dto.SerieDTO)>createSeries</a>(@Body() <a href=../model/dto/SerieDTO.html>SerieDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#updateSeries(int,com.proyecto.facilgimapp.model.dto.SerieDTO)>updateSeries</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/SerieDTO.html>SerieDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i25" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#deleteSeries(int)>deleteSeries</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i26" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listTypes()>listTypes</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i27" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getType(int)>getType</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i28" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#createType(com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO)>createType</a>(@Body() <a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i29" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#updateType(int,com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO)>updateType</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i30" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#deleteType(int)>deleteType</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i31" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#listUsers()>listUsers</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i32" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getUser(int)>getUser</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i33" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getUserByUsername(java.lang.String)>getUserByUsername</a>(@Path(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i34" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#createUser(com.proyecto.facilgimapp.model.dto.UsuarioDTO)>createUser</a>(@Body() <a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i35" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#registerUser(com.proyecto.facilgimapp.model.dto.UsuarioRequestDTO)>registerUser</a>(@Body() <a href=../model/dto/UsuarioRequestDTO.html>UsuarioRequestDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i36" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#updateUser(int,com.proyecto.facilgimapp.model.dto.UsuarioDTO)>updateUser</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i37" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#updateUserByUsername(java.lang.String,com.proyecto.facilgimapp.model.dto.UsuarioDTO)>updateUserByUsername</a>(@Path(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username, @Body() <a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i38" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#deleteUser(int)>deleteUser</a>(@Path(value = &quot;id&quot;) int id) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i39" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#deleteUserByUsername(java.lang.String)>deleteUserByUsername</a>(@Path(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i40" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#validateCurrentPassword(java.lang.String,com.proyecto.facilgimapp.model.dto.PasswordDTO)>validateCurrentPassword</a>(@Path(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username, @Body() <a href=../model/dto/PasswordDTO.html>PasswordDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i41" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#changePassword(int,com.proyecto.facilgimapp.model.dto.PasswordDTO)>changePassword</a>(@Path(value = &quot;id&quot;) int userId, @Body() <a href=../model/dto/PasswordDTO.html>PasswordDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i42" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#updatePassword(int,com.proyecto.facilgimapp.model.dto.PasswordDTO)>updatePassword</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/PasswordDTO.html>PasswordDTO</a> dto) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i43" class="rowColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/LoginResponse.html>LoginResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#login(com.proyecto.facilgimapp.model.dto.LoginRequest)>login</a>(@Body() <a href=../model/dto/LoginRequest.html>LoginRequest</a> request) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i44" class="altColor">
+                                            <td class="colFirst"><code>abstract Call&lt;<a href=../model/dto/HealthStatus.html>HealthStatus</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ApiService.html#getHealth()>getHealth</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="listAllExercises()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listAllExercises</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/ejercicios&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt;&gt; <a href=ApiService.html#listAllExercises()>listAllExercises</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getExercise(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getExercise</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/ejercicios/{id}&quot;) abstract Call&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt; <a href=ApiService.html#getExercise(int)>getExercise</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getExerciseByName(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getExerciseByName</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/ejercicios/nombre/{nombre}&quot;) abstract Call&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt; <a href=ApiService.html#getExerciseByName(java.lang.String)>getExerciseByName</a>(@Path(value = &quot;nombre&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> nombre)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createOrUpdateExercise(okhttp3.RequestBody,okhttp3.MultipartBody.Part)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createOrUpdateExercise</h4>
+                                        <pre class="methodSignature">@Multipart()@POST(value = &quot;api/ejercicios&quot;) abstract Call&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt; <a href=ApiService.html#createOrUpdateExercise(okhttp3.RequestBody,okhttp3.MultipartBody.Part)>createOrUpdateExercise</a>(@Part(value = &quot;ejercicio&quot;) RequestBody ejercicioJson, @Part() MultipartBody.Part imagen)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="deleteExerciseByName(com.proyecto.facilgimapp.model.dto.EjercicioDeleteDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>deleteExerciseByName</h4>
+                                        <pre class="methodSignature">@DELETE(value = &quot;api/ejercicios/nombre&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#deleteExerciseByName(com.proyecto.facilgimapp.model.dto.EjercicioDeleteDTO)>deleteExerciseByName</a>(@Body() <a href=../model/dto/EjercicioDeleteDTO.html>EjercicioDeleteDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listExercisesByTraining(int,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listExercisesByTraining</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/ejercicios/entrenamiento/{idEntrenamiento}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt;&gt; <a href=ApiService.html#listExercisesByTraining(int,java.lang.String)>listExercisesByTraining</a>(@Path(value = &quot;idEntrenamiento&quot;) int trainingId, @Query(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listTrainingRelations(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listTrainingRelations</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/entrenamiento-ejercicio/entrenamiento/{idEntrenamiento}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;&gt; <a href=ApiService.html#listTrainingRelations(int)>listTrainingRelations</a>(@Path(value = &quot;idEntrenamiento&quot;) int trainingId)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getTrainingExerciseRelation(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getTrainingExerciseRelation</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/entrenamiento-ejercicio/{id}&quot;) abstract Call&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt; <a href=ApiService.html#getTrainingExerciseRelation(int)>getTrainingExerciseRelation</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="deleteExercise(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>deleteExercise</h4>
+                                        <pre class="methodSignature">@DELETE(value = &quot;api/ejercicios/{id}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#deleteExercise(int)>deleteExercise</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listAllTrainings()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listAllTrainings</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/entrenamientos&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;&gt; <a href=ApiService.html#listAllTrainings()>listAllTrainings</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getTraining(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getTraining</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/entrenamientos/{id}&quot;) abstract Call&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt; <a href=ApiService.html#getTraining(int)>getTraining</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listTrainingsBetweenDates(java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listTrainingsBetweenDates</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/entrenamientos/fecha&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;&gt; <a href=ApiService.html#listTrainingsBetweenDates(java.lang.String,java.lang.String)>listTrainingsBetweenDates</a>(@Query(value = &quot;fechaInicio&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> from, @Query(value = &quot;fechaFin&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> to)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createTraining(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createTraining</h4>
+                                        <pre class="methodSignature">@POST(value = &quot;api/entrenamientos&quot;) abstract Call&lt;<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a>&gt; <a href=ApiService.html#createTraining(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)>createTraining</a>(@Body() <a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="updateTraining(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>updateTraining</h4>
+                                        <pre class="methodSignature">@PUT(value = &quot;api/entrenamientos/{id}&quot;) abstract Call&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt; <a href=ApiService.html#updateTraining(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)>updateTraining</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="deleteTraining(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>deleteTraining</h4>
+                                        <pre class="methodSignature">@DELETE(value = &quot;api/entrenamientos/{id}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#deleteTraining(int)>deleteTraining</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getWorkoutsByName(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getWorkoutsByName</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/entrenamientos/nombre/{nombre}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt;&gt; <a href=ApiService.html#getWorkoutsByName(java.lang.String)>getWorkoutsByName</a>(@Path(value = &quot;nombre&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> nombre)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="updateWorkoutFromDto(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>updateWorkoutFromDto</h4>
+                                        <pre class="methodSignature">@PUT(value = &quot;api/entrenamientos/dto/{id}&quot;) abstract Call&lt;<a href=../model/entity/Entrenamiento.html>Entrenamiento</a>&gt; <a href=ApiService.html#updateWorkoutFromDto(int,com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)>updateWorkoutFromDto</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getWorkoutsByUserId(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getWorkoutsByUserId</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/entrenamientos/usuarioId/{id}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a>&gt;&gt; <a href=ApiService.html#getWorkoutsByUserId(int)>getWorkoutsByUserId</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="addExerciseToTraining(com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>addExerciseToTraining</h4>
+                                        <pre class="methodSignature">@POST(value = &quot;api/entrenamiento-ejercicio&quot;) abstract Call&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt; <a href=ApiService.html#addExerciseToTraining(com.proyecto.facilgimapp.model.dto.EntrenamientoEjercicioDTO)>addExerciseToTraining</a>(@Body() <a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="removeExerciseFromTraining(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>removeExerciseFromTraining</h4>
+                                        <pre class="methodSignature">@DELETE(value = &quot;api/entrenamiento-ejercicio/{id}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#removeExerciseFromTraining(int)>removeExerciseFromTraining</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listExercisesInTraining(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listExercisesInTraining</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/entrenamiento-ejercicio/entrenamiento/{idEntrenamiento}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;&gt; <a href=ApiService.html#listExercisesInTraining(int)>listExercisesInTraining</a>(@Path(value = &quot;idEntrenamiento&quot;) int idEntrenamiento)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listSeries(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listSeries</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/series/entrenamiento-ejercicio/{id}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt; <a href=ApiService.html#listSeries(int)>listSeries</a>(@Path(value = &quot;id&quot;) int relacionId)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSeries(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSeries</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/series/{id}&quot;) abstract Call&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt; <a href=ApiService.html#getSeries(int)>getSeries</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createSeries(com.proyecto.facilgimapp.model.dto.SerieDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createSeries</h4>
+                                        <pre class="methodSignature">@POST(value = &quot;api/series&quot;) abstract Call&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt; <a href=ApiService.html#createSeries(com.proyecto.facilgimapp.model.dto.SerieDTO)>createSeries</a>(@Body() <a href=../model/dto/SerieDTO.html>SerieDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="updateSeries(int,com.proyecto.facilgimapp.model.dto.SerieDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>updateSeries</h4>
+                                        <pre class="methodSignature">@PUT(value = &quot;api/series/{id}&quot;) abstract Call&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt; <a href=ApiService.html#updateSeries(int,com.proyecto.facilgimapp.model.dto.SerieDTO)>updateSeries</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/SerieDTO.html>SerieDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="deleteSeries(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>deleteSeries</h4>
+                                        <pre class="methodSignature">@DELETE(value = &quot;api/series/{id}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#deleteSeries(int)>deleteSeries</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listTypes()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listTypes</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/tipos-entrenamiento&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a>&gt;&gt; <a href=ApiService.html#listTypes()>listTypes</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getType(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getType</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/tipos-entrenamiento/{id}&quot;) abstract Call&lt;<a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a>&gt; <a href=ApiService.html#getType(int)>getType</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createType(com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createType</h4>
+                                        <pre class="methodSignature">@POST(value = &quot;api/tipos-entrenamiento&quot;) abstract Call&lt;<a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a>&gt; <a href=ApiService.html#createType(com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO)>createType</a>(@Body() <a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="updateType(int,com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>updateType</h4>
+                                        <pre class="methodSignature">@PUT(value = &quot;api/tipos-entrenamiento/{id}&quot;) abstract Call&lt;<a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a>&gt; <a href=ApiService.html#updateType(int,com.proyecto.facilgimapp.model.dto.TipoEntrenamientoDTO)>updateType</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/TipoEntrenamientoDTO.html>TipoEntrenamientoDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="deleteType(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>deleteType</h4>
+                                        <pre class="methodSignature">@DELETE(value = &quot;api/tipos-entrenamiento/{id}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#deleteType(int)>deleteType</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listUsers()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listUsers</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/usuarios&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt;&gt; <a href=ApiService.html#listUsers()>listUsers</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getUser(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getUser</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/usuarios/{id}&quot;) abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt; <a href=ApiService.html#getUser(int)>getUser</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getUserByUsername(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getUserByUsername</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;api/usuarios/username/{username}&quot;) abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt; <a href=ApiService.html#getUserByUsername(java.lang.String)>getUserByUsername</a>(@Path(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createUser(com.proyecto.facilgimapp.model.dto.UsuarioDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createUser</h4>
+                                        <pre class="methodSignature">@POST(value = &quot;api/usuarios&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#createUser(com.proyecto.facilgimapp.model.dto.UsuarioDTO)>createUser</a>(@Body() <a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="registerUser(com.proyecto.facilgimapp.model.dto.UsuarioRequestDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>registerUser</h4>
+                                        <pre class="methodSignature">@POST(value = &quot;api/usuarios/registrar&quot;) abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt; <a href=ApiService.html#registerUser(com.proyecto.facilgimapp.model.dto.UsuarioRequestDTO)>registerUser</a>(@Body() <a href=../model/dto/UsuarioRequestDTO.html>UsuarioRequestDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="updateUser(int,com.proyecto.facilgimapp.model.dto.UsuarioDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>updateUser</h4>
+                                        <pre class="methodSignature">@PUT(value = &quot;api/usuarios/{id}&quot;) abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt; <a href=ApiService.html#updateUser(int,com.proyecto.facilgimapp.model.dto.UsuarioDTO)>updateUser</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="updateUserByUsername(java.lang.String,com.proyecto.facilgimapp.model.dto.UsuarioDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>updateUserByUsername</h4>
+                                        <pre class="methodSignature">@PUT(value = &quot;api/usuarios/username/{username}&quot;) abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt; <a href=ApiService.html#updateUserByUsername(java.lang.String,com.proyecto.facilgimapp.model.dto.UsuarioDTO)>updateUserByUsername</a>(@Path(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username, @Body() <a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="deleteUser(int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>deleteUser</h4>
+                                        <pre class="methodSignature">@DELETE(value = &quot;api/usuarios/{id}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#deleteUser(int)>deleteUser</a>(@Path(value = &quot;id&quot;) int id)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="deleteUserByUsername(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>deleteUserByUsername</h4>
+                                        <pre class="methodSignature">@DELETE(value = &quot;api/usuarios/username/{username}&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; <a href=ApiService.html#deleteUserByUsername(java.lang.String)>deleteUserByUsername</a>(@Path(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="validateCurrentPassword(java.lang.String,com.proyecto.facilgimapp.model.dto.PasswordDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>validateCurrentPassword</h4>
+                                        <pre class="methodSignature">@POST(value = &quot;api/usuarios/username/{username}/validate-password&quot;) abstract Call&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/Void.html>Void</a>&gt; <a href=ApiService.html#validateCurrentPassword(java.lang.String,com.proyecto.facilgimapp.model.dto.PasswordDTO)>validateCurrentPassword</a>(@Path(value = &quot;username&quot;) <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username, @Body() <a href=../model/dto/PasswordDTO.html>PasswordDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="changePassword(int,com.proyecto.facilgimapp.model.dto.PasswordDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>changePassword</h4>
+                                        <pre class="methodSignature">@PUT(value = &quot;api/usuarios/password/{id}&quot;) abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt; <a href=ApiService.html#changePassword(int,com.proyecto.facilgimapp.model.dto.PasswordDTO)>changePassword</a>(@Path(value = &quot;id&quot;) int userId, @Body() <a href=../model/dto/PasswordDTO.html>PasswordDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="updatePassword(int,com.proyecto.facilgimapp.model.dto.PasswordDTO)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>updatePassword</h4>
+                                        <pre class="methodSignature">@PUT(value = &quot;api/usuarios/password/{id}&quot;) abstract Call&lt;<a href=../model/dto/UsuarioDTO.html>UsuarioDTO</a>&gt; <a href=ApiService.html#updatePassword(int,com.proyecto.facilgimapp.model.dto.PasswordDTO)>updatePassword</a>(@Path(value = &quot;id&quot;) int id, @Body() <a href=../model/dto/PasswordDTO.html>PasswordDTO</a> dto)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="login(com.proyecto.facilgimapp.model.dto.LoginRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>login</h4>
+                                        <pre class="methodSignature">@POST(value = &quot;login&quot;) abstract Call&lt;<a href=../model/dto/LoginResponse.html>LoginResponse</a>&gt; <a href=ApiService.html#login(com.proyecto.facilgimapp.model.dto.LoginRequest)>login</a>(@Body() <a href=../model/dto/LoginRequest.html>LoginRequest</a> request)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getHealth()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getHealth</h4>
+                                        <pre class="methodSignature">@GET(value = &quot;actuator/health&quot;) abstract Call&lt;<a href=../model/dto/HealthStatus.html>HealthStatus</a>&gt; <a href=ApiService.html#getHealth()>getHealth</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

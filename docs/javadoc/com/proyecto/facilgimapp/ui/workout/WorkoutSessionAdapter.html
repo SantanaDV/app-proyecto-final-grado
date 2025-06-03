@@ -1,0 +1,631 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>WorkoutSessionAdapter </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.proyecto.facilgimapp.ui.workout</a></div>
+        <h2 title="Class WorkoutSessionAdapter" class="title">Class WorkoutSessionAdapter</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public class <span class="typeNameLabel"><a href=WorkoutSessionAdapter.html>WorkoutSessionAdapter</a></span>
+extends <a href=https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html>RecyclerView.Adapter</a>&lt;<a href=https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html>VH</a>&gt;
+                    </pre>
+                    <div class="block"><p>Adaptador que gestiona la sesión de entrenamiento en curso mostrando cada ejercicio y permitiendo al usuario añadir, completar o eliminar series (repeticiones × peso). </p><p> Mantiene un mapa interno de <a href=../../model/dto/SerieDTO.html>SerieDTO</a> para cada <a href=../../model/dto/EjercicioDTO.html>EjercicioDTO</a> y ofrece métodos para verificar si todas las series están completadas y para construir la lista final de <a href=../../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> que envía el ViewModel. </p></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Francisco Santana</p></dd>
+                        
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public class</code></td>
+                                            <th class="colSecond" scope="row"><code><a href="WorkoutSessionAdapter.WorkoutViewHolder.html">WorkoutSessionAdapter.WorkoutViewHolder</a></span></code>
+                                            </th>
+                                            <td class="colLast"><p>ViewHolder que representa cada ejercicio dentro de la sesión de entrenamiento, mostrando su nombre, imagen, lista dinámica de series y opciones de menú.</p></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public final <a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=../../model/dto/EjercicioDTO.html>EjercicioDTO</a>, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionAdapter.html#seriesMap>seriesMap</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#WorkoutSessionAdapter(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.util.List)">WorkoutSessionAdapter</a></span>(<a href=../../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> workoutDTO, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt; exerciseList)</code></th>
+                                                <td class="colLast">Constructor que inicializa el adaptador con el DTO del entrenamiento y la lista de ejercicios.</td>
+                                            </tr>
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=../../model/dto/EjercicioDTO.html>EjercicioDTO</a>, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionAdapter.html#getSeriesMap()>getSeriesMap</a>() </code>
+                                            </th>
+                                            <td class="colLast">Retorna el mapa interno de ejercicios a lista de series, para que el ViewModel pueda recogerlo al guardar la sesión.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code><a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutSessionAdapter.WorkoutViewHolder</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionAdapter.html#onCreateViewHolder(android.view.ViewGroup,int)>onCreateViewHolder</a>(@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=https://developer.android.com/reference/kotlin/android/view/ViewGroup.html>ViewGroup</a> parent, int viewType) </code>
+                                            </th>
+                                            <td class="colLast">Crea un nuevo <a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutViewHolder</a> inflando el layout de cada item de ejercicio en sesión.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionAdapter.html#onBindViewHolder(com.proyecto.facilgimapp.ui.workout.WorkoutSessionAdapter.WorkoutViewHolder,int)>onBindViewHolder</a>(@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutSessionAdapter.WorkoutViewHolder</a> holder, int position) </code>
+                                            </th>
+                                            <td class="colLast">Vincula los datos del ejercicio en la posición dada al <a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutViewHolder</a>, iniciando o recreando la lista de series asociada en caso necesario.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>int</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionAdapter.html#getItemCount()>getItemCount</a>() </code>
+                                            </th>
+                                            <td class="colLast">Retorna el número total de ejercicios en la sesión.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionAdapter.html#allCompleted()>allCompleted</a>() </code>
+                                            </th>
+                                            <td class="colLast">Verifica si todas las series de todos los ejercicios están completadas.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionAdapter.html#getEntrenamientoEjercicioDTOList()>getEntrenamientoEjercicioDTOList</a>() </code>
+                                            </th>
+                                            <td class="colLast">Construye la lista de <a href=../../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> a partir de los datos ingresados en <code>seriesMap</code> y la lista de ejercicios.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.androidx.recyclerview.widget.RecyclerView.Adapter">
+                                            <!--   -->
+                                        </a>
+                                            <h3>Methods inherited from class&nbsp;androidx.recyclerview.widget.RecyclerView.Adapter</h3>
+                                            <code>bindViewHolder, createViewHolder, getItemId, getItemViewType, hasObservers, hasStableIds, notifyDataSetChanged, notifyItemChanged, notifyItemInserted, notifyItemMoved, notifyItemRangeChanged, notifyItemRangeInserted, notifyItemRangeRemoved, notifyItemRemoved, onAttachedToRecyclerView, onDetachedFromRecyclerView, onFailedToRecycleView, onViewAttachedToWindow, onViewDetachedFromWindow, onViewRecycled, registerAdapterDataObserver, setHasStableIds, unregisterAdapterDataObserver</code></li>
+                                 
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                                <a name="WorkoutSessionAdapter(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.util.List)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>WorkoutSessionAdapter</h4>
+                                        <pre>WorkoutSessionAdapter(<a href=../../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> workoutDTO, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../../model/dto/EjercicioDTO.html>EjercicioDTO</a>&gt; exerciseList)</pre>
+                                        <div class="block">Constructor que inicializa el adaptador con el DTO del entrenamiento y la lista de ejercicios.</div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>workoutDTO</code> - DTO que contiene la información del entrenamiento.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>exerciseList</code> - Lista de ejercicios a mostrar en la sesión.</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="getSeriesMap()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSeriesMap</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=../../model/dto/EjercicioDTO.html>EjercicioDTO</a>, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt; <a href=WorkoutSessionAdapter.html#getSeriesMap()>getSeriesMap</a>()</pre>
+                                        <div class="block"><p>Retorna el mapa interno de ejercicios a lista de series, para que el ViewModel pueda recogerlo al guardar la sesión.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Mapa de <a href=../../model/dto/EjercicioDTO.html>EjercicioDTO</a> a <code>List&lt;SerieDTO&gt;</code>.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="onCreateViewHolder(android.view.ViewGroup,int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>onCreateViewHolder</h4>
+                                        <pre class="methodSignature">@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutSessionAdapter.WorkoutViewHolder</a> <a href=WorkoutSessionAdapter.html#onCreateViewHolder(android.view.ViewGroup,int)>onCreateViewHolder</a>(@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=https://developer.android.com/reference/kotlin/android/view/ViewGroup.html>ViewGroup</a> parent, int viewType)</pre>
+                                        <div class="block"><p>Crea un nuevo <a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutViewHolder</a> inflando el layout de cada item de ejercicio en sesión.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>parent</code> - Contenedor padre donde se inflará la vista.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>viewType</code> - Tipo de vista (no se utiliza, siempre es R.layout.item_workout_session).</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Instancia de <a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutViewHolder</a>.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="onBindViewHolder(com.proyecto.facilgimapp.ui.workout.WorkoutSessionAdapter.WorkoutViewHolder,int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>onBindViewHolder</h4>
+                                        <pre class="methodSignature"> void <a href=WorkoutSessionAdapter.html#onBindViewHolder(com.proyecto.facilgimapp.ui.workout.WorkoutSessionAdapter.WorkoutViewHolder,int)>onBindViewHolder</a>(@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutSessionAdapter.WorkoutViewHolder</a> holder, int position)</pre>
+                                        <div class="block"><p>Vincula los datos del ejercicio en la posición dada al <a href=WorkoutSessionAdapter.WorkoutViewHolder.html>WorkoutViewHolder</a>, iniciando o recreando la lista de series asociada en caso necesario.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>holder</code> - ViewHolder que contiene las vistas del item.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>position</code> - Posición del elemento en <code>exerciseList</code>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getItemCount()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getItemCount</h4>
+                                        <pre class="methodSignature"> int <a href=WorkoutSessionAdapter.html#getItemCount()>getItemCount</a>()</pre>
+                                        <div class="block"><p>Retorna el número total de ejercicios en la sesión.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Tamaño de <code>exerciseList</code>.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="allCompleted()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>allCompleted</h4>
+                                        <pre class="methodSignature"> boolean <a href=WorkoutSessionAdapter.html#allCompleted()>allCompleted</a>()</pre>
+                                        <div class="block"><p>Verifica si todas las series de todos los ejercicios están completadas. </p><p> Retorna <code>true</code> solo si cada <a href=../../model/dto/SerieDTO.html>SerieDTO</a> está marcada como completada y tanto repeticiones como peso son mayores que cero. Trata nulos como cero. </p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p><code>true</code> si todas las series cumplen la condición, <code>false</code> en caso contrario.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getEntrenamientoEjercicioDTOList()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getEntrenamientoEjercicioDTOList</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a>&gt; <a href=WorkoutSessionAdapter.html#getEntrenamientoEjercicioDTOList()>getEntrenamientoEjercicioDTOList</a>()</pre>
+                                        <div class="block"><p>Construye la lista de <a href=../../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> a partir de los datos ingresados en <code>seriesMap</code> y la lista de ejercicios. </p><p> Cada <code>EntrenamientoEjercicioDTO</code> contiene el ejercicio, su lista de series, y un orden incremental a partir de 1. Se omiten ejercicios sin series. </p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Lista de <a href=../../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> lista para enviar al ViewModel.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

@@ -242,4 +242,5 @@
     <string name="no_podido_navegar">No se ha podido navegar</string>
     <string name="login_success">Has iniciado sesión con exito</string>
     <string name="sin_descripcion">Sin descripción</string>
+    <string name="guardado_correctamente">Entrenamiento registrado correctamente</string>
 </resources>

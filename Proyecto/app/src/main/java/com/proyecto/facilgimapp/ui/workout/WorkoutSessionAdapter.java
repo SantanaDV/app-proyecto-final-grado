@@ -182,9 +182,11 @@ public class WorkoutSessionAdapter extends RecyclerView.Adapter<WorkoutSessionAd
             // Limpia vistas anteriores para evitar duplicados
             llSeriesContainer.removeAllViews();
 
-            // Si no hay series existentes, crea una por defecto
+            // Si no hay series existentes, crea tres por defecto
             if (seriesMap.get(ejercicio).isEmpty()) {
-                addSerieView(ejercicio);
+                for (int i = 0; i < 3; i++){
+                    addSerieView(ejercicio);
+                }
             } else {
                 // Recrea la vista para cada SerieDTO existente
                 for (SerieDTO serie : seriesMap.get(ejercicio)) {

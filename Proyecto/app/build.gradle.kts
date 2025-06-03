@@ -1,7 +1,11 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+import java.net.URL
+
 plugins {
     alias(libs.plugins.android.application)
     id("androidx.navigation.safeargs")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.dokka") version "1.9.0"
 }
 
 android {
@@ -31,7 +35,7 @@ android {
     buildTypes {
         debug {
             //poner localhost para movil fisico 10.0.2.2
-            buildConfigField("String", "BASE_URL", "\"https://localhost:8443/\"")
+            buildConfigField("String", "BASE_URL", "\"https://10.0.2.2:8443/\"")
         }
         release {
             isMinifyEnabled = false
@@ -67,4 +71,36 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+}
+
+
+tasks.named<DokkaTask>("dokkaJavadoc") {
+    // Dokka ya sabe que "dokkaJavadoc" genera output en formato javadoc,
+    // así que NO hace falta outputFormat.set("javadoc").
+
+    // Le indicamos sólo el directorio donde volcará los .html:
+    outputDirectory.set(buildDir.resolve("docs/javadoc"))
+
+    dokkaSourceSets {
+        named("main") {
+            // Nombre del módulo/documentación (opcional):
+            moduleName.set("API de FacilGimApp")
+
+            // Raíces de código (tu código está en src/main/java y en src/main/kotlin):
+            sourceRoots.from(file("src/main/java"))
+            sourceRoots.from(file("src/main/kotlin"))
+
+            // Si quieres enlazar a la doc oficial de Android:
+            externalDocumentationLink {
+                url.set(URL("https://developer.android.com/reference/"))
+                // packageListUrl se rellena automáticamente en Dokka 1.9.x,
+                // así que normalmente NO hace falta especificarlo a mano.
+            }
+
+            // Por ejemplo, sólo documentar clases públicas:
+            documentedVisibilities.set(
+                setOf(org.jetbrains.dokka.DokkaConfiguration.Visibility.PUBLIC)
+            )
+        }
+    }
 }

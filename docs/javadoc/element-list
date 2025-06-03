@@ -1,0 +1,23 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.proyecto.facilgimapp.ui.admin/UserAdapter.OnUserInteractionListener///PointingToDeclaration/com/proyecto/facilgimapp/ui/admin/UserAdapter.OnUserInteractionListener.html
+$dokka.location:com.proyecto.facilgimapp.ui.exercises/EjercicioCatalogAdapter.OnLongItemClick///PointingToDeclaration/com/proyecto/facilgimapp/ui/exercises/EjercicioCatalogAdapter.OnLongItemClick.html
+$dokka.location:com.proyecto.facilgimapp.ui.types/TypeAdapter.OnTypeInteractionListener///PointingToDeclaration/com/proyecto/facilgimapp/ui/types/TypeAdapter.OnTypeInteractionListener.html
+$dokka.location:com.proyecto.facilgimapp.ui.user/UserOptionsAdapter.Listener///PointingToDeclaration/com/proyecto/facilgimapp/ui/user/UserOptionsAdapter.Listener.html
+$dokka.location:com.proyecto.facilgimapp.ui.workout/WorkoutSessionAdapter.WorkoutViewHolder///PointingToDeclaration/com/proyecto/facilgimapp/ui/workout/WorkoutSessionAdapter.WorkoutViewHolder.html
+$dokka.location:com.proyecto.facilgimapp.viewmodel/TypeViewModel.DeletionCallback///PointingToDeclaration/com/proyecto/facilgimapp/viewmodel/TypeViewModel.DeletionCallback.html
+com.proyecto.facilgimapp.model.dto
+com.proyecto.facilgimapp.model.entity
+com.proyecto.facilgimapp.network
+com.proyecto.facilgimapp.repository
+com.proyecto.facilgimapp.ui.activities
+com.proyecto.facilgimapp.ui.admin
+com.proyecto.facilgimapp.ui.auth
+com.proyecto.facilgimapp.ui.exercises
+com.proyecto.facilgimapp.ui.home
+com.proyecto.facilgimapp.ui.types
+com.proyecto.facilgimapp.ui.user
+com.proyecto.facilgimapp.ui.workout
+com.proyecto.facilgimapp.util
+com.proyecto.facilgimapp.viewmodel
+

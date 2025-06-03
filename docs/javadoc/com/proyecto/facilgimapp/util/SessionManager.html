@@ -1,0 +1,996 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>SessionManager </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.proyecto.facilgimapp.util</a></div>
+        <h2 title="Class SessionManager" class="title">Class SessionManager</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public class <span class="typeNameLabel"><a href=SessionManager.html>SessionManager</a></span>
+
+                    </pre>
+                    <div class="block"><p>Gestor de sesión y credenciales de usuario, almacenadas en SharedPreferences. </p><p> Permite guardar y recuperar datos de autenticación (token JWT, nombre de usuario, roles e ID), así como credenciales para “recordar usuario y contraseña” y correo. Proporciona métodos para limpiar la sesión o sólo las credenciales. </p> Autor: Francisco Santana</div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#SessionManager()">SessionManager</a></span>()</code></th>
+                                                <td class="colLast"></td>
+                                            </tr>
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>static void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#saveLoginData(android.content.Context,java.lang.String,java.lang.String,java.util.List,int)>saveLoginData</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> token, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; authorities, int userId) </code>
+                                            </th>
+                                            <td class="colLast">Guarda datos de inicio de sesión: token JWT, nombre de usuario, lista de roles e ID de usuario.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#getToken(android.content.Context)>getToken</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Recupera el token JWT almacenado en preferencias.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#getUsername(android.content.Context)>getUsername</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Recupera el nombre de usuario almacenado en preferencias.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>static <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#getAuthorities(android.content.Context)>getAuthorities</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Recupera la lista de roles (authorities) almacenada en preferencias.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>static int</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#getUserId(android.content.Context)>getUserId</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Recupera el ID de usuario almacenado en preferencias.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>static boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#isAdmin(android.content.Context)>isAdmin</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Comprueba si el usuario tiene rol de administrador (&quot;ROLE_ADMIN&quot; o &quot;ADMIN&quot;).</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>static void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#clearSession(android.content.Context)>clearSession</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Elimina todos los datos de sesión y credenciales almacenados.</td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>static void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#clearLoginOnly(android.content.Context)>clearLoginOnly</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Elimina sólo los datos de sesión (token, usuario, roles e ID), pero conserva las credenciales (“recordar usuario/contraseña”).</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>static void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#saveCredentials(android.content.Context,java.lang.String,java.lang.String)>saveCredentials</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> user, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> pass) </code>
+                                            </th>
+                                            <td class="colLast">Guarda las credenciales para “recordar” usuario y contraseña.</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>static void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#clearCredentials(android.content.Context)>clearCredentials</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Borra sólo las credenciales guardadas (usuario y contraseña), sin afectar el resto de datos de sesión.</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#getSavedUsername(android.content.Context)>getSavedUsername</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Recupera el usuario “recordado” (guardado previamente).</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#getSavedPassword(android.content.Context)>getSavedPassword</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx) </code>
+                                            </th>
+                                            <td class="colLast">Recupera la contraseña “recordada” (guardada previamente).</td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>static void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#saveUserEmail(android.content.Context,java.lang.String)>saveUserEmail</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> context, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> email) </code>
+                                            </th>
+                                            <td class="colLast">Guarda el correo electrónico del usuario en preferencias.</td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#getUserEmail(android.content.Context)>getUserEmail</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Recupera el correo electrónico del usuario guardado.</td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>static boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=SessionManager.html#isLoggedIn(android.content.Context)>isLoggedIn</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Comprueba si hay un usuario actualmente autenticado (token no nulo ni vacío).</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                                <a name="SessionManager()"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>SessionManager</h4>
+                                        <pre>SessionManager()</pre>
+                                        <div class="block"></div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="saveLoginData(android.content.Context,java.lang.String,java.lang.String,java.util.List,int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>saveLoginData</h4>
+                                        <pre class="methodSignature"> static void <a href=SessionManager.html#saveLoginData(android.content.Context,java.lang.String,java.lang.String,java.util.List,int)>saveLoginData</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> token, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> username, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; authorities, int userId)</pre>
+                                        <div class="block"><p>Guarda datos de inicio de sesión: token JWT, nombre de usuario, lista de roles e ID de usuario.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>token</code> - Token JWT de autenticación.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>username</code> - Nombre de usuario.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>authorities</code> - Lista de roles (por ejemplo, [&quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot;]).</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>userId</code> - Identificador numérico del usuario.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getToken(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getToken</h4>
+                                        <pre class="methodSignature"> static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=SessionManager.html#getToken(android.content.Context)>getToken</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Recupera el token JWT almacenado en preferencias.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Token JWT o null si no existe.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getUsername(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getUsername</h4>
+                                        <pre class="methodSignature"> static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=SessionManager.html#getUsername(android.content.Context)>getUsername</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Recupera el nombre de usuario almacenado en preferencias.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Nombre de usuario o null si no existe.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getAuthorities(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getAuthorities</h4>
+                                        <pre class="methodSignature"> static <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; <a href=SessionManager.html#getAuthorities(android.content.Context)>getAuthorities</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Recupera la lista de roles (authorities) almacenada en preferencias.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Lista de cadenas con cada rol; devuelve lista vacía si no hay roles.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getUserId(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getUserId</h4>
+                                        <pre class="methodSignature"> static int <a href=SessionManager.html#getUserId(android.content.Context)>getUserId</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Recupera el ID de usuario almacenado en preferencias.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Entero con el ID de usuario, o -1 si no existe.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="isAdmin(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>isAdmin</h4>
+                                        <pre class="methodSignature"> static boolean <a href=SessionManager.html#isAdmin(android.content.Context)>isAdmin</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Comprueba si el usuario tiene rol de administrador (&quot;ROLE_ADMIN&quot; o &quot;ADMIN&quot;).</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p><code>true</code> si entre las autoridades se encuentra un rol de administrador.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="clearSession(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>clearSession</h4>
+                                        <pre class="methodSignature"> static void <a href=SessionManager.html#clearSession(android.content.Context)>clearSession</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Elimina todos los datos de sesión y credenciales almacenados. </p><p> Equivale a llamar a <a href=https://developer.android.com/reference/kotlin/android/content/SharedPreferences.Editor.html#clear>clear</a> y aplicar. </p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="clearLoginOnly(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>clearLoginOnly</h4>
+                                        <pre class="methodSignature"> static void <a href=SessionManager.html#clearLoginOnly(android.content.Context)>clearLoginOnly</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Elimina sólo los datos de sesión (token, usuario, roles e ID), pero conserva las credenciales (“recordar usuario/contraseña”).</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="saveCredentials(android.content.Context,java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>saveCredentials</h4>
+                                        <pre class="methodSignature"> static void <a href=SessionManager.html#saveCredentials(android.content.Context,java.lang.String,java.lang.String)>saveCredentials</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> user, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> pass)</pre>
+                                        <div class="block"><p>Guarda las credenciales para “recordar” usuario y contraseña.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>user</code> - Cadena con el nombre de usuario.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>pass</code> - Cadena con la contraseña.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="clearCredentials(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>clearCredentials</h4>
+                                        <pre class="methodSignature"> static void <a href=SessionManager.html#clearCredentials(android.content.Context)>clearCredentials</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Borra sólo las credenciales guardadas (usuario y contraseña), sin afectar el resto de datos de sesión.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSavedUsername(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSavedUsername</h4>
+                                        <pre class="methodSignature"> static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=SessionManager.html#getSavedUsername(android.content.Context)>getSavedUsername</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Recupera el usuario “recordado” (guardado previamente).</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Cadena con el nombre de usuario o null si no existe.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSavedPassword(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSavedPassword</h4>
+                                        <pre class="methodSignature"> static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=SessionManager.html#getSavedPassword(android.content.Context)>getSavedPassword</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> ctx)</pre>
+                                        <div class="block"><p>Recupera la contraseña “recordada” (guardada previamente).</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ctx</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Cadena con la contraseña o null si no existe.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="saveUserEmail(android.content.Context,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>saveUserEmail</h4>
+                                        <pre class="methodSignature"> static void <a href=SessionManager.html#saveUserEmail(android.content.Context,java.lang.String)>saveUserEmail</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> context, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> email)</pre>
+                                        <div class="block"><p>Guarda el correo electrónico del usuario en preferencias.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>context</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>email</code> - Cadena con el correo electrónico a almacenar.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getUserEmail(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getUserEmail</h4>
+                                        <pre class="methodSignature"> static <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=SessionManager.html#getUserEmail(android.content.Context)>getUserEmail</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> context)</pre>
+                                        <div class="block"><p>Recupera el correo electrónico del usuario guardado.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>context</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Cadena con el correo electrónico o cadena vacía si no existe.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="isLoggedIn(android.content.Context)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>isLoggedIn</h4>
+                                        <pre class="methodSignature"> static boolean <a href=SessionManager.html#isLoggedIn(android.content.Context)>isLoggedIn</a>(<a href=https://developer.android.com/reference/kotlin/android/content/Context.html>Context</a> context)</pre>
+                                        <div class="block"><p>Comprueba si hay un usuario actualmente autenticado (token no nulo ni vacío).</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>context</code> - Contexto de la aplicación.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p><code>true</code> si existe un token válido, <code>false</code> en caso contrario.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>
