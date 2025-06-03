@@ -117,7 +117,7 @@ var pathtoroot = "../../../../";
 public class <span class="typeNameLabel"><a href=WorkoutSessionViewModel.html>WorkoutSessionViewModel</a></span>
 extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycle/AndroidViewModel.html>AndroidViewModel</a>
                     </pre>
-                    <div class="block"><p>ViewModel encargado de guardar la sesión de entrenamiento completada por el usuario. </p><p> Se encarga de construir la lista de relaciones entre ejercicios y sus series, validar campos esenciales en el DTO de entrenamiento y enviar la información al backend a través de <a href=../repository/WorkoutRepository.html>WorkoutRepository</a>. </p> Autor: Francisco Santana</div>
+                    <div class="block"><p>ViewModel encargado de guardar la sesión de entrenamiento completada por el usuario. </p><p> Se encarga de construir la lista de relaciones entre ejercicios y sus series, validar campos esenciales en el DTO de entrenamiento y enviar la información al backend a través de <a href=../repository/WorkoutRepository.html>WorkoutRepository</a>. Permite pasar callbacks de éxito/error para que la UI solo navegue cuando realmente se haya guardado. </p> Autor: Francisco Santana</div>
 
                     <dl>
 
@@ -199,7 +199,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycl
                                             <tr class="altColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
                                                         href="#WorkoutSessionViewModel(android.app.Application)">WorkoutSessionViewModel</a></span>(<a href=https://developer.android.com/reference/kotlin/android/app/Application.html>Application</a> application)</code></th>
-                                                <td class="colLast">Constructor que inicializa el repositorio de entrenamientos usando el contexto de la aplicación.</td>
+                                                <td class="colLast"></td>
                                             </tr>
                                         
 
@@ -262,7 +262,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycl
                                         <tr id="i1" class="rowColor">
                                             <td class="colFirst"><code>void</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionViewModel.html#saveWorkoutSession(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.util.Map)>saveWorkoutSession</a>(<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> workoutDTO, <a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt; seriesMap) </code>
+                                            <th class="colSecond" scope="row"><code><a href=WorkoutSessionViewModel.html#saveWorkoutSession(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.util.Map,java.lang.Runnable,java.lang.Runnable)>saveWorkoutSession</a>(<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> workoutDTO, <a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt; seriesMap, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onSuccess, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onError) </code>
                                             </th>
                                             <td class="colLast">Guarda la sesión de entrenamiento completada, construyendo la relación <a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> entre cada ejercicio y sus series.</td>
                                         </tr>
@@ -315,16 +315,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycl
                                     <li class="blockList">
                                         <h4>WorkoutSessionViewModel</h4>
                                         <pre>WorkoutSessionViewModel(<a href=https://developer.android.com/reference/kotlin/android/app/Application.html>Application</a> application)</pre>
-                                        <div class="block">Constructor que inicializa el repositorio de entrenamientos usando el contexto de la aplicación.</div>
-                                        
-                                        <dl>
-                                            <dt><span class="paramLabel">Parameters:</span></dt>
-                                            
-                                            
-                                            <dd><code>application</code> - Aplicación actual, usada para obtener el contexto necesario.</dd>
-                                            
-                                            
-                                        </dl>
+                                        <div class="block"></div>
                                         
                                     </li>
                                 </ul>
@@ -368,7 +359,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycl
                                     </li>
                                 </ul>
                                 
-                                <a id="saveWorkoutSession(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.util.Map)">
+                                <a id="saveWorkoutSession(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.util.Map,java.lang.Runnable,java.lang.Runnable)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -376,8 +367,8 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycl
                                           >
                                     <li class="blockList">
                                         <h4>saveWorkoutSession</h4>
-                                        <pre class="methodSignature"> void <a href=WorkoutSessionViewModel.html#saveWorkoutSession(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.util.Map)>saveWorkoutSession</a>(<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> workoutDTO, <a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt; seriesMap)</pre>
-                                        <div class="block"><p>Guarda la sesión de entrenamiento completada, construyendo la relación <a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> entre cada ejercicio y sus series. </p><p> Validaciones previas: </p><ul><li>El usuario asociado a <code>workoutDTO</code> debe existir con ID no nulo.</li><li>Debe haber un tipo de entrenamiento asignado en <code>workoutDTO</code>.</li></ul> Si falta alguno de esos campos, emite un mensaje de error en errorMessage y no realiza la llamada a la API. De lo contrario, envía la petición a través de <a href=../repository/WorkoutRepository.html#createWorkout(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)>createWorkout</a>. </div>
+                                        <pre class="methodSignature"> void <a href=WorkoutSessionViewModel.html#saveWorkoutSession(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO,java.util.Map,java.lang.Runnable,java.lang.Runnable)>saveWorkoutSession</a>(<a href=../model/dto/EntrenamientoDTO.html>EntrenamientoDTO</a> workoutDTO, <a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a>, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=../model/dto/SerieDTO.html>SerieDTO</a>&gt;&gt; seriesMap, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onSuccess, <a href=https://developer.android.com/reference/kotlin/java/lang/Runnable.html>Runnable</a> onError)</pre>
+                                        <div class="block"><p>Guarda la sesión de entrenamiento completada, construyendo la relación <a href=../model/dto/EntrenamientoEjercicioDTO.html>EntrenamientoEjercicioDTO</a> entre cada ejercicio y sus series. </p><p> Validaciones previas: </p><ul><li>El usuario asociado a <code>workoutDTO</code> debe existir con ID no nulo.</li><li>Debe haber un tipo de entrenamiento asignado en <code>workoutDTO</code>.</li></ul> Si falta alguno de esos campos, emite un mensaje de error en errorMessage y llama a onError.run(). De lo contrario, envía la petición a través de <a href=../repository/WorkoutRepository.html#createWorkout(com.proyecto.facilgimapp.model.dto.EntrenamientoDTO)>createWorkout</a> y, según la respuesta, invoca onSuccess.run() o onError.run().</div>
 
                                         <dl>
 
@@ -390,6 +381,14 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycl
                                             
                                             
                                             <dd><code>seriesMap</code> - Mapa donde cada clave es un <a href=../model/dto/EjercicioDTO.html>EjercicioDTO</a> y el valor es la lista de <a href=../model/dto/SerieDTO.html>SerieDTO</a> asociadas a ese ejercicio.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>onSuccess</code> - Runnable que se ejecuta si la llamada finaliza con éxito.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>onError</code> - Runnable que se ejecuta si hay un error de validación o en la llamada HTTP.</dd>
                                             
                                             
                                         

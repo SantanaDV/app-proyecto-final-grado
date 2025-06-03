@@ -150,7 +150,7 @@ var pathtoroot = "../../../../../";
 public class <span class="typeNameLabel"><a href=WorkoutSessionFragment.html>WorkoutSessionFragment</a></span>
 extends <a href=https://developer.android.com/reference/kotlin/androidx/fragment/app/Fragment.html>Fragment</a>
                     </pre>
-                    <div class="block"><p>Fragment que gestiona la ejecución de una sesión de entrenamiento. </p><p> Muestra un cronómetro para medir la duración real de la sesión, carga los ejercicios seleccionados, y permite al usuario completar series de cada ejercicio. Al finalizar, verifica que todas las series estén completadas, calcula la duración en minutos, actualiza el DTO de entrenamiento con las series y la duración, y guarda la sesión mediante <a href=../../viewmodel/WorkoutSessionViewModel.html>WorkoutSessionViewModel</a>. </p> Autor: Francisco Santana</div>
+                    <div class="block"><p>Fragment que gestiona la ejecución de una sesión de entrenamiento. </p><p> Muestra un cronómetro para medir la duración real de la sesión, carga los ejercicios seleccionados, y permite al usuario completar series de cada ejercicio. Al finalizar, verifica que todas las series estén completadas, calcula la duración en minutos, actualiza el DTO de entrenamiento con las series y la duración, y guarda la sesión mediante <a href=../../viewmodel/WorkoutSessionViewModel.html>WorkoutSessionViewModel</a>. Solo navega de vuelta cuando la petición al servidor haya reportado éxito, para garantizar que WorkoutsFragment recargue siempre la lista actualizada. </p> Autor: Francisco Santana</div>
 
                     <dl>
 
@@ -295,7 +295,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/fragment
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=WorkoutSessionFragment.html#onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)>onCreateView</a>(@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=https://developer.android.com/reference/kotlin/android/view/LayoutInflater.html>LayoutInflater</a> inf, <a href=https://developer.android.com/reference/kotlin/android/view/ViewGroup.html>ViewGroup</a> ctr, <a href=https://developer.android.com/reference/kotlin/android/os/Bundle.html>Bundle</a> savedInstanceState) </code>
                                             </th>
-                                            <td class="colLast">Infla el layout del fragment, inicializa <a href=../../viewmodel/ExercisesViewModel.html>ExercisesViewModel</a> y retorna la vista raíz.</td>
+                                            <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i1" class="rowColor">
@@ -303,7 +303,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/fragment
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=WorkoutSessionFragment.html#onViewCreated(android.view.View,android.os.Bundle)>onViewCreated</a>(@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=https://developer.android.com/reference/kotlin/android/view/View.html>View</a> v, @<a href=https://developer.android.com/reference/kotlin/androidx/annotation/Nullable.html>Nullable</a>() <a href=https://developer.android.com/reference/kotlin/android/os/Bundle.html>Bundle</a> s) </code>
                                             </th>
-                                            <td class="colLast">Se invoca después de que la vista ha sido creada.</td>
+                                            <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i2" class="altColor">
@@ -311,7 +311,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/fragment
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=WorkoutSessionFragment.html#onDestroyView()>onDestroyView</a>() </code>
                                             </th>
-                                            <td class="colLast">Libera la referencia al binding cuando la vista se destruye para evitar fugas de memoria.</td>
+                                            <td class="colLast"></td>
                                         </tr>
                                         
                                         </tbody>
@@ -383,30 +383,12 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/fragment
                                     <li class="blockList">
                                         <h4>onCreateView</h4>
                                         <pre class="methodSignature">@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/Nullable.html>Nullable</a>() <a href=https://developer.android.com/reference/kotlin/android/view/View.html>View</a> <a href=WorkoutSessionFragment.html#onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)>onCreateView</a>(@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=https://developer.android.com/reference/kotlin/android/view/LayoutInflater.html>LayoutInflater</a> inf, <a href=https://developer.android.com/reference/kotlin/android/view/ViewGroup.html>ViewGroup</a> ctr, <a href=https://developer.android.com/reference/kotlin/android/os/Bundle.html>Bundle</a> savedInstanceState)</pre>
-                                        <div class="block"><p>Infla el layout del fragment, inicializa <a href=../../viewmodel/ExercisesViewModel.html>ExercisesViewModel</a> y retorna la vista raíz.</p></div>
+                                        <div class="block"></div>
 
                                         <dl>
 
                                         
-                                            <dt><span class="paramLabel">Parameters:</span></dt>
-                                            
-                                            
-                                            <dd><code>inf</code> - Inflador de vistas proporcionado por Android.</dd>
-                                            
-                                            
-                                            
-                                            <dd><code>ctr</code> - Contenedor padre en el que se insertará el fragmento.</dd>
-                                            
-                                            
-                                            
-                                            <dd><code>savedInstanceState</code> - Bundle con el estado previo del fragmento; puede ser null.</dd>
-                                            
-                                            
-                                        
 
-                                        
-                                            <dt><span class="returnLabel">Returns:</span></dt>
-                                            <dd><p>Vista raíz inflada correspondiente a fragment_workout_session.xml.</p></dd>
                                         
 
                                         
@@ -424,21 +406,10 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/fragment
                                     <li class="blockList">
                                         <h4>onViewCreated</h4>
                                         <pre class="methodSignature"> void <a href=WorkoutSessionFragment.html#onViewCreated(android.view.View,android.os.Bundle)>onViewCreated</a>(@<a href=https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html>NonNull</a>() <a href=https://developer.android.com/reference/kotlin/android/view/View.html>View</a> v, @<a href=https://developer.android.com/reference/kotlin/androidx/annotation/Nullable.html>Nullable</a>() <a href=https://developer.android.com/reference/kotlin/android/os/Bundle.html>Bundle</a> s)</pre>
-                                        <div class="block"><p>Se invoca después de que la vista ha sido creada. Configura el cronómetro, carga los ejercicios seleccionados, inicializa el adaptador y el ViewModel para guardar la sesión. También configura el botón de finalizar sesión.</p></div>
+                                        <div class="block"></div>
 
                                         <dl>
 
-                                        
-                                            <dt><span class="paramLabel">Parameters:</span></dt>
-                                            
-                                            
-                                            <dd><code>v</code> - Vista previamente inflada devuelta por <a href=WorkoutSessionFragment.html#onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)>onCreateView</a>.</dd>
-                                            
-                                            
-                                            
-                                            <dd><code>s</code> - Bundle con el estado previo del fragmento; puede ser null.</dd>
-                                            
-                                            
                                         
 
                                         
@@ -458,7 +429,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/fragment
                                     <li class="blockList">
                                         <h4>onDestroyView</h4>
                                         <pre class="methodSignature"> void <a href=WorkoutSessionFragment.html#onDestroyView()>onDestroyView</a>()</pre>
-                                        <div class="block"><p>Libera la referencia al binding cuando la vista se destruye para evitar fugas de memoria.</p></div>
+                                        <div class="block"></div>
 
                                         <dl>
 
