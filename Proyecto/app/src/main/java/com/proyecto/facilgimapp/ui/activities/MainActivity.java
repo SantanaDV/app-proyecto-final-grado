@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 1) Obtener el NavController
+        //  Obtener el NavController
         NavHostFragment host = (NavHostFragment)
                 getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         if (host == null) {
@@ -69,12 +69,15 @@ public class MainActivity extends BaseActivity {
         }
         navController = host.getNavController();
 
-        // 2) Si venimos forzados a logout...
+        // Si venimos forzados a logout
         if (getIntent().getBooleanExtra("forceLogout", false)) {
             navController.navigate(R.id.loginFragment);
         }
-
-        // 3) Observador de estado de red/servidor
+        int destino = getIntent().getIntExtra("navigate_to", -1);
+        if (destino != -1) {
+            navController.navigate(destino);
+        }
+        // Observadomos el de estado de red/servidor
         ConnectionState.get().isNetworkUp().observe(this, up -> {
             if (!up) {
                 // Limpiamos credenciales de sesión

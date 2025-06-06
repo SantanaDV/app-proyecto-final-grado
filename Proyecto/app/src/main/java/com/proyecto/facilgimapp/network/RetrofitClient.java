@@ -54,7 +54,8 @@ public class RetrofitClient {
                     "10.0.2.2".equals(hostname)
                             || "localhost".equals(hostname)
                             || "10.110.4.43".equals(hostname)
-                    || "192.168.0.195".equals(hostname)
+                            || "192.168.0.195".equals(hostname)
+                            || "91.99.49.236.sslip.io".equals(hostname)
             );
             /* --------------------------------------------------------- */
 

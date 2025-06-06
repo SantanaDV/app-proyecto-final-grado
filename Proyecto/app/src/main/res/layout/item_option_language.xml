@@ -13,27 +13,28 @@
         style="@style/TextAppearance.MaterialComponents.Body1" />
 
     <LinearLayout
-        android:layout_width="397dp"
-        android:layout_height="57dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/ivFlagEs"
-            android:layout_width="59dp"
-            android:layout_height="57dp"
-            android:layout_marginRight="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:contentDescription="@string/flag_spanish"
             android:padding="4dp"
-            android:src="@drawable/ic_flag_es" />
+            android:src="@drawable/ic_flag_es"
+            android:layout_marginEnd="24dp" />
 
         <ImageView
             android:id="@+id/ivFlagEn"
-            android:layout_width="61dp"
-            android:layout_height="match_parent"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:contentDescription="@string/flag_english"
             android:padding="4dp"
             android:src="@drawable/ic_flag_en" />
+
     </LinearLayout>
 </LinearLayout>

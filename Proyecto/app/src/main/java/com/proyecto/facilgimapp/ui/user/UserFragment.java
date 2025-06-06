@@ -1,8 +1,10 @@
 package com.proyecto.facilgimapp.ui.user;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.databinding.FragmentUserBinding;
 import com.proyecto.facilgimapp.model.entity.UserOptionItem;
 import com.proyecto.facilgimapp.model.entity.UserOptionType;
+import com.proyecto.facilgimapp.ui.activities.MainActivity;
 import com.proyecto.facilgimapp.util.PreferenceManager;
 import com.proyecto.facilgimapp.util.SessionManager;
 import java.util.ArrayList;
@@ -95,14 +98,24 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
         binding.switchUseSystemTheme.setOnCheckedChangeListener((btn, checked) -> {
             PreferenceManager.setUseSystemTheme(requireContext(), checked);
             applyDarkMode(checked);
-            requireActivity().recreate();
+            // Para aplicar cambio de tema: reiniciamos actividad volviendo a MainActivity
+            new android.os.Handler(Looper.getMainLooper()).post(() -> {
+                if (!isAdded() || isRemoving()) return;
+                Intent intent = new Intent(requireActivity(), MainActivity.class);
+                intent.putExtra("navigate_to", R.id.userFragment);
+                requireActivity().finish();
+                requireActivity().overridePendingTransition(0, 0);
+                startActivity(intent);
+            });
         });
+
 
         // Botón para cerrar sesión: limpia credenciales y vuelve al login
         binding.btnLogout.setOnClickListener(v -> {
             SessionManager.clearLoginOnly(requireContext());
             Toast.makeText(requireContext(),
                     R.string.session_closed, Toast.LENGTH_SHORT).show();
+            if (!isAdded() || isRemoving()) return;
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_userFragment_to_loginFragment);
         });
@@ -169,9 +182,15 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
     public void onDarkModeToggled(boolean on) {
         PreferenceManager.setUseSystemTheme(requireContext(), false);
         binding.switchUseSystemTheme.setChecked(false);
-
         PreferenceManager.setDarkMode(requireContext(), on);
-        requireActivity().recreate();
+        new android.os.Handler(Looper.getMainLooper()).post(() -> {
+            if (!isAdded() || isRemoving()) return;
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            intent.putExtra("navigate_to", R.id.userFragment);
+            requireActivity().finish();
+            requireActivity().overridePendingTransition(0, 0);
+            startActivity(intent);
+        });
     }
 
     /**
@@ -183,7 +202,14 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
     @Override
     public void onFontSizeChanged(int size) {
         PreferenceManager.setFontSize(requireContext(), size);
-        requireActivity().recreate();
+        new android.os.Handler(Looper.getMainLooper()).post(() -> {
+            if (!isAdded() || isRemoving()) return;
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            intent.putExtra("navigate_to", R.id.userFragment);
+            requireActivity().finish();
+            requireActivity().overridePendingTransition(0, 0);
+            startActivity(intent);
+        });
     }
 
     /**
@@ -195,8 +221,16 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
     @Override
     public void onThemeColorSelected(int idx) {
         PreferenceManager.setThemeColorIndex(requireContext(), idx);
-        requireActivity().recreate();
+        new android.os.Handler(Looper.getMainLooper()).post(() -> {
+            if (!isAdded() || isRemoving()) return;
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            intent.putExtra("navigate_to", R.id.userFragment);
+            requireActivity().finish();
+            requireActivity().overridePendingTransition(0, 0);
+            startActivity(intent);
+        });
     }
+
 
     /**
      * Callback cuando el usuario cambia el idioma de la aplicación.
@@ -207,8 +241,16 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
     @Override
     public void onLanguageChanged(String code) {
         PreferenceManager.setLanguage(requireContext(), code);
-        requireActivity().recreate();
+        new android.os.Handler(Looper.getMainLooper()).post(() -> {
+            if (!isAdded() || isRemoving()) return;
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            intent.putExtra("navigate_to", R.id.userFragment);
+            requireActivity().finish();
+            requireActivity().overridePendingTransition(0, 0);
+            startActivity(intent);
+        });
     }
+
 
     /**
      * Callback cuando el usuario solicita cambiar su contraseña.
@@ -216,6 +258,7 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
      */
     @Override
     public void onChangePassword() {
+        if (!isAdded() || isRemoving()) return;
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_userFragment_to_changePasswordFragment);
     }
@@ -226,6 +269,7 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
      */
     @Override
     public void onManageUsers() {
+        if (!isAdded() || isRemoving()) return;
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_userFragment_to_adminUserFragment);
     }
@@ -249,8 +293,17 @@ public class UserFragment extends Fragment implements UserOptionsAdapter.Listene
         applyDarkMode(true);
         Toast.makeText(requireContext(),
                 R.string.preferencias_restablecidas, Toast.LENGTH_SHORT).show();
-        requireActivity().recreate();
+        new android.os.Handler(Looper.getMainLooper()).post(() -> {
+            if (!isAdded() || isRemoving()) return;
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            intent.putExtra("navigate_to", R.id.userFragment);
+            requireActivity().finish();
+            requireActivity().overridePendingTransition(0, 0);
+            startActivity(intent);
+        });
     }
+
+
 
     /**
      * Se llama cuando la vista del fragmento se destruye. Libera la referencia al binding
