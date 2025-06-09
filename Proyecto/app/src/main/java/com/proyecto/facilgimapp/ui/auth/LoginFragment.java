@@ -129,7 +129,7 @@ public class LoginFragment extends Fragment {
             }
             if(pass.isEmpty()){{
                 Toast.makeText(requireContext(), R.string.error_login_empty, Toast.LENGTH_SHORT).show();
-                binding.etPassword.setError(getString(R.string.error_username_required));
+                binding.etPassword.setError(getString(R.string.error_password_required));
                 return;
             }}
             remember = binding.sRemember.isChecked();
