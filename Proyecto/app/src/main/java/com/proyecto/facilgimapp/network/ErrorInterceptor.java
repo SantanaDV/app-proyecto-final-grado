@@ -3,7 +3,9 @@ package com.proyecto.facilgimapp.network;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
+import com.proyecto.facilgimapp.R;
 import com.proyecto.facilgimapp.util.SessionManager;
 
 import java.io.IOException;
@@ -54,6 +56,7 @@ public class ErrorInterceptor implements Interceptor {
             // Si es la validación de contraseña, NO forzamos logout:
             String path = request.url().encodedPath();
             if (path.endsWith("/validate-password")) {
+                Toast.makeText(appContext, R.string.invalid_password, Toast.LENGTH_LONG).show();
                 // devolvemos el 401 para que el callback lo maneje
                 return response;
             }

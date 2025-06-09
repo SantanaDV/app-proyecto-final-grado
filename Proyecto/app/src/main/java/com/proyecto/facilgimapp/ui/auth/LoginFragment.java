@@ -112,9 +112,26 @@ public class LoginFragment extends Fragment {
         }
 
         // Listener para el botón de inicio de sesión
+
         binding.btnLogin.setOnClickListener(v -> {
             String user = binding.etUsername.getText().toString();
             String pass = binding.etPassword.getText().toString();
+            if(user.isEmpty() && pass.isEmpty()){
+                Toast.makeText(requireContext(), R.string.error_login_empty, Toast.LENGTH_SHORT).show();
+                binding.etUsername.setError(getString(R.string.error_username_required));
+                binding.etPassword.setError(getString(R.string.error_password_required));
+                return;
+            }
+            if(user.isEmpty()){
+                Toast.makeText(requireContext(), R.string.error_login_empty, Toast.LENGTH_SHORT).show();
+                binding.etUsername.setError(getString(R.string.error_username_required));
+                return;
+            }
+            if(pass.isEmpty()){{
+                Toast.makeText(requireContext(), R.string.error_login_empty, Toast.LENGTH_SHORT).show();
+                binding.etPassword.setError(getString(R.string.error_username_required));
+                return;
+            }}
             remember = binding.sRemember.isChecked();
 
             viewModel.login(new LoginRequest(user, pass))

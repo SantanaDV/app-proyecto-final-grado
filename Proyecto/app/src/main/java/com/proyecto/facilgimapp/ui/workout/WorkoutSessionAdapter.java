@@ -107,12 +107,9 @@ public class WorkoutSessionAdapter extends RecyclerView.Adapter<WorkoutSessionAd
     public boolean allCompleted() {
         for (List<SerieDTO> series : seriesMap.values()) {
             for (SerieDTO s : series) {
-                Integer repsObj = s.getRepeticiones();
-                int reps = (repsObj == null ? 0 : repsObj);
-                Double pesoObj = s.getPeso();
-                double peso = (pesoObj == null ? 0.0 : pesoObj);
-
-                if (!s.isCompletada() || reps <= 0 || peso <= 0) {
+                int reps = (s.getRepeticiones() == null ? 0 : s.getRepeticiones());
+                double peso = (s.getPeso() == null ? 0 : s.getPeso());
+                if (!s.isCompletada() || reps <= 0) {
                     return false;
                 }
             }
@@ -326,12 +323,31 @@ public class WorkoutSessionAdapter extends RecyclerView.Adapter<WorkoutSessionAd
                     serie.setRepeticiones(reps);
 
                     String wStr = etWeight.getText().toString().trim();
-                    double peso = wStr.isEmpty() ? 0 : Double.parseDouble(wStr);
+                    if (wStr.isEmpty()) {
+                        etWeight.setError("El peso no puede estar vacío");
+                        serie.setPeso(0.0);
+                        if (cbDone.isChecked()) cbDone.setChecked(false);
+                        return;
+                    }
+                    double peso;
+                    try {
+                        peso = Double.parseDouble(wStr);
+                    } catch (NumberFormatException e) {
+                        etWeight.setError("Formato no válido");
+                        serie.setPeso(0.0);
+                        if (cbDone.isChecked()) cbDone.setChecked(false);
+                        return;
+                    }
+                    if (peso < 0) {
+                        etWeight.setError("El peso no puede ser negativo");
+                        serie.setPeso(0.0);
+                        if (cbDone.isChecked()) cbDone.setChecked(false);
+                        return;
+                    }
                     serie.setPeso(peso);
 
-                    boolean hasReps   = repsStr.length() > 0;
-                    boolean hasWeight = wStr.length() > 0;
-                    if (hasReps && hasWeight && !cbDone.isChecked()) {
+                    // Auto-marcar completada solo si reps>0 y peso ≥0
+                    if (reps > 0 && !cbDone.isChecked()) {
                         cbDone.setChecked(true);
                     }
                 }

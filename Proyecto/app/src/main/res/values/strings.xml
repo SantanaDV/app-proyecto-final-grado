@@ -243,4 +243,6 @@
     <string name="login_success">Has iniciado sesión con exito</string>
     <string name="sin_descripcion">Sin descripción</string>
     <string name="guardado_correctamente">Entrenamiento registrado correctamente</string>
+    <string name="error_login_empty">Campos Vacios</string>
+    <string name="invalid_password">Contraseña invalida</string>
 </resources>

@@ -244,4 +244,8 @@
     <string name="login_success">You have successfully logged in</string>
     <string name="sin_descripcion">No description</string>
 
+    <string name="guardado_correctamente">Training successfully recorded</string>
+    <string name="error_login_empty">Empty Fields</string>
+    <string name="invalid_password">Invalid password</string>
+
 </resources>
