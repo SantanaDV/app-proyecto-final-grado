@@ -245,4 +245,5 @@
     <string name="guardado_correctamente">Entrenamiento registrado correctamente</string>
     <string name="error_login_empty">Campos Vacios</string>
     <string name="invalid_password">Contraseña invalida</string>
+    <string name="marcar_todo_check">Marca todas las series como completadas</string>
 </resources>

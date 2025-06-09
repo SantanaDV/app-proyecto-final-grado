@@ -247,5 +247,6 @@
     <string name="guardado_correctamente">Training successfully recorded</string>
     <string name="error_login_empty">Empty Fields</string>
     <string name="invalid_password">Invalid password</string>
+    <string name="marcar_todo_check">Mark all series as completed</string>
 
 </resources>

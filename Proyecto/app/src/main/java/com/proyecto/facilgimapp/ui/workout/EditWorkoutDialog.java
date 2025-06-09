@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -130,6 +131,14 @@ public class EditWorkoutDialog {
             // Configura el editor de series para las series existentes
             LinearLayout llSeries = ev.findViewById(R.id.llSeriesContainer);
             SeriesEditorHelper.bindSeriesEditor(llSeries, rel.getSeries());
+            //Marcamos todos como completados
+            for (int j = 0; j < llSeries.getChildCount(); j++) {
+                View serieView = llSeries.getChildAt(j);
+                CheckBox cb = serieView.findViewById(R.id.cbDoneSerie);
+                if (cb != null) cb.setChecked(true);
+            }
+            //Y marcamos el ejercicio como completado en el DTO
+            rel.getSeries().forEach(s -> s.setCompletada(true));
             llExercises.addView(ev);
         }
 
@@ -143,7 +152,7 @@ public class EditWorkoutDialog {
 
         dialog.setOnShowListener(d -> {
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-                // 1) Validar nombre
+                //  Validar nombre
                 String nombreInput = etNombre.getText().toString().trim();
                 if (nombreInput.isEmpty()) {
                     etNombre.setError(parent.getString(R.string.error_name_required));
@@ -151,7 +160,7 @@ public class EditWorkoutDialog {
                     return;
                 }
 
-                // 2) Validar fecha
+                //  Validar fecha
                 String fechaStr = etFecha.getText().toString().trim();
                 if (fechaStr.isEmpty()) {
                     Toast.makeText(parent.requireContext(),
@@ -160,16 +169,11 @@ public class EditWorkoutDialog {
                 }
                 // Ya quedó guardada en workout.setFechaEntrenamiento(sel) en el DatePicker
 
-                // 3) Validar tipo de entrenamiento
+                //  Seleccionamos el tipo de entrenamiento
                 int tipoPos = spinnerTipo.getSelectedItemPosition();
-                if (tipoPos < 0 || tipoPos >= tipos.size()) {
-                    Toast.makeText(parent.requireContext(),
-                            R.string.error_type_required, Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 TipoEntrenamientoDTO tipoElegido = tipos.get(tipoPos);
 
-                // 4) Validar ejercicios y series
+                //  Validar ejercicios y series
                 List<EntrenamientoEjercicioDTO> relaciones = workout.getEntrenamientosEjercicios();
                 if (relaciones == null || relaciones.isEmpty()) {
                     Toast.makeText(parent.requireContext(),
@@ -192,7 +196,13 @@ public class EditWorkoutDialog {
                         int reps = (repsObj == null ? 0 : repsObj);
                         double peso = (pesoObj == null ? 0.0 : pesoObj);
 
-                        if (!completada || reps <= 0 || peso <= 0) {
+                        if (!completada) {
+                            Toast.makeText(parent.getContext(),
+                                    R.string.marcar_todo_check, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if ( reps <= 0 || peso < 0) {
                             Toast.makeText(parent.requireContext(),
                                     parent.getString(R.string.debe_completar_todas_las_series)
                                             + " (“" + rel.getEjercicio().getNombre() + "”)",
@@ -202,7 +212,7 @@ public class EditWorkoutDialog {
                     }
                 }
 
-                // 5) Si todas las validaciones pasan, actualizar el DTO
+                //  Si todas las validaciones pasan, actualizar el DTO
                 workout.setNombre(nombreInput);
                 workout.setDescripcion(etDescripcion.getText().toString().trim());
                 try {
