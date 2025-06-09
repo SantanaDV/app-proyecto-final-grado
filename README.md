@@ -40,6 +40,41 @@ Las pruebas unitarias se ejecutan con:
 ```bash
 ./gradlew test
 ```
+Es importante para pruebas en local crear un certificado HTTPS 
+```bash
+# Genera la llave privada del servidor
+openssl genrsa -out server.key 2048
+
+#  Crea la petición de firma (CSR), con CN=10.0.2.2
+openssl req -new -key server.key \
+  -out server.csr \
+  -subj "/C=ES/ST=Madrid/L=Madrid/O=MiApp/OU=Dev/CN=10.0.2.2"
+
+#  Firmar el CSR con el CA, incluyendo SAN para 10.0.2.2 y localhost
+cat > extfile.cnf <<EOF
+subjectAltName = IP:10.0.2.2, IP:127.0.0.1
+EOF
+
+openssl x509 -req -in server.csr \
+  -CA ca.crt -CAkey ca.key -CAcreateserial \
+  -out server.crt -days 365 -sha256 \
+  -extfile extfile.cnf
+```
+Añadirlo a la carpeta raw y añadir el certificado a network_security_config.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Aplica a toda la app -->
+    <base-config>
+        <trust-anchors>
+            <!--  confia en los CAs del sistema -->
+            <certificates src="system" />
+            <!--     añade el CA embebida, ca cambialo por el nombre de tu certificado -->
+               <certificates src="@raw/ca" />
+           </trust-anchors>
+       </base-config>
+   </network-security-config>
+```
 
 ## Estado del servidor
 La app comprueba la salud del backend mediante el endpoint `/actuator/health`.
