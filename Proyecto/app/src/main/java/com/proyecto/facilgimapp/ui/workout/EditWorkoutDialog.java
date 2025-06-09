@@ -124,6 +124,8 @@ public class EditWorkoutDialog {
         // Infla cada ejercicio y sus series dentro del LinearLayout llExercises
         LayoutInflater inf = LayoutInflater.from(parent.requireContext());
         for (EntrenamientoEjercicioDTO rel : workout.getEntrenamientosEjercicios()) {
+            //Marcamos todos como completados
+            rel.getSeries().forEach(s -> s.setCompletada(true));
             View ev = inf.inflate(R.layout.item_edit_ejercicio, llExercises, false);
             // Asigna el nombre del ejercicio
             TextView tvName = ev.findViewById(R.id.tvExerciseName);
@@ -132,11 +134,7 @@ public class EditWorkoutDialog {
             LinearLayout llSeries = ev.findViewById(R.id.llSeriesContainer);
             SeriesEditorHelper.bindSeriesEditor(llSeries, rel.getSeries());
             //Marcamos todos como completados
-            for (int j = 0; j < llSeries.getChildCount(); j++) {
-                View serieView = llSeries.getChildAt(j);
-                CheckBox cb = serieView.findViewById(R.id.cbDoneSerie);
-                if (cb != null) cb.setChecked(true);
-            }
+
             //Y marcamos el ejercicio como completado en el DTO
             rel.getSeries().forEach(s -> s.setCompletada(true));
             llExercises.addView(ev);

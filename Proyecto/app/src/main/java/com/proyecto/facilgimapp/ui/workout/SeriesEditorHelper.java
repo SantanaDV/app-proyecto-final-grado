@@ -119,7 +119,7 @@ public class SeriesEditorHelper {
 
         // Marcar el checkbox si la serie ya tenía repeticiones y peso mayores que cero
         boolean hasReps   = serie.getRepeticiones() > 0;
-        boolean hasWeight = serie.getPeso() > 0;
+        boolean hasWeight = serie.getPeso() >= 0;
         if (hasReps && hasWeight) {
             cbDone.setChecked(true);
             serie.setCompletada(true);
